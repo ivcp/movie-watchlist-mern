@@ -1,0 +1,6 @@
+GET http://localhost:3001/api/movies/search
+Content-Type: application/json
+
+{
+    "query": "aladin"
+}
