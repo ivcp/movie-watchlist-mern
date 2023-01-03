@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/movies/search
+GET http://localhost:3001/api/tmdb/search
 Content-Type: application/json
 
 {
