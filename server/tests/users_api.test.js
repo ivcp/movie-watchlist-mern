@@ -11,8 +11,8 @@ beforeEach(async () => {
   await User.deleteMany({});
   await User.insertMany([
     {
-      name: 'ivo',
-      username: 'tester',
+      name: 'ivo perovic',
+      email: 'tester@test.com',
       passwordHash: '123456',
     },
   ]);
@@ -37,27 +37,29 @@ describe('addition of new user', () => {
     await api
       .post('/api/users')
       .send({
-        name: 'testUser',
-        username: 'tester2',
+        firstName: 'test',
+        lastName: 'test',
+        email: 'tester@email.com',
         password: '123456',
+        confirmPassword: '123456',
       })
       .expect(201)
       .expect('Content-Type', /application\/json/);
 
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(2);
-    expect(usersAtEnd[1].name).toBe('testUser');
+    expect(usersAtEnd[1].name).toBe('test test');
   });
 
-  it('fails with status code 400 if missing password or username', async () => {
+  it('fails with status code 400 if missing password, email username', async () => {
     await api
       .post('/api/users')
       .send({
-        name: 'testUserFail',
+        firstName: 'testUserFail',
       })
       .expect(400)
       .expect({
-        error: 'username or password missing',
+        error: 'name, password or email missing',
       });
 
     const usersAtEnd = await helper.usersInDb();
@@ -68,25 +70,47 @@ describe('addition of new user', () => {
     await api
       .post('/api/users')
       .send({
-        name: 'testUser',
-        username: 'tester2',
+        firstName: 'testUser',
+        lastName: 'test',
+        email: 'tester2@mail.me',
         password: '123',
+        confirmPassword: '123',
       })
-      .expect(400);
+      .expect(400)
+      .expect({ error: 'password must be at least 6 characters long' });
 
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(1);
   });
 
-  it('fails with status code 400 if username taken', async () => {
+  it('fails with status code 400 if email taken', async () => {
     await api
       .post('/api/users')
       .send({
-        name: 'testUser',
-        username: 'tester',
+        firstName: 'testUser',
+        lastName: 'test',
+        email: 'tester@test.com',
         password: '1234567',
+        confirmPassword: '1234567',
       })
-      .expect(400);
+      .expect(400)
+      .expect({ error: 'user already exists' });
+
+    const usersAtEnd = await helper.usersInDb();
+    expect(usersAtEnd).toHaveLength(1);
+  });
+  it('fails with status code 400 paswords dont match', async () => {
+    await api
+      .post('/api/users')
+      .send({
+        firstName: 'testUser',
+        lastName: 'test',
+        email: 'tester1@test.com',
+        password: '1234567',
+        confirmPassword: '123456',
+      })
+      .expect(400)
+      .expect({ error: 'passwords do not match' });
 
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(1);

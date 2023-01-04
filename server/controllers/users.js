@@ -8,11 +8,11 @@ usersRouter.get('/', async (req, res) => {
 });
 
 usersRouter.post('/', async (req, res) => {
-  const { username, name, password } = req.body;
+  const { firstName, lastName, password, confirmPassword, email } = req.body;
 
-  if (!username || !password) {
+  if (!firstName || !lastName || !password || !confirmPassword || !email) {
     return res.status(400).json({
-      error: 'username or password missing',
+      error: 'name, password or email missing',
     });
   }
 
@@ -22,10 +22,16 @@ usersRouter.post('/', async (req, res) => {
     });
   }
 
-  const existingUser = await User.findOne({ username });
+  if (password !== confirmPassword) {
+    return res.status(400).json({
+      error: 'passwords do not match',
+    });
+  }
+
+  const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({
-      error: 'username must be unique',
+      error: 'user already exists',
     });
   }
 
@@ -33,8 +39,8 @@ usersRouter.post('/', async (req, res) => {
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
   const newUser = new User({
-    username,
-    name,
+    name: `${firstName} ${lastName}`,
+    email,
     passwordHash,
   });
 
