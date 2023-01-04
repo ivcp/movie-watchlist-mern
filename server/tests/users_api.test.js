@@ -1,7 +1,6 @@
 const app = require('../app');
 const mongoose = require('mongoose');
 const supertest = require('supertest');
-//const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const helper = require('./helper');
 
@@ -11,7 +10,7 @@ beforeEach(async () => {
   await User.deleteMany({});
   await User.insertMany([
     {
-      name: 'ivo perovic',
+      name: 'ivo tester',
       email: 'tester@test.com',
       passwordHash: '123456',
     },
@@ -97,7 +96,7 @@ describe('addition of new user', () => {
     expect(usersAtEnd).toHaveLength(1);
   });
 
-  it('logs in user', async () => {
+  it.only('logs in user', async () => {
     await api
       .post('/api/users')
       .send({
@@ -107,7 +106,7 @@ describe('addition of new user', () => {
         password: '123456',
       })
       .expect(201);
-    await api
+    const loggedInUser = await api
       .post('/api/login')
       .send({
         email: 'tester@email.com',
@@ -115,6 +114,8 @@ describe('addition of new user', () => {
       })
       .expect(200)
       .expect('Content-Type', /application\/json/);
+
+    expect(loggedInUser.body).toHaveProperty('token');
   });
   it('fails with 401 if email or password invalid', async () => {
     await api

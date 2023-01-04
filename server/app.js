@@ -8,6 +8,7 @@ const { MONGODB_URI } = require('./utils/config');
 const tbdmRouter = require('./controllers/tmdb');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
+const moviesRouter = require('./controllers/movies');
 const middleware = require('./utils/middleware');
 
 mongoose.set('strictQuery', false);
@@ -27,6 +28,7 @@ app.use('/api/tmdb', tbdmRouter);
 
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/movies', moviesRouter);
 app.use(middleware.errorHandler);
 
 module.exports = app;
