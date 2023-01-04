@@ -8,9 +8,9 @@ usersRouter.get('/', async (req, res) => {
 });
 
 usersRouter.post('/', async (req, res) => {
-  const { firstName, lastName, password, confirmPassword, email } = req.body;
+  const { firstName, lastName, password, email } = req.body;
 
-  if (!firstName || !lastName || !password || !confirmPassword || !email) {
+  if (!firstName || !lastName || !password || !email) {
     return res.status(400).json({
       error: 'name, password or email missing',
     });
@@ -19,12 +19,6 @@ usersRouter.post('/', async (req, res) => {
   if (password.length < 6) {
     return res.status(400).json({
       error: 'password must be at least 6 characters long',
-    });
-  }
-
-  if (password !== confirmPassword) {
-    return res.status(400).json({
-      error: 'passwords do not match',
     });
   }
 

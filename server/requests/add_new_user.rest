@@ -2,7 +2,8 @@ POST http://localhost:3001/api/users/
 Content-Type: application/json
 
 {
-    "name": "qwert",
-    "username": "av",
-    "password": "123456"
+    "firstName": "Ivo",    
+    "email": "test@email.com",
+    "password": "123456",
+    "confirmPassword": "123456"
 }

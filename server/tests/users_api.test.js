@@ -41,7 +41,6 @@ describe('addition of new user', () => {
         lastName: 'test',
         email: 'tester@email.com',
         password: '123456',
-        confirmPassword: '123456',
       })
       .expect(201)
       .expect('Content-Type', /application\/json/);
@@ -74,7 +73,6 @@ describe('addition of new user', () => {
         lastName: 'test',
         email: 'tester2@mail.me',
         password: '123',
-        confirmPassword: '123',
       })
       .expect(400)
       .expect({ error: 'password must be at least 6 characters long' });
@@ -91,26 +89,9 @@ describe('addition of new user', () => {
         lastName: 'test',
         email: 'tester@test.com',
         password: '1234567',
-        confirmPassword: '1234567',
       })
       .expect(400)
       .expect({ error: 'user already exists' });
-
-    const usersAtEnd = await helper.usersInDb();
-    expect(usersAtEnd).toHaveLength(1);
-  });
-  it('fails with status code 400 paswords dont match', async () => {
-    await api
-      .post('/api/users')
-      .send({
-        firstName: 'testUser',
-        lastName: 'test',
-        email: 'tester1@test.com',
-        password: '1234567',
-        confirmPassword: '123456',
-      })
-      .expect(400)
-      .expect({ error: 'passwords do not match' });
 
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(1);
