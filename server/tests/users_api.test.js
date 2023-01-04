@@ -16,7 +16,7 @@ beforeEach(async () => {
       passwordHash: '123456',
     },
   ]);
-});
+}, 10000);
 
 describe('users', () => {
   it('returns users as json', async () => {
@@ -95,6 +95,44 @@ describe('addition of new user', () => {
 
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(1);
+  });
+
+  it('logs in user', async () => {
+    await api
+      .post('/api/users')
+      .send({
+        firstName: 'test',
+        lastName: 'test',
+        email: 'tester@email.com',
+        password: '123456',
+      })
+      .expect(201);
+    await api
+      .post('/api/login')
+      .send({
+        email: 'tester@email.com',
+        password: '123456',
+      })
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+  });
+  it('fails with 401 if email or password invalid', async () => {
+    await api
+      .post('/api/login')
+      .send({
+        email: 'tester@gmail.com',
+        password: '123456',
+      })
+      .expect(401)
+      .expect({ error: 'user does not exist' });
+    await api
+      .post('/api/login')
+      .send({
+        email: 'tester@test.com',
+        password: '123456',
+      })
+      .expect(401)
+      .expect({ error: 'invalid password' });
   });
 });
 

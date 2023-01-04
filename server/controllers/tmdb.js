@@ -3,7 +3,7 @@ const config = require('../utils/config');
 
 tmdbRouter.get('/popular', async (req, res) => {
   const response = await fetch(
-    `${config.TMDB}api_key=${config.API_KEY}&language=en-US&page=1`
+    `${config.POPULAR}api_key=${config.API_KEY}&language=en-US&page=1`
   );
   if (!response.ok) {
     const error = await response.json();
