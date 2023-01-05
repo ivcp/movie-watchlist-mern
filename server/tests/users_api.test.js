@@ -96,7 +96,7 @@ describe('addition of new user', () => {
     expect(usersAtEnd).toHaveLength(1);
   });
 
-  it.only('logs in user', async () => {
+  it('logs in user', async () => {
     await api
       .post('/api/users')
       .send({
