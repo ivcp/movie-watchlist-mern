@@ -25,10 +25,10 @@ app.use('/api/tmdb', tbdmRouter);
 //   const testingRouter = require('./controllers/testing');
 //   app.use('/api/testing', testingRouter);
 // }
-
+app.use(middleware.tokenExtractor);
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/movies', moviesRouter);
+app.use('/api/movies', middleware.userExtractor, moviesRouter);
 app.use(middleware.errorHandler);
 
 module.exports = app;
