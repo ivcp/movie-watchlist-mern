@@ -6,6 +6,5 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ
     "tmdbId": "661374",
     "title": "Glass Onion: A Knives Out Mystery",
     "overview": "World-famous detective Benoit Blanc heads to Greece to peel back the layers of a mystery surrounding a tech billionaire and his eclectic crew of friends.",
-    "poster": "/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg",
-    "imdbLink": "link to movie"
+    "poster": "/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg",    
 }

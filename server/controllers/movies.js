@@ -19,7 +19,6 @@ moviesRouter.post('/', userExtractor, async (req, res) => {
     title: body.title,
     poster: body.poster,
     overview: body.overview,
-    imdbLink: body.imdbLink,
     user: user._id,
   });
 

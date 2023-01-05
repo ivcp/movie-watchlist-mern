@@ -5,7 +5,6 @@ const movieSchema = new mongoose.Schema({
   title: String,
   poster: String,
   overview: String,
-  imdbLink: String,
   watched: {
     type: Boolean,
     default: false,

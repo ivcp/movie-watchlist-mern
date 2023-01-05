@@ -2,5 +2,5 @@ GET http://localhost:3001/api/tmdb/details/
 Content-Type: application/json
 
 {
-    "movieId": "7"
+    "movieId": ""
 }

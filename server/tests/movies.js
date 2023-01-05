@@ -5,7 +5,6 @@ const movies = [
     overview:
       'World-famous detective Benoit Blanc heads to Greece to peel back the layers of a mystery surrounding a tech billionaire and his eclectic crew of friends.',
     poster: '/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg',
-    imdbLink: 'link to movie',
   },
   {
     tmdbId: 76600,
@@ -14,7 +13,6 @@ const movies = [
 
     poster: '/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg',
     title: 'Avatar: The Way of Water',
-    imdbLink: 'link to movie 2',
   },
 ];
 
