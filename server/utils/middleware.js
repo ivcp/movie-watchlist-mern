@@ -9,6 +9,14 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message });
   }
+  if (error.name === 'TokenExpiredError') {
+    return response
+      .status(401)
+      .json({ error: 'Token expired. Please log in again.' });
+  }
+  if (error.name === 'JsonWebTokenError') {
+    return response.status(401).json({ error: error.message });
+  }
 
   next(error);
 };
@@ -19,7 +27,13 @@ const userExtractor = async (request, response, next) => {
     if (!decodedToken.id) {
       return response.status(401).json({ error: 'token invalid' });
     }
-    const user = await User.findById(decodedToken.id);
+    const user = await User.findById(decodedToken.id).populate('movies', {
+      tmbdId: 1,
+      title: 1,
+      poster: 1,
+      overview: 1,
+      watched: 1,
+    });
     request['user'] = user;
   }
   next();

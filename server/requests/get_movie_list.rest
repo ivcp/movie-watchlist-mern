@@ -1,0 +1,2 @@
+GET http://localhost:3001/api/movies/list
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjYzYjg1MWIzZDAyYmFmODQzNmM3MTQ3MyIsImlhdCI6MTY3MzAyMzk0NCwiZXhwIjoxNjczMDI3NTQ0fQ.fpfOmFAzVsYaYjGfMFaU-Eir5hOXGNOtvXrtyXm3Ytc

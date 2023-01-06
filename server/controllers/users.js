@@ -8,7 +8,6 @@ usersRouter.get('/', async (req, res) => {
     title: 1,
     poster: 1,
     overview: 1,
-    imdbLink: 1,
     watched: 1,
   });
   res.status(200).json(allUsers);

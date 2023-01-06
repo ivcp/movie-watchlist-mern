@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/movies/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWQiOiI2M2I1NWY4ZmViZWY5MzU0MGMyM2Y1OWMiLCJpYXQiOjE2NzI5MzQ5MzEsImV4cCI6MTY3MjkzODUzMX0.VndG10PLICEV28x_shwW6RtQm5rFSANUwhTt8vGKzMY
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjYzYjg1MWIzZDAyYmFmODQzNmM3MTQ3MyIsImlhdCI6MTY3MzAyMzk0NCwiZXhwIjoxNjczMDI3NTQ0fQ.fpfOmFAzVsYaYjGfMFaU-Eir5hOXGNOtvXrtyXm3Ytc
 
 {
-    "tmdbId": "661374",
-    "title": "Glass Onion: A Knives Out Mystery",
+    "tmdbId": "123123",
+    "title": "Movie 2",
     "overview": "World-famous detective Benoit Blanc heads to Greece to peel back the layers of a mystery surrounding a tech billionaire and his eclectic crew of friends.",
-    "poster": "/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg",    
+    "poster": "/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg"    
 }
