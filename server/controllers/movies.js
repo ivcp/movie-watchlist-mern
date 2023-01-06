@@ -52,4 +52,24 @@ moviesRouter.delete('/:id', userExtractor, async (req, res) => {
   }
 });
 
+moviesRouter.put('/:id', userExtractor, async (req, res) => {
+  if (!req.token) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const id = req.params.id;
+  const { watched } = req.body;
+
+  const updatedBlog = await Movie.findByIdAndUpdate(
+    id,
+    { watched },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json(updatedBlog);
+});
+
 module.exports = moviesRouter;
