@@ -96,44 +96,46 @@ describe('addition of new user', () => {
     expect(usersAtEnd).toHaveLength(1);
   });
 
-  it('logs in user', async () => {
-    await api
-      .post('/api/users')
-      .send({
-        firstName: 'test',
-        lastName: 'test',
-        email: 'tester@email.com',
-        password: '123456',
-      })
-      .expect(201);
-    const loggedInUser = await api
-      .post('/api/login')
-      .send({
-        email: 'tester@email.com',
-        password: '123456',
-      })
-      .expect(200)
-      .expect('Content-Type', /application\/json/);
+  describe('login', () => {
+    it('logs in user', async () => {
+      await api
+        .post('/api/users')
+        .send({
+          firstName: 'test',
+          lastName: 'test',
+          email: 'tester@email.com',
+          password: '123456',
+        })
+        .expect(201);
+      const loggedInUser = await api
+        .post('/api/login')
+        .send({
+          email: 'tester@email.com',
+          password: '123456',
+        })
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
 
-    expect(loggedInUser.body).toHaveProperty('token');
-  });
-  it('fails with 401 if email or password invalid', async () => {
-    await api
-      .post('/api/login')
-      .send({
-        email: 'tester@gmail.com',
-        password: '123456',
-      })
-      .expect(401)
-      .expect({ error: 'user does not exist' });
-    await api
-      .post('/api/login')
-      .send({
-        email: 'tester@test.com',
-        password: '123456',
-      })
-      .expect(401)
-      .expect({ error: 'invalid password' });
+      expect(loggedInUser.body).toHaveProperty('token');
+    });
+    it('fails with 401 if email or password invalid', async () => {
+      await api
+        .post('/api/login')
+        .send({
+          email: 'tester@gmail.com',
+          password: '123456',
+        })
+        .expect(401)
+        .expect({ error: 'user does not exist' });
+      await api
+        .post('/api/login')
+        .send({
+          email: 'tester@test.com',
+          password: '123456',
+        })
+        .expect(401)
+        .expect({ error: 'invalid password' });
+    });
   });
 });
 
