@@ -1,7 +1,7 @@
-PUT http://localhost:3001/api/movies/63b8589af5fc6d38a7f0acaf
+PUT http://localhost:3001/api/movies/63b83ade1ba6b2691a09c0b3
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjYzYjg1MWIzZDAyYmFmODQzNmM3MTQ3MyIsImlhdCI6MTY3MzAyMzk0NCwiZXhwIjoxNjczMDI3NTQ0fQ.fpfOmFAzVsYaYjGfMFaU-Eir5hOXGNOtvXrtyXm3Ytc
 Content-Type: application/json
 
 {
-    "watched": false
+    "watched": true
 }

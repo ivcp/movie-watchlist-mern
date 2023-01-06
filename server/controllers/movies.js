@@ -59,17 +59,22 @@ moviesRouter.put('/:id', userExtractor, async (req, res) => {
 
   const id = req.params.id;
   const { watched } = req.body;
+  const user = req.user;
+  const movie = await Movie.findById(id);
 
-  const updatedBlog = await Movie.findByIdAndUpdate(
-    id,
-    { watched },
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
-
-  res.status(200).json(updatedBlog);
+  if (movie.user._id.toString() === user._id.toString()) {
+    const updatedMovie = await Movie.findByIdAndUpdate(
+      id,
+      { watched },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(200).json(updatedMovie);
+  } else {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
 });
 
 module.exports = moviesRouter;
