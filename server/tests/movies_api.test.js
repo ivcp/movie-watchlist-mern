@@ -52,9 +52,10 @@ describe('movies', () => {
   });
 
   describe('deletion of movie', () => {
-    it('deletes movie', async () => {
+    beforeEach(async () => {
       await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
-
+    });
+    it('deletes movie', async () => {
       const moviesAtStart = await helper.moviesInDb();
       const movieToDelete = moviesAtStart.find(
         movie => movie.title === movies[1].title
@@ -68,8 +69,6 @@ describe('movies', () => {
       expect(moviesAtEnd).toHaveLength(0);
     });
     it('fails to delete if no token', async () => {
-      await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
-
       const moviesAtStart = await helper.moviesInDb();
       const movieToDelete = moviesAtStart.find(
         movie => movie.title === movies[1].title
@@ -81,15 +80,77 @@ describe('movies', () => {
     });
 
     it('fails to delete movie does not belong to user', async () => {
-      await Movie.insertMany([movies[1]]);
-      const moviesAtStart = await helper.moviesInDb();
-      const movieToDelete = moviesAtStart.find(
-        movie => movie.title === movies[1].title
-      );
-      await api.delete(`/api/movies/${movieToDelete.id}`).expect(401);
+      const newUser = {
+        firstName: 'test',
+        lastName: 'tester',
+        email: 'test@new.com',
+        password: '123456',
+      };
+      await api.post('/api/users').send(newUser);
+      const login = await api
+        .post('/api/login')
+        .send({ email: 'test@new.com', password: '123456' });
+      const newHeaders = { Authorization: `bearer ${login.body.token}` };
+      await api.post('/api/movies').send(movies[0]).set(newHeaders).expect(201);
+
+      const moviesinDB = await helper.moviesInDb();
+      const { id } = moviesinDB.find(m => m.title === movies[0].title);
+
+      await api.delete(`/api/movies/${id}`).set(headers).expect(401);
 
       const moviesAtEnd = await helper.moviesInDb();
-      expect(moviesAtEnd).toHaveLength(1);
+      expect(moviesAtEnd).toHaveLength(2);
+    });
+  });
+  describe('update movie', () => {
+    beforeEach(async () => {
+      await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
+    });
+    it('updates watched status', async () => {
+      const moviesinDB = await helper.moviesInDb();
+
+      const { id } = moviesinDB.find(m => m.title === movies[1].title);
+
+      await api
+        .put(`/api/movies/${id}`)
+        .send({ watched: true })
+        .set(headers)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+
+      const moviesAtEnd = await helper.moviesInDb();
+      const { watched } = moviesAtEnd.find(m => m.title === movies[1].title);
+      expect(watched).toBe(true);
+    });
+
+    it('fails to update if no token', async () => {
+      const moviesinDB = await helper.moviesInDb();
+      const { id } = moviesinDB.find(m => m.title === movies[1].title);
+
+      await api.put(`/api/movies/${id}`).send({ watched: true }).expect(401);
+    });
+
+    it('fails to update if movie does not belong to user', async () => {
+      const newUser = {
+        firstName: 'test',
+        lastName: 'tester',
+        email: 'test@new.com',
+        password: '123456',
+      };
+      await api.post('/api/users').send(newUser);
+      const login = await api
+        .post('/api/login')
+        .send({ email: 'test@new.com', password: '123456' });
+      const newHeaders = { Authorization: `bearer ${login.body.token}` };
+      await api.post('/api/movies').send(movies[0]).set(newHeaders).expect(201);
+
+      const moviesinDB = await helper.moviesInDb();
+      const { id } = moviesinDB.find(m => m.title === movies[0].title);
+      await api
+        .put(`/api/movies/${id}`)
+        .send({ watched: true })
+        .set(headers)
+        .expect(401);
     });
   });
 });

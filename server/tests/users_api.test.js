@@ -169,7 +169,7 @@ describe('addition of new user', () => {
         .expect(401)
         .expect('Content-Type', /application\/json/);
     });
-    it.only('fails if ids do not match', async () => {
+    it('fails if ids do not match', async () => {
       await api
         .get('/api/users/123456')
         .set(headers)
