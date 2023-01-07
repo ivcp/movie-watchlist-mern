@@ -27,7 +27,7 @@ app.use('/api/tmdb', tbdmRouter);
 // }
 app.use(middleware.tokenExtractor);
 app.use('/api/users', usersRouter);
-app.use('/api/login', loginRouter);
+app.use('/api/login', middleware.userExtractor, loginRouter);
 app.use('/api/movies', middleware.userExtractor, moviesRouter);
 app.use(middleware.errorHandler);
 

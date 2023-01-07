@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const PORT = process.env.PORT;
 const POPULAR = process.env.POPULAR_URL;
 const SEARCH = process.env.SEARCH_URL;
 const DETAILS = process.env.DETAILS_URL;
@@ -11,4 +12,12 @@ const MONGODB_URI =
     ? process.env.TEST_MONGODB_URI
     : process.env.MONGODB_URI;
 
-module.exports = { POPULAR, SEARCH, DETAILS, API_KEY, MONGODB_URI, SECRET };
+module.exports = {
+  PORT,
+  POPULAR,
+  SEARCH,
+  DETAILS,
+  API_KEY,
+  MONGODB_URI,
+  SECRET,
+};
