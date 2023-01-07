@@ -2,5 +2,5 @@ GET http://localhost:3001/api/tmdb/search
 Content-Type: application/json
 
 {
-    "query": "661374"
+    "query": "alad"
 }
