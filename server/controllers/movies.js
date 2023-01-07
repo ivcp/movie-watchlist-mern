@@ -7,14 +7,6 @@ moviesRouter.get('/', async (req, res) => {
   res.json(movies);
 });
 
-moviesRouter.get('/list', userExtractor, async (req, res) => {
-  const user = req.user;
-  if (!user) {
-    res.status(404).json({ error: 'User not found' });
-  }
-  res.status(200).json(req.user.movies);
-});
-
 moviesRouter.post('/', userExtractor, async (req, res) => {
   if (!req.token) {
     return res.status(401).json({ error: 'Unauthorized' });

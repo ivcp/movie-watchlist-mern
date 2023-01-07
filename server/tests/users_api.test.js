@@ -137,6 +137,46 @@ describe('addition of new user', () => {
         .expect({ error: 'invalid password' });
     });
   });
+
+  describe('user details', () => {
+    let headers;
+    let user;
+    beforeEach(async () => {
+      await api.post('/api/users').send({
+        firstName: 'test',
+        lastName: 'test',
+        email: 'tester@email.com',
+        password: '123456',
+      });
+      const login = await api
+        .post('/api/login')
+        .send({ email: 'tester@email.com', password: '123456' });
+      headers = { Authorization: `bearer ${login.body.token}` };
+      const users = await helper.usersInDb();
+      user = users.find(u => u.email === 'tester@email.com');
+    });
+
+    it('returns user', async () => {
+      await api
+        .get(`/api/users/${user.id}`)
+        .set(headers)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+    });
+    it('fails if token missing', async () => {
+      await api
+        .get(`/api/users/${user.id}`)
+        .expect(401)
+        .expect('Content-Type', /application\/json/);
+    });
+    it.only('fails if ids do not match', async () => {
+      await api
+        .get('/api/users/123456')
+        .set(headers)
+        .expect(401)
+        .expect('Content-Type', /application\/json/);
+    });
+  });
 });
 
 afterAll(() => {

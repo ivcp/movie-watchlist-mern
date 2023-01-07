@@ -27,13 +27,7 @@ const userExtractor = async (request, response, next) => {
     if (!decodedToken.id) {
       return response.status(401).json({ error: 'token invalid' });
     }
-    const user = await User.findById(decodedToken.id).populate('movies', {
-      tmbdId: 1,
-      title: 1,
-      poster: 1,
-      overview: 1,
-      watched: 1,
-    });
+    const user = await User.findById(decodedToken.id);
     request['user'] = user;
   }
   next();

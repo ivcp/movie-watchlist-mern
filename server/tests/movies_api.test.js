@@ -51,30 +51,6 @@ describe('movies', () => {
     });
   });
 
-  describe('movie list', () => {
-    it('returns movie list for user', async () => {
-      await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
-
-      const movieList = await api.get('/api/movies/list').set(headers);
-      expect(movieList.body).toHaveLength(1);
-      const titles = movieList.body.map(movie => movie.title);
-      expect(titles).toContain(movies[1].title);
-    });
-    it('fails if token missing', async () => {
-      await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
-      await api.get('/api/movies/list').expect(404);
-    });
-    it('fails if token invalid', async () => {
-      await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
-      await api
-        .get('/api/movies/list')
-        .set({
-          Authorization: 'bearer invalidToken123',
-        })
-        .expect(401);
-    });
-  });
-
   describe('deletion of movie', () => {
     it('deletes movie', async () => {
       await api.post('/api/movies').send(movies[1]).set(headers).expect(201);
