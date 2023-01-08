@@ -1,4 +1,4 @@
-const fetchMovies = async (url, req, res, details) => {
+const fetchMovies = async (url, res, details) => {
   const response = await fetch(url);
   if (!response.ok) {
     const error = await response.json();

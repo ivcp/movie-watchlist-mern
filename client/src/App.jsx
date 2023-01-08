@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
 import tbdbService from './services/tmdb';
 
 function App() {
@@ -16,10 +18,9 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {popularMovies.length > 0 &&
-        popularMovies.map(movie => <p key={movie.id}>{movie.title}</p>)}
-    </div>
+    <Routes>
+      <Route path="/" element={<Home popularMovies={popularMovies} />} />
+    </Routes>
   );
 }
 
