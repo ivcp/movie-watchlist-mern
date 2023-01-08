@@ -7,6 +7,7 @@ const Search = () => {
     try {
       const result = await tmdbService.searchMovies(target.value.trim());
       console.log(result);
+      //empty array = no matches
     } catch (err) {
       console.log(err.message);
     }
