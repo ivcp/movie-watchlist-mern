@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const { MONGODB_URI } = require('./utils/config');
-//const cors = require('cors');
+const cors = require('cors');
 const tbdmRouter = require('./controllers/tmdb');
 const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
@@ -14,7 +14,7 @@ const middleware = require('./utils/middleware');
 mongoose.set('strictQuery', false);
 mongoose.connect(MONGODB_URI).then(() => console.log('connected to DB'));
 
-//app.use(cors());
+app.use(cors());
 
 app.use(express.json());
 app.use(morgan('dev'));
