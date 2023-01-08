@@ -10,7 +10,7 @@ tmdbRouter.get('/popular', async (req, res) => {
 });
 
 tmdbRouter.get('/search', async (req, res) => {
-  const { query } = req.body;
+  const { query } = req.query;
   fetchMovies(
     `${config.SEARCH}api_key=${config.API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`,
     res

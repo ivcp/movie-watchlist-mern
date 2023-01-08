@@ -8,13 +8,13 @@ const getPopularMovies = async () => {
   return movies;
 };
 const searchMovies = async query => {
-  const response = await fetch('http://localhost:3001/api/tmdb/search', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify({ query }),
-  });
+  const response = await fetch(
+    `http://localhost:3001/api/tmdb/search?query=${query}`
+  );
+  if (!response.ok) {
+    const results = await response.json();
+    throw new Error(results.errors[0]);
+  }
   const results = await response.json();
   return results;
 };
