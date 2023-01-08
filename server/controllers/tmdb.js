@@ -18,7 +18,7 @@ tmdbRouter.get('/search', async (req, res) => {
 });
 
 tmdbRouter.get('/details', async (req, res) => {
-  const { movieId } = req.body;
+  const { movieId } = req.query;
   const details = true;
 
   fetchMovies(
