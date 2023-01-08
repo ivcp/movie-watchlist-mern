@@ -28,4 +28,13 @@ tmdbRouter.get('/details', async (req, res) => {
   );
 });
 
+tmdbRouter.get('/genre', async (req, res) => {
+  const { genreId } = req.query;
+
+  fetchMovies(
+    `${config.GENRE}api_key=${config.API_KEY}&with_genres=${genreId}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`,
+    res
+  );
+});
+
 module.exports = tmdbRouter;
