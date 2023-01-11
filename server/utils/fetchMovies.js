@@ -6,6 +6,10 @@ const fetchMovies = async (url, res, page) => {
   }
   const data = await response.json();
   if (data.results) {
+    if (!page) {
+      res.json(data);
+      return;
+    }
     const resultArray =
       page % 2 === 0 ? data.results.slice(10) : data.results.slice(0, 10);
     res.json({
