@@ -9,12 +9,15 @@ const Movies = () => {
     data: movies,
     isSuccess,
     isLoading,
+    isError,
+    error,
   } = useQuery(['movies', genre, page], queryFn, { keepPreviousData: true });
 
   return (
     <>
       <GenreFilter setGenre={setGenre} setPage={setPage} />
       {isLoading && <p>Loading...</p>}
+      {isError && <p>{error.message}</p>}
       <ul>
         {isSuccess &&
           movies.results.length > 0 &&
@@ -31,7 +34,7 @@ const Movies = () => {
         <button
           onClick={() =>
             setPage(prev =>
-              movies.page === 500 || movies.page === movies.total_pages
+              movies.page === 500 || movies.page === movies.totalPages
                 ? prev
                 : prev + 1
             )

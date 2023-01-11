@@ -4,9 +4,12 @@ const fetchMovies = require('../utils/fetchMovies');
 
 tmdbRouter.get('/popular', async (req, res) => {
   const { page } = req.query;
+  const currentPage = Math.round(page / 2);
+
   fetchMovies(
-    `${config.POPULAR}api_key=${config.API_KEY}&language=en-US&page=${page}`,
-    res
+    `${config.POPULAR}api_key=${config.API_KEY}&language=en-US&page=${currentPage}`,
+    res,
+    page
   );
 });
 
