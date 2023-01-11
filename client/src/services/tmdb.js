@@ -1,5 +1,7 @@
-const getPopularMovies = async () => {
-  const response = await fetch('http://localhost:3001/api/tmdb/popular');
+const getPopularMovies = async page => {
+  const response = await fetch(
+    `http://localhost:3001/api/tmdb/popular?page=${page}`
+  );
   if (!response.ok) {
     const movies = await response.json();
     throw new Error(movies.status_message);
@@ -7,9 +9,9 @@ const getPopularMovies = async () => {
   return response.json();
 };
 
-const getByGenre = async genreId => {
+const getByGenre = async (genreId, page) => {
   const response = await fetch(
-    `http://localhost:3001/api/tmdb/genre?genreId=${genreId}`
+    `http://localhost:3001/api/tmdb/genre?genreId=${genreId}&page=${page}`
   );
   if (!response.ok) {
     const movies = await response.json();
