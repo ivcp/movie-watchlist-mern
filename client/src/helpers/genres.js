@@ -1,5 +1,9 @@
 const genres = [
   {
+    id: 'all',
+    name: 'All',
+  },
+  {
     id: 28,
     name: 'Action',
   },

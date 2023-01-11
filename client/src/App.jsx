@@ -1,26 +1,18 @@
-import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import Home from './pages/Home';
-import tbdbService from './services/tmdb';
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [popularMovies, setPopularMovies] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const movies = await tbdbService.getPopularMovies();
-        setPopularMovies(movies);
-      } catch (err) {
-        console.log(err.message);
-      }
-    })();
-  }, []);
-
   return (
-    <Routes>
-      <Route path="/" element={<Home popularMovies={popularMovies} />} />
-    </Routes>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
