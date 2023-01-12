@@ -1,5 +1,5 @@
 import React from 'react';
-import Movies from '../components/Movies';
+import Movies from '../components/Movies/Movies';
 import Search from '../components/Search';
 
 const Home = () => {
