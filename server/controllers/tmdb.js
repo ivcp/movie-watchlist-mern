@@ -13,6 +13,17 @@ tmdbRouter.get('/popular', async (req, res) => {
   );
 });
 
+tmdbRouter.get('/genre', async (req, res) => {
+  const { genreId, page } = req.query;
+  const currentPage = Math.round(page / 2);
+
+  fetchMovies(
+    `${config.GENRE}api_key=${config.API_KEY}&with_genres=${genreId}&page=${currentPage}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate`,
+    res,
+    page
+  );
+});
+
 tmdbRouter.get('/search', async (req, res) => {
   const { query } = req.query;
   fetchMovies(
@@ -26,15 +37,6 @@ tmdbRouter.get('/details', async (req, res) => {
 
   fetchMovies(
     `${config.DETAILS}${movieId}?api_key=${config.API_KEY}&language=en-US`,
-    res
-  );
-});
-
-tmdbRouter.get('/genre', async (req, res) => {
-  const { genreId, page } = req.query;
-
-  fetchMovies(
-    `${config.GENRE}api_key=${config.API_KEY}&with_genres=${genreId}&page=${page}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate`,
     res
   );
 });
