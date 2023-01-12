@@ -4,7 +4,13 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import Home from './pages/Home';
 import Header from './components/Header';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
