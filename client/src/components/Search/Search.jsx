@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
-import tmdbService from '../../services/tmdb';
-import { useQuery } from 'react-query';
+import React from 'react';
+import useSearch from '../../hooks/useSearch';
 
 const Search = () => {
-  const [query, setQuery] = useState('');
-  const { data, isSuccess, isLoading, isError, error } = useQuery(
-    ['search', query],
-    tmdbService.searchMovies.bind(null, query),
-    { enabled: !!query }
-  );
+  const { setQuery, data, isSuccess, isLoading, isError, error } = useSearch();
 
   const handleChange = async ({ target }) => {
     if (target.value.trim() === '') {
@@ -17,7 +11,7 @@ const Search = () => {
     }
     setQuery(target.value.trim());
   };
-
+  console.log(data);
   return (
     <div>
       <input type="text" onChange={handleChange} />
