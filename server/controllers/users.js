@@ -48,6 +48,11 @@ usersRouter.post('/', async (req, res) => {
       error: 'name, password or email missing',
     });
   }
+  if (firstName.length > 12 || lastName.length > 12) {
+    return res.status(400).json({
+      error: 'name cannot be more than 12 characters long',
+    });
+  }
 
   if (password.length < 6) {
     return res.status(400).json({
