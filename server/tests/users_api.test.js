@@ -96,6 +96,22 @@ describe('addition of new user', () => {
     expect(usersAtEnd).toHaveLength(1);
   });
 
+  it('fails with status code 400 if name > 12 characters ', async () => {
+    await api
+      .post('/api/users')
+      .send({
+        firstName: 'reallylongname',
+        lastName: 'reallylonglastname',
+        email: 'tester@newemail.com',
+        password: '1234567',
+      })
+      .expect(400)
+      .expect({ error: 'name cannot be more than 12 characters long' });
+
+    const usersAtEnd = await helper.usersInDb();
+    expect(usersAtEnd).toHaveLength(1);
+  });
+
   describe('login', () => {
     it('logs in user', async () => {
       await api
