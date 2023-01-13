@@ -2,10 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import Movies from './Movies';
-import useFetchMoviesByGenre from '../../hooks/useFetchMoviesByGenre';
+import Movies from '../Movies';
+import useFetchMoviesByGenre from '../../../hooks/useFetchMoviesByGenre';
 
-vi.mock('../../hooks/useFetchMoviesByGenre');
+vi.mock('../../../hooks/useFetchMoviesByGenre');
 
 const movies = {
   page: 1,

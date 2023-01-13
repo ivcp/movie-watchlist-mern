@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Pagination from './Pagination';
+import Pagination from '../Pagination';
 describe('pagination component', () => {
   it('disables prevBtn initially', () => {
     const page = 1;
