@@ -48,54 +48,41 @@ const movies = {
   totalPages: 5,
 };
 
+const returnValue = {
+  movies,
+  isSuccess: false,
+  isLoading: true,
+  isError: false,
+  error: '',
+  page: '1',
+  setGenre: vi.fn(),
+  setPage: vi.fn(),
+};
+
 describe('movies component', () => {
   it('renders loading text if loading', () => {
     //TODO:spinner
-    const returnValue = {
-      movies,
-      isSuccess: false,
-      isLoading: true,
-      isError: false,
-      error: '',
-      page: '1',
-      setGenre: vi.fn(),
-      setPage: vi.fn(),
-    };
     useFetchMoviesByGenre.mockReturnValue(returnValue);
     render(<Movies />);
     screen.getByText(/loading.../i);
   });
   it('renders message if error', () => {
     //TODO:notification?
-    const returnValue = {
-      movies,
-      isSuccess: false,
-      isLoading: false,
-      isError: true,
-      error: {
-        message: 'Test error message',
-      },
-      page: '1',
-      setGenre: vi.fn(),
-      setPage: vi.fn(),
+    returnValue.isSuccess = false;
+    returnValue.isLoading = false;
+    returnValue.isError = true;
+    returnValue.error = {
+      message: 'Test error message',
     };
+
     useFetchMoviesByGenre.mockReturnValue(returnValue);
     render(<Movies />);
     screen.getByText(returnValue.error.message);
   });
   it('renders movies and pagination if success', () => {
-    const returnValue = {
-      movies,
-      isSuccess: true,
-      isLoading: false,
-      isError: false,
-      error: {
-        message: 'Test error message',
-      },
-      page: '1',
-      setGenre: vi.fn(),
-      setPage: vi.fn(),
-    };
+    returnValue.isSuccess = true;
+    returnValue.isError = false;
+
     useFetchMoviesByGenre.mockReturnValue(returnValue);
     render(<Movies />);
     screen.getByText(movies.results[0].title);
@@ -104,18 +91,6 @@ describe('movies component', () => {
     screen.getByRole('button', { name: /next page/i });
   });
   it('calls setPage if pagination buttons pressed', async () => {
-    const returnValue = {
-      movies,
-      isSuccess: true,
-      isLoading: false,
-      isError: false,
-      error: {
-        message: 'Test error message',
-      },
-      page: '1',
-      setGenre: vi.fn(),
-      setPage: vi.fn(),
-    };
     useFetchMoviesByGenre.mockReturnValue(returnValue);
     render(<Movies />);
     const user = userEvent.setup();
