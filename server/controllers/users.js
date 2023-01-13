@@ -43,7 +43,7 @@ usersRouter.get('/:userId', userExtractor, async (req, res) => {
 usersRouter.post('/', async (req, res) => {
   const { firstName, lastName, password, email } = req.body;
 
-  if (!firstName || !lastName || !password || !email) {
+  if (!firstName || !password || !email) {
     return res.status(400).json({
       error: 'name, password or email missing',
     });
@@ -71,7 +71,7 @@ usersRouter.post('/', async (req, res) => {
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
   const newUser = new User({
-    name: `${firstName} ${lastName}`,
+    name: lastName.trim() === '' ? firstName : `${firstName} ${lastName}`,
     email,
     passwordHash,
   });
