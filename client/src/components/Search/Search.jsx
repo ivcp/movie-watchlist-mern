@@ -11,7 +11,7 @@ const Search = () => {
     }
     setQuery(target.value.trim());
   };
-  console.log(data);
+
   return (
     <div>
       <input type="text" onChange={handleChange} />
