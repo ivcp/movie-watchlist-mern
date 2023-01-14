@@ -90,7 +90,7 @@ describe('addition of new user', () => {
         password: '1234567',
       })
       .expect(400)
-      .expect({ error: 'user already exists' });
+      .expect({ error: 'email tester@test.com already taken' });
 
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(1);
@@ -142,7 +142,7 @@ describe('addition of new user', () => {
           password: '123456',
         })
         .expect(401)
-        .expect({ error: 'user does not exist' });
+        .expect({ error: 'user with email tester@gmail.com does not exist' });
       await api
         .post('/api/login')
         .send({

@@ -63,7 +63,7 @@ usersRouter.post('/', async (req, res) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({
-      error: 'user already exists',
+      error: `email ${email} already taken`,
     });
   }
 

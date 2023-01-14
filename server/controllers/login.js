@@ -9,9 +9,15 @@ loginRouter.post('/', async (req, res) => {
 
   const user = await User.findOne({ email });
 
+  if (email === '' || password === '') {
+    return res.status(400).json({
+      error: 'email and password required',
+    });
+  }
+
   if (!user) {
     return res.status(401).json({
-      error: 'user does not exist',
+      error: `user with email ${email} does not exist`,
     });
   }
 
