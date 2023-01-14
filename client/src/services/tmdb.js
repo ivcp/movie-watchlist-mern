@@ -1,6 +1,9 @@
 const getPopularMovies = async page => {
   const response = await fetch(`/api/tmdb/popular?page=${page}`);
   if (!response.ok) {
+    if (response.status === 500) {
+      throw new Error('Something went wrong :(');
+    }
     const movies = await response.json();
     throw new Error(movies.status_message);
   }
@@ -12,6 +15,9 @@ const getByGenre = async (genreId, page) => {
     `/api/tmdb/genre?genreId=${genreId}&page=${page}`
   );
   if (!response.ok) {
+    if (response.status === 500) {
+      throw new Error('Something went wrong :(');
+    }
     const movies = await response.json();
     throw new Error(movies.status_message);
   }
@@ -21,6 +27,9 @@ const getByGenre = async (genreId, page) => {
 const searchMovies = async query => {
   const response = await fetch(`/api/tmdb/search?query=${query}`);
   if (!response.ok) {
+    if (response.status === 500) {
+      throw new Error('Something went wrong :(');
+    }
     const results = await response.json();
     throw new Error(results.errors[0]);
   }
