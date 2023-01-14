@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import useField from '../../hooks/useField';
+import { useMutation } from 'react-query';
+import userService from '../../services/users';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -9,14 +11,49 @@ const AuthForm = () => {
   const email = useField('email', 'email*');
   const password = useField('password', 'password*');
 
-  const changePasswordVisibility = () => {
-    setShowPassword(prev => !prev);
+  const { mutate } = useMutation(
+    credentials => userService.auth(credentials, isLogin ? 'login' : 'users'),
+    {
+      onError: error => console.log(error.message),
+      onSuccess: data => {
+        //redirect if login success
+        if (data.token) {
+          console.log(data);
+          console.log(`${data.name} logged in sucessfully`);
+          //redirect
+        } else {
+          console.log(data);
+        }
+      },
+    }
+  );
+
+  const userData = {
+    email: email.value.trim(),
+    password: password.value.trim(),
+  };
+  if (!isLogin) {
+    userData.firstName = firstName.value.trim();
+    userData.lastName = lastName.value.trim();
+  }
+
+  const handleSubmitForm = e => {
+    e.preventDefault();
+    mutate(userData, {
+      onSuccess: () => {
+        firstName.onChange('');
+        lastName.onChange('');
+        email.onChange('');
+        password.onChange('');
+        setIsLogin(true);
+      },
+    });
   };
 
   return (
     <>
       <h1>{isLogin ? 'log in' : 'register'}</h1>
-      <form>
+      <form onSubmit={handleSubmitForm}>
         {!isLogin && (
           <>
             <input {...firstName} />
@@ -25,11 +62,11 @@ const AuthForm = () => {
         )}
         <input {...email} />
         <input type={showPassword ? 'text' : 'password'} {...password} />
-        <button type="button" onClick={changePasswordVisibility}>
+        <button type="button" onClick={() => setShowPassword(prev => !prev)}>
           show password
         </button>
         <button type="sumbit">{isLogin ? 'log in' : 'register'}</button>
-        <button type="sumbit">
+        <button type="button">
           {isLogin ? 'log in with Google' : 'register with Google'}
         </button>
         {isLogin ? (
