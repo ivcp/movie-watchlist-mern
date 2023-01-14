@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/movies/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjYzYjg1MWIzZDAyYmFmODQzNmM3MTQ3MyIsImlhdCI6MTY3MzAyMzk0NCwiZXhwIjoxNjczMDI3NTQ0fQ.fpfOmFAzVsYaYjGfMFaU-Eir5hOXGNOtvXrtyXm3Ytc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjYzYjg1MWIzZDAyYmFmODQzNmM3MTQ3MyIsImlhdCI6MTY3MzcyODY5NSwiZXhwIjoxNjczNzMyMjk1fQ.k6Vzv-796hamJuK1DR-v2Zn4xeUQaHS-DII3FmW8YxU
 
 {
     "tmdbId": "123123",
-    "title": "Movie 2",
+    "title": "Movie 3",
     "overview": "World-famous detective Benoit Blanc heads to Greece to peel back the layers of a mystery surrounding a tech billionaire and his eclectic crew of friends.",
     "poster": "/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg"    
 }

@@ -2,6 +2,7 @@ const usersRouter = require('express').Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const { userExtractor } = require('../utils/middleware');
+const getToken = require('../utils/getToken');
 
 usersRouter.get('/', async (req, res) => {
   const allUsers = await User.find({}).populate('movies', {
@@ -77,7 +78,9 @@ usersRouter.post('/', async (req, res) => {
   });
 
   const savedUser = await newUser.save();
-  res.status(201).json(savedUser);
+  const token = getToken(savedUser);
+
+  res.status(201).json({ token, email: savedUser.email, name: savedUser.name });
 });
 
 module.exports = usersRouter;
