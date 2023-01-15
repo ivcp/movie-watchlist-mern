@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import useField from '../../hooks/useField';
 import { useMutation } from 'react-query';
 import userService from '../../services/users';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,13 +19,11 @@ const AuthForm = () => {
       onError: error => console.log(error.message),
       onSuccess: data => {
         //redirect if login success
-        if (data.token) {
-          console.log(data);
-          console.log(`${data.name} logged in sucessfully`);
-          //redirect
-        } else {
-          console.log(data);
-        }
+        //set user
+        console.log(
+          `${data.name} ${isLogin ? 'logged in' : 'registered'} successfully`
+        );
+        console.log(data);
       },
     }
   );
@@ -38,7 +38,7 @@ const AuthForm = () => {
   }
 
   const handleSubmitForm = e => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     mutate(userData, {
       onSuccess: () => {
         firstName.onChange('');
@@ -65,10 +65,26 @@ const AuthForm = () => {
         <button type="button" onClick={() => setShowPassword(prev => !prev)}>
           show password
         </button>
-        <button type="sumbit">{isLogin ? 'log in' : 'register'}</button>
-        <button type="button">
-          {isLogin ? 'log in with Google' : 'register with Google'}
+        <button type="sumbit">
+          {isLogin ? 'log in' : 'register and log in'}
         </button>
+        <GoogleLogin
+          onSuccess={credentialResponse => {
+            const credentials = jwt_decode(credentialResponse.credential);
+            userData.email = credentials.email;
+            userData.password = credentials.sub;
+            if (!isLogin) {
+              userData.firstName = credentials.given_name;
+              userData.lastName = credentials.family_name;
+            }
+            handleSubmitForm();
+          }}
+          onError={() => {
+            console.log('Error');
+          }}
+          shape="circle"
+          text="continue_with"
+        />
         {isLogin ? (
           <button onClick={() => setIsLogin(false)} type="button">
             don&apos;t have an account? register
