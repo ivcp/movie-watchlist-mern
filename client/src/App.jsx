@@ -3,7 +3,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Home from './pages/Home';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import Auth from './pages/Auth';
 
 const queryClient = new QueryClient({
@@ -16,9 +16,7 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <GoogleOAuthProvider
-      clientId={import.meta.env.VITE_PUBLIC_GOOGLE_API_TOKEN}
-    >
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <QueryClientProvider client={queryClient}>
         <Header />
         <main>
