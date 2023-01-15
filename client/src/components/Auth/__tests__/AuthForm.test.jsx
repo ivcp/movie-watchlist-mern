@@ -4,18 +4,21 @@ import userEvent from '@testing-library/user-event';
 import AuthForm from '../AuthForm';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Auth component', () => {
   beforeEach(() => {
     const queryClient = new QueryClient();
     render(
-      <GoogleOAuthProvider
-        clientId={import.meta.env.VITE_PUBLIC_GOOGLE_API_TOKEN}
-      >
-        <QueryClientProvider client={queryClient}>
-          <AuthForm />
-        </QueryClientProvider>
-      </GoogleOAuthProvider>
+      <BrowserRouter>
+        <GoogleOAuthProvider
+          clientId={import.meta.env.VITE_PUBLIC_GOOGLE_API_TOKEN}
+        >
+          <QueryClientProvider client={queryClient}>
+            <AuthForm />
+          </QueryClientProvider>
+        </GoogleOAuthProvider>
+      </BrowserRouter>
     );
   });
 
