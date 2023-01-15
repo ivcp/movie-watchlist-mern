@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import useField from '../../hooks/useField';
 import { useMutation } from 'react-query';
 import userService from '../../services/users';
+import UserContext from '../../store/user-context';
+import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
 
@@ -12,18 +14,21 @@ const AuthForm = () => {
   const lastName = useField('text', 'last name');
   const email = useField('email', 'email*');
   const password = useField('password', 'password*');
+  const ctx = useContext(UserContext);
+  const navigate = useNavigate();
 
   const { mutate } = useMutation(
     credentials => userService.auth(credentials, isLogin ? 'login' : 'users'),
     {
       onError: error => console.log(error.message),
-      onSuccess: data => {
-        //redirect if login success
+      onSuccess: user => {
         //set user
+        ctx.loginUser(user);
+        //notification TODO:
         console.log(
-          `${data.name} ${isLogin ? 'logged in' : 'registered'} successfully`
+          `${user.name} ${isLogin ? 'logged in' : 'registered'} successfully`
         );
-        console.log(data);
+        navigate('/');
       },
     }
   );
