@@ -5,6 +5,7 @@ const movieSchema = new mongoose.Schema({
   title: String,
   poster: String,
   overview: String,
+  genre_ids: [Number],
   watched: {
     type: Boolean,
     default: false,
