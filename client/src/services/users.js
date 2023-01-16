@@ -1,3 +1,11 @@
+import { fetchData } from '../helpers/fetchData';
+
+let token = null;
+
+const setToken = newToken => {
+  token = `bearer ${newToken}`;
+};
+
 const auth = async (credentials, type) => {
   const response = await fetch(`/api/${type}`, {
     method: 'POST',
@@ -17,6 +25,15 @@ const auth = async (credentials, type) => {
   return response.json();
 };
 
+const getUserDetails = async userId => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  return await fetchData(`/api/users/${userId}`, config);
+};
+
 export default {
   auth,
+  getUserDetails,
+  setToken,
 };

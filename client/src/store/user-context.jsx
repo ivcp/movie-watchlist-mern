@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import userService from '../services/users';
 
 const UserContext = createContext({
   user: null,
@@ -14,6 +15,7 @@ export const UserContextProvider = ({ children }) => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
+      userService.setToken(user.token);
       // TODO: set token to movies services
     }
   }, []);
