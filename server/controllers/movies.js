@@ -15,13 +15,20 @@ moviesRouter.post('/', userExtractor, async (req, res) => {
   const user = req.user;
 
   const movie = new Movie({
-    tmbdId: body.tmbdId,
+    tmdbId: body.tmdbId,
     title: body.title,
     poster: body.poster,
     overview: body.overview,
+    genre_ids: body.genre_ids,
     user: user._id,
   });
 
+  const movieInDb = await Movie.find({ tmdbId: body.tmdbId }).where({
+    user: user._id,
+  });
+  if (movieInDb.length > 0) {
+    return res.status(400).json({ error: 'movie already added to your list.' });
+  }
   const savedMovie = await movie.save();
   user.movies = [...user.movies, savedMovie._id];
   await user.save();

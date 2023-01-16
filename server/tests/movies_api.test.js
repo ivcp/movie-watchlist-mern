@@ -49,6 +49,14 @@ describe('movies', () => {
       const moviesAtEnd = await helper.moviesInDb();
       expect(moviesAtEnd).toHaveLength(0);
     });
+    it('fails if movie already in users list', async () => {
+      await api.post('/api/movies').send(movies[0]).set(headers).expect(201);
+
+      await api.post('/api/movies').send(movies[0]).set(headers).expect(400);
+
+      const moviesAtEnd = await helper.moviesInDb();
+      expect(moviesAtEnd).toHaveLength(1);
+    });
   });
 
   describe('deletion of movie', () => {

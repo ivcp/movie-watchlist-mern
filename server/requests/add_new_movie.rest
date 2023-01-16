@@ -1,13 +1,12 @@
 POST http://localhost:3001/api/movies/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3Mzg2NTE1MiwiZXhwIjoxNjczODY4NzUyfQ.kOr5ccnqPgi_CXnmxQy74AGe0G1vSYK9OuZDrmipGFA
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3Mzg3NzcyOSwiZXhwIjoxNjczODgxMzI5fQ.mR-cWaFGblpOAHHQ1_upNJN07fiM-ZPkVWupcnLn2Mg
 
 {
-    "tmdbId": "573171",
-    "title": "A Frozen Rooster",
+    "tmdbId": "666",
+    "title": "BEAST",
     "overview": "The rooster Toto has a new enemy: a pirate who plans to turn him into a cryogenically frozen rooster.",
-    "poster": "/gBBCBMXKzWRADtliUYfV69aVIcz.jpg"    
+    "poster": "/gBBCBMXKzWRADtliUYfV69aVIcz.jpg",
+    "genre_ids": [16, 12]
 }
 
-#     
-# 

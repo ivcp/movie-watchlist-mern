@@ -1,1 +1,1 @@
-GET http://localhost:3001/api/tmdb/popular?page=3
+GET http://localhost:3001/api/tmdb/popular?page=1
