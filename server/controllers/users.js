@@ -35,7 +35,9 @@ usersRouter.get('/:userId', userExtractor, async (req, res) => {
         watched: 1,
       }
     );
-    res.status(200).json(currentUser);
+    // eslint-disable-next-line
+    const { passwordHash, ...userDetails } = currentUser.toJSON();
+    res.status(200).send(userDetails);
   } else {
     return res.status(401).json({ error: 'Unauthorized' });
   }
