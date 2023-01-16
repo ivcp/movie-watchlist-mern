@@ -14,8 +14,14 @@ const Navigation = () => {
   return (
     <nav>
       <ul>
-        <li>home</li>
-        <li>my movies</li>
+        <li>
+          <Link to="/">home</Link>
+        </li>
+        {ctx.user && (
+          <li>
+            <Link to="/mymovies">my movies</Link>
+          </li>
+        )}
         {ctx.user ? (
           <li>
             <button onClick={logOut}>log out</button>
