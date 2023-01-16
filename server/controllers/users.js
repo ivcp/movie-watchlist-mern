@@ -28,7 +28,7 @@ usersRouter.get('/:userId', userExtractor, async (req, res) => {
     const currentUser = await User.findById(req.params.userId).populate(
       'movies',
       {
-        tmbdId: 1,
+        tmdbId: 1,
         title: 1,
         poster: 1,
         overview: 1,
