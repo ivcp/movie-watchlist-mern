@@ -32,6 +32,7 @@ usersRouter.get('/:userId', userExtractor, async (req, res) => {
         title: 1,
         poster: 1,
         overview: 1,
+        genre_ids: 1,
         watched: 1,
       }
     );

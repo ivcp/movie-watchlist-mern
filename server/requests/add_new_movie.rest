@@ -3,10 +3,14 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3Mzg3NzcyOSwiZXhwIjoxNjczODgxMzI5fQ.mR-cWaFGblpOAHHQ1_upNJN07fiM-ZPkVWupcnLn2Mg
 
 {
-    "tmdbId": "666",
-    "title": "BEAST",
-    "overview": "The rooster Toto has a new enemy: a pirate who plans to turn him into a cryogenically frozen rooster.",
-    "poster": "/gBBCBMXKzWRADtliUYfV69aVIcz.jpg",
-    "genre_ids": [16, 12]
+    "tmdbId": "899112",
+    "title": "Violent Night",
+    "overview": "When a team of mercenaries breaks into a wealthy family compound on Christmas Eve, taking everyone inside hostage, the team isn’t prepared for a surprise combatant: Santa Claus is on the grounds, and he’s about to show why this Nick is no saint.",
+    "poster": "/1XSYOP0JjjyMz1irihvWywro82r.jpg",
+    "genre_ids": [
+        28,
+        35,
+        80,
+        53
+      ]
 }
-
