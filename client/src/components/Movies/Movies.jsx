@@ -18,7 +18,7 @@ const Movies = () => {
   } = useFetchMoviesByGenre();
 
   return (
-    <>
+    <div>
       <GenreFilter setGenre={setGenre} setPage={setPage} />
       {isLoading && <p>Loading...</p>}
       {isError && <p>{error.message}</p>}
@@ -39,7 +39,7 @@ const Movies = () => {
           setPage={setPage}
         />
       )}
-    </>
+    </div>
   );
 };
 

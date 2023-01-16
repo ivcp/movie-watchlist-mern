@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import Home from './pages/Home';
 import Header from './components/Header/Header';
 import Auth from './pages/Auth';
+import WatchList from './pages/Watchlist';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Auth />} />
+          <Route path="/mymovies" element={<WatchList />} />
         </Routes>
       </main>
       <ReactQueryDevtools initialIsOpen={false} />
