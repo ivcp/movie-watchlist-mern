@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 import UserContext from '../../store/user-context';
-import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const Navigation = () => {
   const ctx = useContext(UserContext);
-  const navigate = useNavigate();
 
   const logOut = () => {
     window.localStorage.removeItem('loggedWatchlistUser');
@@ -19,9 +17,13 @@ const Navigation = () => {
         <li>home</li>
         <li>my movies</li>
         {ctx.user ? (
-          <li onClick={logOut}>log out</li>
+          <li>
+            <button onClick={logOut}>log out</button>
+          </li>
         ) : (
-          <li onClick={() => navigate('/login')}>log in</li>
+          <li>
+            <Link to="/login">log in</Link>
+          </li>
         )}
       </ul>
     </nav>
