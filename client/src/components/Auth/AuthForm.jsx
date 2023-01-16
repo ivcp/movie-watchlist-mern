@@ -4,6 +4,7 @@ import { useMutation } from 'react-query';
 import userService from '../../services/users';
 import UserContext from '../../store/user-context';
 import { useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
 
@@ -56,7 +57,7 @@ const AuthForm = () => {
   };
 
   return (
-    <>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <h1>{isLogin ? 'log in' : 'register'}</h1>
       <form onSubmit={handleSubmitForm}>
         {!isLogin && (
@@ -100,7 +101,7 @@ const AuthForm = () => {
           </button>
         )}
       </form>
-    </>
+    </GoogleOAuthProvider>
   );
 };
 
