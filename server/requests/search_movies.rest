@@ -1,1 +1,1 @@
-GET http://localhost:3001/api/tmdb/search?query=it follows
+GET http://localhost:3001/api/tmdb/search?query=

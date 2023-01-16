@@ -83,7 +83,12 @@ usersRouter.post('/', async (req, res) => {
   const savedUser = await newUser.save();
   const token = getToken(savedUser);
 
-  res.status(201).json({ token, email: savedUser.email, name: savedUser.name });
+  res.status(201).json({
+    token,
+    id: savedUser._id,
+    email: savedUser.email,
+    name: savedUser.name,
+  });
 });
 
 module.exports = usersRouter;
