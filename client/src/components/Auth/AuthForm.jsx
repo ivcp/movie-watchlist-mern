@@ -15,7 +15,7 @@ const AuthForm = () => {
   const lastName = useField('text', 'last name');
   const email = useField('email', 'email*');
   const password = useField('password', 'password*');
-  const ctx = useContext(UserContext);
+  const { loginUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const { mutate } = useMutation(
@@ -24,7 +24,7 @@ const AuthForm = () => {
       onError: error => console.log(error.message),
       onSuccess: user => {
         //set user
-        ctx.loginUser(user);
+        loginUser(user);
         //notification TODO:
         console.log(
           `${user.name} ${isLogin ? 'logged in' : 'registered'} successfully`
