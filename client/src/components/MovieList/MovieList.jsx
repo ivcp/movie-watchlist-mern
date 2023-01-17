@@ -6,15 +6,14 @@ import { Navigate } from 'react-router-dom';
 import userService from '../../services/users';
 
 const MovieList = () => {
-  //TODO: error on refresh or navigate
-  const ctx = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [movies, setMovies] = useState(null);
   const { data, isLoading, isError, isSuccess, error } = useQuery(
-    ['user', ctx.user?.id],
-    userService.getUserDetails.bind(null, ctx.user?.id),
+    ['user', user?.id],
+    userService.getUserDetails.bind(null, user?.id),
     {
       onSuccess: data => setMovies(data.movies),
-      enabled: !!ctx.user,
+      enabled: !!user,
     }
   );
 
@@ -28,7 +27,7 @@ const MovieList = () => {
     setMovies(data.movies.filter(movie => !movie.watched));
   };
 
-  if (!ctx.user) {
+  if (!user) {
     return <Navigate to="/" replace />;
   }
 
