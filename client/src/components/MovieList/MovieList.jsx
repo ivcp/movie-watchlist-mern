@@ -40,7 +40,7 @@ const MovieList = () => {
         {isLoading && <p>Loading...</p>}
         {isError && <p>{error.message}</p>}
         {isSuccess && data.movies.length === 0 && (
-          <p>Add some movies to your list!</p>
+          <p>{`Add some movies to your list, ${user.name.split(' ')[0]}!`}</p>
         )}
         {isSuccess &&
           movies &&
