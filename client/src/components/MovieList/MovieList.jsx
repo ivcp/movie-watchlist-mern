@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import MovieOnList from './MovieOnList';
 import UserContext from '../../store/user-context';
 import { useQuery } from 'react-query';
+import { Navigate } from 'react-router-dom';
 import userService from '../../services/users';
 
 const MovieList = () => {
@@ -9,10 +10,11 @@ const MovieList = () => {
   const ctx = useContext(UserContext);
   const [movies, setMovies] = useState(null);
   const { data, isLoading, isError, isSuccess, error } = useQuery(
-    ['user', ctx.user.id],
-    userService.getUserDetails.bind(null, ctx.user.id),
+    ['user', ctx.user?.id],
+    userService.getUserDetails.bind(null, ctx.user?.id),
     {
       onSuccess: data => setMovies(data.movies),
+      enabled: !!ctx.user,
     }
   );
 
@@ -25,7 +27,11 @@ const MovieList = () => {
   const showUnwatched = () => {
     setMovies(data.movies.filter(movie => !movie.watched));
   };
-  console.log('render');
+
+  if (!ctx.user) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <>
       <div>
@@ -36,7 +42,11 @@ const MovieList = () => {
       <div>
         {isLoading && <p>Loading...</p>}
         {isError && <p>{error.message}</p>}
+        {isSuccess && data.movies.length === 0 && (
+          <p>Add some movies to your list!</p>
+        )}
         {isSuccess &&
+          movies &&
           movies.map(movie => <MovieOnList key={movie.id} movie={movie} />)}
       </div>
     </>
