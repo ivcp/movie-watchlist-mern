@@ -130,6 +130,22 @@ describe('movies', () => {
       const { watched } = moviesAtEnd.find(m => m.title === movies[1].title);
       expect(watched).toBe(true);
     });
+    it('updates rating', async () => {
+      const moviesinDB = await helper.moviesInDb();
+
+      const { id } = moviesinDB.find(m => m.title === movies[1].title);
+
+      await api
+        .put(`/api/movies/${id}`)
+        .send({ rating: 8 })
+        .set(headers)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+
+      const moviesAtEnd = await helper.moviesInDb();
+      const { rating } = moviesAtEnd.find(m => m.title === movies[1].title);
+      expect(rating).toBe(8);
+    });
 
     it('fails to update if no token', async () => {
       const moviesinDB = await helper.moviesInDb();

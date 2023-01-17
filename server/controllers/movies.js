@@ -51,25 +51,26 @@ moviesRouter.delete('/:id', userExtractor, async (req, res) => {
   }
 });
 
-moviesRouter.put('/:id', userExtractor, async (req, res) => {
+moviesRouter.put('/:id/', userExtractor, async (req, res) => {
   if (!req.token) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
   const id = req.params.id;
-  const { watched } = req.body;
+  const update = req.body;
+  if (update['rating'] === undefined && update['watched'] === undefined) {
+    console.log(update['rating']);
+    return res.status(400).json({ error: 'Bad request. Failed to update' });
+  }
+
   const user = req.user;
   const movie = await Movie.findById(id);
 
   if (movie.user._id.toString() === user._id.toString()) {
-    const updatedMovie = await Movie.findByIdAndUpdate(
-      id,
-      { watched },
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const updatedMovie = await Movie.findByIdAndUpdate(id, update, {
+      new: true,
+      runValidators: true,
+    });
     res.status(200).json(updatedMovie);
   } else {
     return res.status(401).json({ error: 'Unauthorized' });

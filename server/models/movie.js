@@ -10,6 +10,7 @@ const movieSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  rating: { type: Number, min: 0, max: 10, default: null },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

@@ -3,5 +3,5 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlb
 Content-Type: application/json
 
 {
-    "watched": true
+    "rating": 10
 }

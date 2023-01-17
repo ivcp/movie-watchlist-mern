@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/movies/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3Mzg3NzcyOSwiZXhwIjoxNjczODgxMzI5fQ.mR-cWaFGblpOAHHQ1_upNJN07fiM-ZPkVWupcnLn2Mg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3Mzk3NDAwNCwiZXhwIjoxNjczOTc3NjA0fQ.PQBNN5IL_t40SsAyxo_5yfx2bsgGqsJEns6OcOFYACY
 
 {
-    "tmdbId": "899112",
-    "title": "Violent Night",
+    "tmdbId": "666",
+    "title": "BEAST",
     "overview": "When a team of mercenaries breaks into a wealthy family compound on Christmas Eve, taking everyone inside hostage, the team isn’t prepared for a surprise combatant: Santa Claus is on the grounds, and he’s about to show why this Nick is no saint.",
     "poster": "/1XSYOP0JjjyMz1irihvWywro82r.jpg",
     "genre_ids": [
