@@ -1,21 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import MovieOnList from './MovieOnList';
-import UserContext from '../../store/user-context';
-import { useQuery } from 'react-query';
 import { Navigate } from 'react-router-dom';
-import userService from '../../services/users';
+import useMovieList from '../../hooks/useMovieList';
 
 const MovieList = () => {
-  const { user } = useContext(UserContext);
-  const [movies, setMovies] = useState(null);
-  const { data, isLoading, isError, isSuccess, error } = useQuery(
-    ['user', user?.id],
-    userService.getUserDetails.bind(null, user?.id),
-    {
-      onSuccess: data => setMovies(data.movies),
-      enabled: !!user,
-    }
-  );
+  const {
+    user,
+    movies,
+    setMovies,
+    data,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+  } = useMovieList();
 
   const showAll = () => {
     setMovies(data.movies);
