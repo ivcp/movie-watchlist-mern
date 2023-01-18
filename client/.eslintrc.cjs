@@ -3,16 +3,14 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    'jest/globals': true,
   },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:cypress/recommended',
     'prettier',
     'plugin:testing-library/react',
+    'plugin:cypress/recommended',
   ],
-  plugins: ['testing-library'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -20,7 +18,6 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: 'module',
   },
-  plugins: ['react', 'jest', 'cypress'],
   rules: {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
@@ -32,11 +29,6 @@ module.exports = {
     'no-console': 0,
     'react/prop-types': 0,
     'react/react-in-jsx-scope': 'off',
-    'testing-library/await-async-query': 'error',
-    'testing-library/no-await-sync-query': 'error',
-    'testing-library/no-debugging-utils': 'warn',
-    'testing-library/no-dom-import': 'off',
-    'testing-library/prefer-screen-queries': 'warn',
   },
   settings: {
     react: {
