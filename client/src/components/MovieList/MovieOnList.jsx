@@ -8,16 +8,34 @@ const MovieOnList = ({ movie }) => {
   const expandDetails = () => {
     setShowDetails(prev => !prev);
   };
+
   return (
     <article>
       <h4>{movie.title}</h4>
-      <label htmlFor={movie.id}>watched:</label>
-      <input
-        type="checkbox"
-        name="watched"
-        id={movie.id}
-        defaultChecked={movie.watched}
-      />
+      <div>
+        {movie.watched && (
+          <>
+            {!movie.rating && <p>star icon</p>}
+            {movie.rating && <p>{movie.rating}/10</p>}
+            <label htmlFor="rating">add rating</label>
+            <select name="rating" id="rating">
+              {[...Array(11)].map((_, i) => (
+                <option key={i} value={i}>
+                  {i}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+        {/* watched icon */}
+        <label htmlFor={movie.id}>watched:</label>
+        <input
+          type="checkbox"
+          name="watched"
+          id={movie.id}
+          defaultChecked={movie.watched}
+        />
+      </div>
       <button onClick={expandDetails}>expand</button>
       {showDetails && (
         <div>
