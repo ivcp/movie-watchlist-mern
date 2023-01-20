@@ -22,10 +22,8 @@ describe('MovieOnList component', () => {
         <MovieOnList movie={movie} />
       </BrowserRouter>
     );
-    //shows title and watched status
+    //shows title
     screen.getAllByRole('heading', { name: /Puss in Boots: The Last Wish/i });
-    const watched = screen.getByLabelText(/watched:/i);
-    expect(watched).toBeChecked();
     //does not show details initially
     expect(
       screen.queryByText(

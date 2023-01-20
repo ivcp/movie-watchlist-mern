@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import genres from '../../helpers/genres';
+import Rating from './Rating';
+import Watched from './Watched.jsx';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -13,28 +15,8 @@ const MovieOnList = ({ movie }) => {
     <article>
       <h4>{movie.title}</h4>
       <div>
-        {movie.watched && (
-          <>
-            {!movie.rating && <p>star icon</p>}
-            {movie.rating && <p>{movie.rating}/10</p>}
-            <label htmlFor="rating">add rating</label>
-            <select name="rating" id="rating">
-              {[...Array(11)].map((_, i) => (
-                <option key={i} value={i}>
-                  {i}
-                </option>
-              ))}
-            </select>
-          </>
-        )}
-        {/* watched icon */}
-        <label htmlFor={movie.id}>watched:</label>
-        <input
-          type="checkbox"
-          name="watched"
-          id={movie.id}
-          defaultChecked={movie.watched}
-        />
+        {movie.watched && <Rating movie={movie} />}
+        <Watched movie={movie} />
       </div>
       <button onClick={expandDetails}>expand</button>
       {showDetails && (
