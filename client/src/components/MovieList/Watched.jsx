@@ -1,8 +1,29 @@
 import React from 'react';
+import { useMutation, useQueryClient } from 'react-query';
+import movieService from '../../services/movies';
 
-const Watched = ({ movie }) => {
+const Watched = ({ movie, user, data }) => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(
+    update => movieService.updateMovie(movie.id, update),
+    {
+      onError: error => console.log(error.message),
+      onSuccess: updatedMovie => {
+        console.log(
+          `${updatedMovie.title} marked as ${
+            updatedMovie.watched ? 'watched' : 'unwatched'
+          }!`
+        );
+        queryClient.setQueryData(['user', user.id], {
+          ...data,
+          movies: data.movies.map(m => (m.id !== movie.id ? m : updatedMovie)),
+        });
+      },
+    }
+  );
+
   const handleChange = e => {
-    console.log(e.target.checked);
+    mutate({ watched: e.target.checked });
   };
   return (
     <>

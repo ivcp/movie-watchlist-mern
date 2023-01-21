@@ -45,7 +45,7 @@ const MovieList = () => {
         {isSuccess &&
           movies &&
           movies.map(movie => (
-            <MovieOnList key={movie.id} movie={movie} setMovies={setMovies} />
+            <MovieOnList key={movie.id} movie={movie} data={data} user={user} />
           ))}
       </div>
     </>

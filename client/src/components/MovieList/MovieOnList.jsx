@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import genres from '../../helpers/genres';
 import Rating from './Rating';
 import Watched from './Watched.jsx';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import movieServices from '../../services/movies';
 
-const MovieOnList = ({ movie, setMovies }) => {
+const MovieOnList = ({ user, movie, data }) => {
+  const queryClient = useQueryClient();
   const [showDetails, setShowDetails] = useState(false);
   const { mutate: deleteMovie } = useMutation(
     () => movieServices.deleteMovie(movie.id),
@@ -14,7 +15,10 @@ const MovieOnList = ({ movie, setMovies }) => {
       onError: error => console.log(error.message),
       onSuccess: () => {
         console.log(`${movie.title} removed from your list`);
-        setMovies(prev => prev.filter(m => m.id !== movie.id));
+        queryClient.setQueryData(['user', user.id], {
+          ...data,
+          movies: data.movies.filter(m => m.id !== movie.id),
+        });
       },
     }
   );
@@ -28,7 +32,7 @@ const MovieOnList = ({ movie, setMovies }) => {
       <h4>{movie.title}</h4>
       <div>
         {movie.watched && <Rating movie={movie} />}
-        <Watched movie={movie} />
+        <Watched movie={movie} user={user} data={data} />
       </div>
       <button onClick={expandDetails}>expand</button>
       {showDetails && (
