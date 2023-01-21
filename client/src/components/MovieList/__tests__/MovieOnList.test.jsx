@@ -3,6 +3,13 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MovieOnList from '../MovieOnList';
 import { BrowserRouter } from 'react-router-dom';
+import { vi } from 'vitest';
+import useDeleteMovie from '../../../hooks/useDeleteMovie';
+
+vi.mock('../../../hooks/useDeleteMovie');
+vi.mock('../../../hooks/useUpdateMovie');
+const returnValue = vi.fn();
+useDeleteMovie.mockReturnValue(returnValue);
 
 describe('MovieOnList component', () => {
   it('renders movie', async () => {
@@ -35,5 +42,8 @@ describe('MovieOnList component', () => {
     await user.click(expandBtn);
     //expands details
     screen.getByText(/Puss in Boots discovers that his passion for adventure/i);
+    // calls deleteMovie
+    await user.click(screen.getByRole('button', { name: /delete movie/i }));
+    expect(returnValue).toBeCalled();
   });
 });

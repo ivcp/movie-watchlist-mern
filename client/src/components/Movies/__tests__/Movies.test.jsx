@@ -6,6 +6,7 @@ import Movies from '../Movies';
 import useFetchMoviesByGenre from '../../../hooks/useFetchMoviesByGenre';
 
 vi.mock('../../../hooks/useFetchMoviesByGenre');
+vi.mock('../../../hooks/useAddMovie');
 
 const movies = {
   page: 1,

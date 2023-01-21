@@ -6,6 +6,8 @@ import useMovieList from '../../../hooks/useMovieList';
 import MovieList from '../MovieList';
 
 vi.mock('../../../hooks/useMovieList');
+vi.mock('../../../hooks/useUpdateMovie');
+vi.mock('../../../hooks/useDeleteMovie');
 
 describe('MovieList component', () => {
   it('renders loading if isLoading', () => {
