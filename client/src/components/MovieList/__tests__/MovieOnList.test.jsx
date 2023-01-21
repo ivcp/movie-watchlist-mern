@@ -35,6 +35,5 @@ describe('MovieOnList component', () => {
     await user.click(expandBtn);
     //expands details
     screen.getByText(/Puss in Boots discovers that his passion for adventure/i);
-    //TODO: calls delete movie with correct args
   });
 });

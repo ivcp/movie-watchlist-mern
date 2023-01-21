@@ -3,9 +3,21 @@ import { Link } from 'react-router-dom';
 import genres from '../../helpers/genres';
 import Rating from './Rating';
 import Watched from './Watched.jsx';
+import { useMutation } from 'react-query';
+import movieServices from '../../services/movies';
 
-const MovieOnList = ({ movie }) => {
+const MovieOnList = ({ movie, setMovies }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const { mutate: deleteMovie } = useMutation(
+    () => movieServices.deleteMovie(movie.id),
+    {
+      onError: error => console.log(error.message),
+      onSuccess: () => {
+        console.log(`${movie.title} removed from your list`);
+        setMovies(prev => prev.filter(m => m.id !== movie.id));
+      },
+    }
+  );
 
   const expandDetails = () => {
     setShowDetails(prev => !prev);
@@ -37,7 +49,7 @@ const MovieOnList = ({ movie }) => {
           />
           <div>
             <Link to={`/movie/${movie.tmdbId}`}>more details</Link>
-            <button>delete movie</button>
+            <button onClick={() => deleteMovie()}>delete movie</button>
           </div>
         </div>
       )}
