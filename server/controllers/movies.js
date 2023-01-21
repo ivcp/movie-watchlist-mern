@@ -62,6 +62,10 @@ moviesRouter.put('/:id/', userExtractor, async (req, res) => {
     return res.status(400).json({ error: 'Bad request. Failed to update' });
   }
 
+  if (update['rating'] === undefined && update['watched'] === false) {
+    update.rating = null;
+  }
+
   const user = req.user;
   const movie = await Movie.findById(id);
 
