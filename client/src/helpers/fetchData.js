@@ -4,7 +4,11 @@ export const fetchData = async (url, config) => {
     if (response.status === 500) {
       throw new Error('Something went wrong :(');
     }
-    if (url.includes('/api/users/')) {
+    if (
+      url.includes('/api/users') ||
+      url.includes('/api/movies') ||
+      url.includes('/api/login')
+    ) {
       const error = await response.json();
       throw new Error(error.error);
     } else {
@@ -12,5 +16,7 @@ export const fetchData = async (url, config) => {
       throw new Error(error.status_message);
     }
   }
-  return response.json();
+  if (config?.method !== 'DELETE') {
+    return response.json();
+  }
 };

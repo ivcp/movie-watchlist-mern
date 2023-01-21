@@ -1,3 +1,5 @@
+import { fetchData } from '../helpers/fetchData';
+
 let token = null;
 
 const setToken = newToken => {
@@ -5,65 +7,50 @@ const setToken = newToken => {
 };
 
 const addMovie = async movie => {
-  const response = await fetch('/api/movies', {
+  const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: token,
     },
     body: JSON.stringify(movie),
-  });
-  if (!response.ok) {
-    if (response.status === 500) {
-      throw new Error('Something went wrong :(');
-    } else {
-      const error = await response.json();
-      throw new Error(error.error);
-    }
-  }
-  return response.json();
+  };
+  return await fetchData('/api/movies', config);
 };
 
 const deleteMovie = async movieId => {
-  const response = await fetch(`/api/movies/${movieId}`, {
+  const config = {
     method: 'DELETE',
     headers: {
       Authorization: token,
     },
-  });
-  if (!response.ok) {
-    if (response.status === 500) {
-      throw new Error('Something went wrong :(');
-    } else {
-      const error = await response.json();
-      throw new Error(error.error);
-    }
-  }
+  };
+  return await fetchData(`/api/movies/${movieId}`, config);
 };
 
 const updateMovie = async (movieId, update) => {
-  const response = await fetch(`/api/movies/${movieId}`, {
+  const config = {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: token,
     },
     body: JSON.stringify(update),
-  });
-  if (!response.ok) {
-    if (response.status === 500) {
-      throw new Error('Something went wrong :(');
-    } else {
-      const error = await response.json();
-      throw new Error(error.error);
-    }
-  }
-  return response.json();
+  };
+  return await fetchData(`/api/movies/${movieId}`, config);
+};
+
+const getUser = async userId => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  return await fetchData(`/api/users/${userId}`, config);
 };
 
 export default {
   addMovie,
   deleteMovie,
   updateMovie,
+  getUser,
   setToken,
 };
