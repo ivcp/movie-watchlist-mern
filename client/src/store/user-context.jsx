@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import userService from '../services/users';
+import movieService from '../services/movies';
 import jwt_decode from 'jwt-decode';
 
 const UserContext = createContext({
@@ -20,15 +20,13 @@ export const UserContextProvider = ({ children }) => {
       if (typeof token.exp !== 'undefined' && token.exp < currentTime) {
         return;
       }
-      userService.setToken(user.token);
+      movieService.setToken(user.token);
       setUser(user);
-
-      // TODO: set token to movies services
     }
   }, []);
 
   const loginUser = user => {
-    userService.setToken(user.token);
+    movieService.setToken(user.token);
     setUser(user);
     window.localStorage.setItem('loggedWatchlistUser', JSON.stringify(user));
   };
