@@ -1,33 +1,25 @@
 import React from 'react';
-import { useMutation, useQueryClient } from 'react-query';
-import movieService from '../../services/movies';
+import useUpdateMovie from '../../hooks/useUpdateMovie';
 
-const Watched = ({ movie, user, data }) => {
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation(
-    update => movieService.updateMovie(movie.id, update),
-    {
-      onError: error => console.log(error.message),
-      onSuccess: updatedMovie => {
-        console.log(
-          `${updatedMovie.title} marked as ${
-            updatedMovie.watched ? 'watched' : 'unwatched'
-          }!`
-        );
-        queryClient.setQueryData(['user', user.id], {
-          ...data,
-          movies: data.movies.map(m => (m.id !== movie.id ? m : updatedMovie)),
-        });
-      },
-    }
-  );
+const Watched = ({ movie }) => {
+  const updateMovie = useUpdateMovie(movie.id);
 
   const handleChange = e => {
-    mutate({ watched: e.target.checked });
+    const { checked } = e.target;
+    updateMovie(
+      { watched: checked },
+      {
+        onSuccess: () => {
+          console.log(
+            `${movie.title} marked as ${checked ? 'watched' : 'unwatched'}!`
+          );
+        },
+      }
+    );
   };
   return (
     <>
-      {/* icon watched */}
+      <p>{movie.watched ? '✔️✔️' : '✔️'}</p>
       <label htmlFor={movie.id}>watched:</label>
       <input
         type="checkbox"

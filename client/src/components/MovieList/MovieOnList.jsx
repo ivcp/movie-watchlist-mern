@@ -32,7 +32,7 @@ const MovieOnList = ({ user, movie, data }) => {
       <h4>{movie.title}</h4>
       <div>
         {movie.watched && <Rating movie={movie} />}
-        <Watched movie={movie} user={user} data={data} />
+        <Watched movie={movie} />
       </div>
       <button onClick={expandDetails}>expand</button>
       {showDetails && (
