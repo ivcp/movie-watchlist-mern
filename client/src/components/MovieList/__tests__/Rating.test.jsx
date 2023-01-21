@@ -1,7 +1,13 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-//import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 import Rating from '../Rating';
+import useUpdateMovie from '../../../hooks/useUpdateMovie';
+
+vi.mock('../../../hooks/useUpdateMovie');
+
+const returnValue = vi.fn();
 
 describe('Rating component', () => {
   const movie = {
@@ -25,5 +31,13 @@ describe('Rating component', () => {
     screen.getByLabelText(/add rating/i);
   });
 
-  //changes icon to rating
+  it('calls handler with correct args', async () => {
+    useUpdateMovie.mockReturnValue(returnValue);
+    render(<Rating movie={movie} />);
+    const user = userEvent.setup();
+    const input = screen.getByLabelText(/add rating/i);
+    await user.selectOptions(input, '8');
+    expect(returnValue).toBeCalled();
+    expect(returnValue.mock.calls[0]).toContainEqual({ rating: 8 });
+  });
 });
