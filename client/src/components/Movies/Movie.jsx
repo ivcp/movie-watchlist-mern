@@ -1,10 +1,13 @@
 import React from 'react';
+import useAddMovie from '../../hooks/useAddMovie';
 
 const Movie = ({ movie }) => {
+  const addMovie = useAddMovie();
+
   return (
     <>
       <h4>{movie.title}</h4>
-      <button>+</button>
+      <button onClick={() => addMovie(movie)}>+</button>
     </>
   );
 };
