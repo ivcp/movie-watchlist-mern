@@ -9,7 +9,7 @@ moviesRouter.get('/', async (req, res) => {
 
 moviesRouter.post('/', userExtractor, async (req, res) => {
   if (!req.token) {
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Log in to add a movie' });
   }
   const body = req.body;
   const user = req.user;
@@ -59,7 +59,6 @@ moviesRouter.put('/:id/', userExtractor, async (req, res) => {
   const id = req.params.id;
   const update = req.body;
   if (update['rating'] === undefined && update['watched'] === undefined) {
-    console.log(update['rating']);
     return res.status(400).json({ error: 'Bad request. Failed to update' });
   }
 
