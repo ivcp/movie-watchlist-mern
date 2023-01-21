@@ -7,7 +7,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('Auth component', () => {
-  beforeEach(() => {
+  const setup = () => {
     const queryClient = new QueryClient();
     render(
       <BrowserRouter>
@@ -20,9 +20,10 @@ describe('Auth component', () => {
         </GoogleOAuthProvider>
       </BrowserRouter>
     );
-  });
+  };
 
   it('renders login form initially', async () => {
+    setup();
     screen.getByRole('heading', /log in/i);
     screen.getByPlaceholderText(/email/i);
     screen.getByPlaceholderText(/password/i);
@@ -33,6 +34,7 @@ describe('Auth component', () => {
   });
 
   it('changes form when clicked to show register', async () => {
+    setup();
     screen.getByRole('heading', { name: /log in/i });
     const user = userEvent.setup();
     const changeFormBtn = screen.getByRole('button', {
@@ -47,6 +49,7 @@ describe('Auth component', () => {
     ).not.toBeInTheDocument();
   });
   it('changes password visibility', async () => {
+    setup();
     const passwordInput = screen.getByPlaceholderText(/password/i);
     expect(passwordInput).toHaveAttribute('type', 'password');
     const user = userEvent.setup();

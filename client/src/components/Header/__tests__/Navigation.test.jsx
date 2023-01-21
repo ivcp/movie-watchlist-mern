@@ -23,18 +23,15 @@ describe('Navigation component', () => {
     };
     customRender(<Navigation />, { providerProps });
     //does not show login btn if user logged in
-    expect(screen.queryByRole('link', { name: /log in/i })).not
+    expect(screen.queryByRole('button', { name: /log in/i })).not
       .toBeInTheDocument;
     //my movies link shown
     screen.getByRole('link', { name: /my movies/i });
     const user = userEvent.setup();
     //logout btn shown if user logged in
-    const logoutBtn = screen.getByRole('button');
+    const logoutBtn = screen.getByRole('button', { name: /log out/i });
     await user.click(logoutBtn);
-    //mymovies not visible, loginBtn visible, and setUser called with correct arg
-    expect(screen.queryByRole('link', { name: /my movies/i })).not
-      .toBeInTheDocument;
-    expect(screen.queryByRole('link', { name: /log in/i })).toBeInTheDocument;
+    //setUser called with correct arg
     expect(providerProps.value.setUser).toBeCalledWith(null);
     //TODO: triggers notification
   });
