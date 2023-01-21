@@ -1,7 +1,7 @@
-PUT http://localhost:3001/api/movies/63c6d1cc993dcd23393ccba1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3Mzk3NDczNiwiZXhwIjoxNjczOTc4MzM2fQ.cc_EVn3V_sp4Rj7SPT7_U5PhxJDLohv0nvzePWriEN0
+PUT http://localhost:3001/api/movies/63cc1049b0e689484a679e05
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3NDMxODk5MCwiZXhwIjoxNjc0MzIyNTkwfQ.mq5zjEh7knCRrCfcBHK7NOWCI4RRFUQRy_0fmORRJbQ
 Content-Type: application/json
 
 {
-    "rating": 10
+    "rating": 4
 }

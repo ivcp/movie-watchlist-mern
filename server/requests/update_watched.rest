@@ -1,7 +1,7 @@
-PUT http://localhost:3001/api/movies/63c920e3ed4ecf6ed3dd42aa
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3NDEyNTAzNiwiZXhwIjoxNjc0MTI4NjM2fQ.7YUZy_KSXxtqG1ogzJQwzLuQ6DzrzECw7Y1ovnPJae0
+PUT http://localhost:3001/api/movies/63cc1049b0e689484a679e05
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRvbUBlbWFpbC5jb20iLCJpZCI6IjYzYzJkMDhjYzVlN2M2YTljZWZlODgwMiIsImlhdCI6MTY3NDMxODk5MCwiZXhwIjoxNjc0MzIyNTkwfQ.mq5zjEh7knCRrCfcBHK7NOWCI4RRFUQRy_0fmORRJbQ
 Content-Type: application/json
 
 {
-    "watched": true
+    "watched": false
 }
