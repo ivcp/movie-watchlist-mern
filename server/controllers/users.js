@@ -34,6 +34,7 @@ usersRouter.get('/:userId', userExtractor, async (req, res) => {
         overview: 1,
         genre_ids: 1,
         watched: 1,
+        rating: 1,
       }
     );
     // eslint-disable-next-line
