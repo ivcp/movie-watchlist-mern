@@ -32,9 +32,13 @@ const MovieList = () => {
   return (
     <>
       <div>
-        <button onClick={showAll}>all</button>
-        <button onClick={showWatched}>watched</button>
-        <button onClick={showUnwatched}>unwatched</button>
+        <button onClick={showAll}>all({data.movies.length})</button>
+        <button onClick={showWatched}>
+          watched({data.movies.filter(movie => movie.watched).length})
+        </button>
+        <button onClick={showUnwatched}>
+          unwatched({data.movies.filter(movie => !movie.watched).length})
+        </button>
       </div>
       <div>
         {isLoading && <p>Loading...</p>}
