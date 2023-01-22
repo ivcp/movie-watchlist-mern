@@ -8,9 +8,9 @@ const useMovieList = () => {
   const [movies, setMovies] = useState(null);
   const { data, isLoading, isError, isSuccess, error } = useQuery(
     ['user', user?.id],
-    movieService.getUser.bind(null, user?.id),
+    movieService.getUserMovieList.bind(null, user?.id),
     {
-      onSuccess: data => setMovies(data.movies),
+      onSuccess: data => setMovies(data),
       enabled: !!user,
     }
   );
