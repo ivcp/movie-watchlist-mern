@@ -19,6 +19,10 @@ const MovieList = () => {
     return <Navigate to="/" replace />;
   }
 
+  const allCount = data?.length;
+  const watchedCount = data?.filter(movie => movie.watched).length;
+  const unwatchedCount = data?.filter(movie => !movie.watched).length;
+
   return (
     <>
       <div>
@@ -26,19 +30,19 @@ const MovieList = () => {
           style={{ fontWeight: sort === 'all' ? 'bold' : 'normal' }}
           onClick={() => setSort('all')}
         >
-          all({data?.length})
+          all({allCount})
         </button>
         <button
           style={{ fontWeight: sort === 'watched' ? 'bold' : 'normal' }}
           onClick={() => setSort('watched')}
         >
-          watched({data?.filter(movie => movie.watched).length})
+          watched({watchedCount})
         </button>
         <button
           style={{ fontWeight: sort === 'unwatched' ? 'bold' : 'normal' }}
           onClick={() => setSort('unwatched')}
         >
-          unwatched({data?.filter(movie => !movie.watched).length})
+          unwatched({unwatchedCount})
         </button>
       </div>
       <div>
