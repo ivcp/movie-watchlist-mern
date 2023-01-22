@@ -25,11 +25,11 @@ const MovieOnList = ({ movie }) => {
         <div>
           <div>
             {movie.genre_ids.map(genre => {
-              const result = genres.reduce(
+              const genreName = genres.reduce(
                 (acc, cur) => (cur.id === genre ? acc + cur.name : acc),
                 ''
               );
-              return <p key={genre}>{result}</p>;
+              return <p key={genre}>{genreName}</p>;
             })}
           </div>
           <div>{movie.overview}</div>
@@ -40,6 +40,7 @@ const MovieOnList = ({ movie }) => {
           <div>
             <Link to={`/movie/${movie.tmdbId}`}>more details</Link>
             <button onClick={() => deleteMovie()}>delete movie</button>
+            {/* propmt user if wants to delete? */}
           </div>
         </div>
       )}
