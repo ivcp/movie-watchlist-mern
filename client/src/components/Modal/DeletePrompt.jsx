@@ -21,10 +21,12 @@ const DeletePrompt = () => {
           backgroundColor: 'orangered',
           opacity: 0.8,
         }}
+        data-testid="overlay"
         onClick={() => setModalOpen(false)}
       >
         <div
           style={{ backgroundColor: 'white' }}
+          data-testid="modal-box"
           onClick={e => e.stopPropagation()}
         >
           <p>

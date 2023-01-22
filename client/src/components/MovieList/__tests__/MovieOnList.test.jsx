@@ -4,14 +4,20 @@ import userEvent from '@testing-library/user-event';
 import MovieOnList from '../MovieOnList';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
-import useDeleteMovie from '../../../hooks/useDeleteMovie';
+import ModalContext from '../../../store/modal-context';
 
 vi.mock('../../../hooks/useDeleteMovie');
 vi.mock('../../../hooks/useUpdateMovie');
-const returnValue = vi.fn();
-useDeleteMovie.mockReturnValue(returnValue);
 
 describe('MovieOnList component', () => {
+  const customRender = (ui, { providerProps, ...renderOptions }) => {
+    return render(
+      <BrowserRouter>
+        <ModalContext.Provider {...providerProps}>{ui}</ModalContext.Provider>
+      </BrowserRouter>,
+      renderOptions
+    );
+  };
   it('renders movie', async () => {
     const movie = {
       tmdbId: '315162',
@@ -24,13 +30,17 @@ describe('MovieOnList component', () => {
       watched: true,
       id: '63c55c74ce066ec65b51a560',
     };
-    render(
-      <BrowserRouter>
-        <MovieOnList movie={movie} />
-      </BrowserRouter>
-    );
+    const providerProps = {
+      value: {
+        modalOpen: false,
+        setModalOpen: vi.fn(),
+        movie: null,
+        triggerPrompt: vi.fn(),
+      },
+    };
+    customRender(<MovieOnList movie={movie} />, { providerProps });
     //shows title
-    screen.getAllByRole('heading', { name: /Puss in Boots: The Last Wish/i });
+    screen.getByRole('heading', { name: /Puss in Boots: The Last Wish/i });
     //does not show details initially
     expect(
       screen.queryByText(
@@ -42,8 +52,8 @@ describe('MovieOnList component', () => {
     await user.click(expandBtn);
     //expands details
     screen.getByText(/Puss in Boots discovers that his passion for adventure/i);
-    // calls deleteMovie
+    // calls deleteMovie with correct args
     await user.click(screen.getByRole('button', { name: /delete movie/i }));
-    expect(returnValue).toBeCalled();
+    expect(providerProps.value.triggerPrompt).toBeCalledWith(movie);
   });
 });
