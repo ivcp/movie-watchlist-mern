@@ -1,29 +1,19 @@
 import React from 'react';
-import MovieOnList from './MovieOnList';
 import { Navigate } from 'react-router-dom';
 import useMovieList from '../../hooks/useMovieList';
 
 const MovieList = () => {
   const {
     user,
-    movies,
-    setMovies,
     data,
+    sortedMovies,
+    sort,
+    setSort,
     isLoading,
     isError,
     isSuccess,
     error,
   } = useMovieList();
-
-  const showAll = () => {
-    setMovies(data);
-  };
-  const showWatched = () => {
-    setMovies(data.filter(movie => movie.watched));
-  };
-  const showUnwatched = () => {
-    setMovies(data.filter(movie => !movie.watched));
-  };
 
   if (!user) {
     return <Navigate to="/" replace />;
@@ -32,11 +22,22 @@ const MovieList = () => {
   return (
     <>
       <div>
-        <button onClick={showAll}>all({data?.length})</button>
-        <button onClick={showWatched}>
+        <button
+          style={{ fontWeight: sort === 'all' ? 'bold' : 'normal' }}
+          onClick={() => setSort('all')}
+        >
+          all({data?.length})
+        </button>
+        <button
+          style={{ fontWeight: sort === 'watched' ? 'bold' : 'normal' }}
+          onClick={() => setSort('watched')}
+        >
           watched({data?.filter(movie => movie.watched).length})
         </button>
-        <button onClick={showUnwatched}>
+        <button
+          style={{ fontWeight: sort === 'unwatched' ? 'bold' : 'normal' }}
+          onClick={() => setSort('unwatched')}
+        >
           unwatched({data?.filter(movie => !movie.watched).length})
         </button>
       </div>
@@ -46,9 +47,7 @@ const MovieList = () => {
         {isSuccess && data.length === 0 && (
           <p>{`Add some movies to your list, ${user.name.split(' ')[0]}!`}</p>
         )}
-        {isSuccess &&
-          movies &&
-          movies.map(movie => <MovieOnList key={movie.id} movie={movie} />)}
+        {isSuccess && data.length > 0 && sortedMovies()}
       </div>
     </>
   );
