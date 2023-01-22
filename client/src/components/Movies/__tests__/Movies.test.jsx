@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Movies from '../Movies';
 import useFetchMoviesByGenre from '../../../hooks/useFetchMoviesByGenre';
+import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../../hooks/useFetchMoviesByGenre');
 vi.mock('../../../hooks/useAddMovie');
@@ -61,10 +62,18 @@ const returnValue = {
 };
 
 describe('movies component', () => {
+  const setup = () => {
+    render(
+      <BrowserRouter>
+        <Movies />
+      </BrowserRouter>
+    );
+  };
+
   it('renders loading text if loading', () => {
     //TODO:spinner
     useFetchMoviesByGenre.mockReturnValue(returnValue);
-    render(<Movies />);
+    setup();
     screen.getByText(/loading.../i);
   });
   it('renders message if error', () => {
@@ -77,7 +86,7 @@ describe('movies component', () => {
     };
 
     useFetchMoviesByGenre.mockReturnValue(returnValue);
-    render(<Movies />);
+    setup();
     screen.getByText(returnValue.error.message);
   });
   it('renders movies and pagination if success', () => {
@@ -85,7 +94,7 @@ describe('movies component', () => {
     returnValue.isError = false;
 
     useFetchMoviesByGenre.mockReturnValue(returnValue);
-    render(<Movies />);
+    setup();
     screen.getByText(movies.results[0].title);
     screen.getByText(movies.results[1].title);
     screen.getByRole('button', { name: /previous page/i });
@@ -93,7 +102,7 @@ describe('movies component', () => {
   });
   it('calls setPage if pagination buttons pressed', async () => {
     useFetchMoviesByGenre.mockReturnValue(returnValue);
-    render(<Movies />);
+    setup();
     const user = userEvent.setup();
     const nextBtn = screen.getByRole('button', { name: /next page/i });
     await user.click(nextBtn);

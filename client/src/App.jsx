@@ -1,11 +1,19 @@
-import { Route, Routes } from 'react-router-dom';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { UserContextProvider } from './store/user-context';
 import { ModalContextProvider } from './store/modal-context';
 import Home from './pages/Home';
-import Header from './components/Header/Header';
+import Layout from './layout/Layout';
 import Auth from './pages/Auth';
 import WatchList from './pages/Watchlist';
+import MovieDetailsPage from './pages/MovieDetailsPage';
+import tmdbService from './services/tmdb';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,20 +23,31 @@ const queryClient = new QueryClient({
   },
 });
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="/login" element={<Auth />} />
+      <Route path="/mymovies" element={<WatchList />} />
+      <Route
+        path="/movie/:movieId"
+        loader={({ params }) => tmdbService.getMovieDetails(params.movieId)}
+        element={<MovieDetailsPage />}
+      />
+      <Route path="*" element={<p>PAGE NOT FOUND</p>} />
+    </Route>
+  )
+);
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ModalContextProvider>
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Auth />} />
-            <Route path="/mymovies" element={<WatchList />} />
-          </Routes>
-        </main>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </ModalContextProvider>
+      <UserContextProvider>
+        <ModalContextProvider>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ModalContextProvider>
+      </UserContextProvider>
     </QueryClientProvider>
   );
 }

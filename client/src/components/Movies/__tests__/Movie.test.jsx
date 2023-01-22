@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import useAddMovie from '../../../hooks/useAddMovie';
 import Movie from '../Movie';
+import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../../hooks/useAddMovie');
 const returnValue = vi.fn();
@@ -20,14 +21,21 @@ describe('Movie component', () => {
     watched: true,
     id: '63c55c74ce066ec65b51a560',
   };
+  const setup = () => {
+    render(
+      <BrowserRouter>
+        <Movie movie={movie} />
+      </BrowserRouter>
+    );
+  };
   it('renders movie', () => {
-    render(<Movie movie={movie} />);
+    setup();
     expect(screen.getByRole('heading', { name: movie.title }))
       .toBeInTheDocument;
   });
 
   it('calls addMovie', async () => {
-    render(<Movie movie={movie} />);
+    setup();
     const user = userEvent.setup();
     await user.click(screen.getByRole('button', { name: '+' }));
     expect(returnValue).toBeCalledWith(movie);
