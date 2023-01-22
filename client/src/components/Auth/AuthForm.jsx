@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import useField from '../../hooks/useField';
 import { useMutation } from 'react-query';
-import userService from '../../services/users';
+import auth from '../../services/auth';
 import UserContext from '../../store/user-context';
 import { useNavigate } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -19,7 +19,7 @@ const AuthForm = () => {
   const navigate = useNavigate();
 
   const { mutate } = useMutation(
-    credentials => userService.auth(credentials, isLogin ? 'login' : 'users'),
+    credentials => auth(credentials, isLogin ? 'login' : 'users'),
     {
       onError: error => console.log(error.message),
       onSuccess: user => {

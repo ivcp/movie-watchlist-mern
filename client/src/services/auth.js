@@ -11,6 +11,4 @@ const auth = async (credentials, type) => {
   return await fetchData(`/api/${type}`, config);
 };
 
-export default {
-  auth,
-};
+export default auth;
