@@ -12,8 +12,13 @@ const searchMovies = async query => {
   return await fetchData(`/api/tmdb/search?query=${query}`);
 };
 
+const getMovieDetails = async movieId => {
+  return await fetchData(`/api/tmdb/details?movieId=${movieId}`);
+};
+
 export default {
   getPopularMovies,
   getByGenre,
   searchMovies,
+  getMovieDetails,
 };
