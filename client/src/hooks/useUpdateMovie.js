@@ -12,10 +12,10 @@ const useUpdateMovie = movieId => {
       onError: error => console.log(error.message),
       onSuccess: updatedMovie => {
         const data = queryClient.getQueryData(['user', user.id]);
-        queryClient.setQueryData(['user', user.id], {
-          ...data,
-          movies: data.movies.map(m => (m.id !== movieId ? m : updatedMovie)),
-        });
+        queryClient.setQueryData(
+          ['user', user.id],
+          data.map(m => (m.id !== movieId ? m : updatedMovie))
+        );
       },
     }
   );

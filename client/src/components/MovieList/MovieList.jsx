@@ -16,13 +16,13 @@ const MovieList = () => {
   } = useMovieList();
 
   const showAll = () => {
-    setMovies(data.movies);
+    setMovies(data);
   };
   const showWatched = () => {
-    setMovies(data.movies.filter(movie => movie.watched));
+    setMovies(data.filter(movie => movie.watched));
   };
   const showUnwatched = () => {
-    setMovies(data.movies.filter(movie => !movie.watched));
+    setMovies(data.filter(movie => !movie.watched));
   };
 
   if (!user) {
@@ -32,25 +32,23 @@ const MovieList = () => {
   return (
     <>
       <div>
-        <button onClick={showAll}>all({data.movies.length})</button>
+        <button onClick={showAll}>all({data?.length})</button>
         <button onClick={showWatched}>
-          watched({data.movies.filter(movie => movie.watched).length})
+          watched({data?.filter(movie => movie.watched).length})
         </button>
         <button onClick={showUnwatched}>
-          unwatched({data.movies.filter(movie => !movie.watched).length})
+          unwatched({data?.filter(movie => !movie.watched).length})
         </button>
       </div>
       <div>
         {isLoading && <p>Loading...</p>}
         {isError && <p>{error.message}</p>}
-        {isSuccess && data.movies.length === 0 && (
+        {isSuccess && data.length === 0 && (
           <p>{`Add some movies to your list, ${user.name.split(' ')[0]}!`}</p>
         )}
         {isSuccess &&
           movies &&
-          movies.map(movie => (
-            <MovieOnList key={movie.id} movie={movie} data={data} user={user} />
-          ))}
+          movies.map(movie => <MovieOnList key={movie.id} movie={movie} />)}
       </div>
     </>
   );

@@ -12,11 +12,11 @@ const useDeleteMovie = movieId => {
       onError: error => console.log(error.message),
       onSuccess: () => {
         const data = queryClient.getQueryData(['user', user.id]);
-        queryClient.setQueryData(['user', user.id], {
-          ...data,
-          movies: data.movies.filter(m => m.id !== movieId),
-        });
-        const { title } = data.movies.find(m => m.id === movieId);
+        queryClient.setQueryData(
+          ['user', user.id],
+          data.filter(m => m.id !== movieId)
+        );
+        const { title } = data.find(m => m.id === movieId);
         console.log(`${title} removed from your list`);
       },
     }

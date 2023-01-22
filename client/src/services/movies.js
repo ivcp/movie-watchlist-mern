@@ -40,7 +40,7 @@ const updateMovie = async (movieId, update) => {
   return await fetchData(`/api/movies/${movieId}`, config);
 };
 
-const getUser = async userId => {
+const getUserMovieList = async userId => {
   const config = {
     headers: { Authorization: token },
   };
@@ -51,6 +51,6 @@ export default {
   addMovie,
   deleteMovie,
   updateMovie,
-  getUser,
+  getUserMovieList,
   setToken,
 };
