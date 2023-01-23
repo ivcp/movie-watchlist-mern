@@ -1,6 +1,7 @@
 export const fetchData = async (url, config) => {
   const response = await fetch(url, config);
   if (!response.ok) {
+    console.log(response);
     if (response.status === 500) {
       throw new Error('Something went wrong :(');
     }
@@ -11,10 +12,12 @@ export const fetchData = async (url, config) => {
     ) {
       const error = await response.json();
       throw new Error(error.error);
-    } else {
+    }
+    if (url.includes('/api/tmdb')) {
       const error = await response.json();
       throw new Error(error.status_message);
     }
+    throw new Error(response.statusText);
   }
   if (config?.method !== 'DELETE') {
     return response.json();
