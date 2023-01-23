@@ -51,5 +51,11 @@ const MovieOnList = ({ movie }) => {
 export default MovieOnList;
 
 MovieOnList.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: PropTypes.shape({
+    tmdbId: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    genre_ids: PropTypes.array.isRequired,
+  }),
 };
