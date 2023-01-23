@@ -1,19 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import genres from '../../helpers/genres';
 import Rating from './Rating';
 import Watched from './Watched.jsx';
-import ModalContext from '../../store/modal-context';
 import PropTypes from 'prop-types';
+import DeleteMovie from './DeleteMovie';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
-  const { triggerPrompt } = useContext(ModalContext);
 
   const expandDetails = () => {
     setShowDetails(prev => !prev);
   };
-
   return (
     <article>
       <h4>{movie.title}</h4>
@@ -40,7 +38,7 @@ const MovieOnList = ({ movie }) => {
           />
           <div>
             <Link to={`/movie/${movie.tmdbId}`}>more details</Link>
-            <button onClick={() => triggerPrompt(movie)}>delete movie</button>
+            <DeleteMovie movie={movie} />
           </div>
         </div>
       )}
