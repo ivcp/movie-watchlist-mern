@@ -1,5 +1,6 @@
 import React from 'react';
 import useUpdateMovie from '../../hooks/useUpdateMovie';
+import PropTypes from 'prop-types';
 
 const Rating = ({ movie }) => {
   const updateMovie = useUpdateMovie(movie.id);
@@ -32,3 +33,7 @@ const Rating = ({ movie }) => {
 };
 
 export default Rating;
+
+Rating.propTypes = {
+  movie: PropTypes.object.isRequired,
+};

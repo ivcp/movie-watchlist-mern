@@ -1,5 +1,6 @@
 import React from 'react';
 import genres from '../../helpers/genres';
+import PropTypes from 'prop-types';
 
 const GenreFilter = ({ setGenre, setPage }) => {
   const handleSelect = ({ target }) => {
@@ -26,3 +27,8 @@ const GenreFilter = ({ setGenre, setPage }) => {
 };
 
 export default GenreFilter;
+
+GenreFilter.propTypes = {
+  setGenre: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
+};

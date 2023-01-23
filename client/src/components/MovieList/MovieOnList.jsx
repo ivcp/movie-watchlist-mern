@@ -4,6 +4,7 @@ import genres from '../../helpers/genres';
 import Rating from './Rating';
 import Watched from './Watched.jsx';
 import ModalContext from '../../store/modal-context';
+import PropTypes from 'prop-types';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -48,3 +49,7 @@ const MovieOnList = ({ movie }) => {
 };
 
 export default MovieOnList;
+
+MovieOnList.propTypes = {
+  movie: PropTypes.object.isRequired,
+};

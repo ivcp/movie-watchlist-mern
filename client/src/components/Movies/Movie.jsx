@@ -1,6 +1,7 @@
 import React from 'react';
 import useAddMovie from '../../hooks/useAddMovie';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Movie = ({ movie }) => {
   const addMovie = useAddMovie();
@@ -18,3 +19,7 @@ const Movie = ({ movie }) => {
 };
 
 export default Movie;
+
+Movie.propTypes = {
+  movie: PropTypes.object.isRequired,
+};

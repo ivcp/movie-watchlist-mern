@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Pagination = ({ page, moviesPage, totalPages, setPage }) => {
   return (
@@ -25,3 +26,9 @@ const Pagination = ({ page, moviesPage, totalPages, setPage }) => {
 };
 
 export default Pagination;
+Pagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  moviesPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+};

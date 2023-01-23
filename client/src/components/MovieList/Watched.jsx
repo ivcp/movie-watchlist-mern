@@ -1,5 +1,6 @@
 import React from 'react';
 import useUpdateMovie from '../../hooks/useUpdateMovie';
+import PropTypes from 'prop-types';
 
 const Watched = ({ movie }) => {
   const updateMovie = useUpdateMovie(movie.id);
@@ -33,3 +34,6 @@ const Watched = ({ movie }) => {
 };
 
 export default Watched;
+Watched.propTypes = {
+  movie: PropTypes.object.isRequired,
+};
