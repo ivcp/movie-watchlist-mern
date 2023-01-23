@@ -14,6 +14,7 @@ import Auth from './pages/Auth';
 import WatchList from './pages/Watchlist';
 import MovieDetailsPage from './pages/MovieDetailsPage';
 import tmdbService from './services/tmdb';
+import MovieError from './components/MovieDetails/MovieError';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         path="/movie/:movieId"
         loader={({ params }) => tmdbService.getMovieDetails(params.movieId)}
         element={<MovieDetailsPage />}
+        errorElement={<MovieError />}
       />
       <Route path="*" element={<p>PAGE NOT FOUND</p>} />
     </Route>
@@ -45,7 +47,7 @@ function App() {
       <UserContextProvider>
         <ModalContextProvider>
           <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </ModalContextProvider>
       </UserContextProvider>
     </QueryClientProvider>
