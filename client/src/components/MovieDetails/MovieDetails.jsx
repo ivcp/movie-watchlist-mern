@@ -13,7 +13,7 @@ const MovieDetails = () => {
   const movie = useLoaderData();
   const addMovie = useAddMovie();
   const navigate = useNavigate();
-  const { data: movieList, error, isError: movieListError } = useMovieList();
+  const { movieList, error, isError: movieListError } = useMovieList();
   const {
     data: imdbData,
     isError: imdbError,
@@ -34,9 +34,6 @@ const MovieDetails = () => {
     if (movieOnList) return;
     addMovie(movie);
   };
-
-  console.log('render details comp');
-  console.log(imdbRating);
 
   if (
     movieListError &&
