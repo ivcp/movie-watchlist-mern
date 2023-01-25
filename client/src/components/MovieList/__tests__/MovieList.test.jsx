@@ -45,7 +45,7 @@ describe('MovieList component', () => {
     expect(returnValue.setSort).toBeCalledWith('all');
   });
   it('displays message if no saved movies', async () => {
-    returnValue.data = [];
+    returnValue.movieList = [];
     render(<MovieList />);
     screen.getByText(/Add some movies to your list, test/i);
   });
@@ -87,7 +87,7 @@ const data = [
 
 const returnValue = {
   user: { name: 'Test user' },
-  data,
+  movieList: data,
   sortedMovies: vi.fn(),
   sort: 'all',
   setSort: vi.fn(),

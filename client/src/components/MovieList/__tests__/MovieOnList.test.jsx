@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import MovieOnList from '../MovieOnList';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
-import ModalContext from '../../../store/modal-context';
+import ModalContext from '../../../context/modal-context';
 
 vi.mock('../../../hooks/useDeleteMovie');
 vi.mock('../../../hooks/useUpdateMovie');

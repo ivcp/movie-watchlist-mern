@@ -9,6 +9,7 @@ const Movie = ({ movie }) => {
   const { movieList } = useMovieList();
 
   const movieIsOnList = movieList?.find(m => m.tmdbId === movie.id);
+
   return (
     <>
       <Link to={`/movie/${movie.id}`}>

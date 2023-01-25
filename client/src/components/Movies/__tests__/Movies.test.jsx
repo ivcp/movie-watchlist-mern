@@ -5,10 +5,12 @@ import userEvent from '@testing-library/user-event';
 import Movies from '../Movies';
 import useFetchMoviesByGenre from '../../../hooks/useFetchMoviesByGenre';
 import { BrowserRouter } from 'react-router-dom';
+import useMovieList from '../../../hooks/useMovieList';
 
 vi.mock('../../../hooks/useFetchMoviesByGenre');
 vi.mock('../../../hooks/useAddMovie');
-
+vi.mock('../../../hooks/useMovieList');
+useMovieList.mockReturnValue({ movieList: [] });
 const movies = {
   page: 1,
   results: [
