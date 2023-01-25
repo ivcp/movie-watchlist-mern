@@ -5,13 +5,20 @@ import movieService from '../services/movies';
 import MovieOnList from '../components/MovieList/MovieOnList';
 
 const useMovieList = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [sort, setSort] = useState('all');
-  const { data, isLoading, isError, isSuccess, error } = useQuery(
+  const {
+    data: movieList,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+  } = useQuery(
     ['movieList', user?.id],
     movieService.getUserMovieList.bind(null, user?.id),
     {
       enabled: !!user,
+      staleTime: Infinity,
     }
   );
 
@@ -19,22 +26,23 @@ const useMovieList = () => {
 
   const sortedMovies = () => {
     if (sort === 'all') {
-      return data.map(movieOnList);
+      return movieList.map(movieOnList);
     }
     if (sort === 'watched') {
-      return data.filter(movie => movie.watched).map(movieOnList);
+      return movieList.filter(movie => movie.watched).map(movieOnList);
     }
     if (sort === 'unwatched') {
-      return data.filter(movie => !movie.watched).map(movieOnList);
+      return movieList.filter(movie => !movie.watched).map(movieOnList);
     }
   };
 
   return {
     user,
+    setUser,
     sort,
     setSort,
     sortedMovies,
-    data,
+    movieList,
     isLoading,
     isError,
     isSuccess,
