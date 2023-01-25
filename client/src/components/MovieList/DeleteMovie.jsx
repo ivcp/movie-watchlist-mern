@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ModalContext from '../../store/modal-context';
+import ModalContext from '../../context/modal-context';
 import PropTypes from 'prop-types';
 
 const DeleteMovie = props => {

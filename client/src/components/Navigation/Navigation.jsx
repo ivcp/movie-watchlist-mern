@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import UserContext from '../../store/user-context';
+import UserContext from '../../context/user-context';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 const Navigation = () => {

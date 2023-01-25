@@ -1,6 +1,6 @@
 import { useQueryClient, useMutation } from 'react-query';
 import movieService from '../services/movies';
-import UserContext from '../store/user-context';
+import UserContext from '../context/user-context';
 import { useContext } from 'react';
 
 const useUpdateMovie = movieId => {
@@ -11,9 +11,9 @@ const useUpdateMovie = movieId => {
     {
       onError: error => console.log(error.message),
       onSuccess: updatedMovie => {
-        const data = queryClient.getQueryData(['user', user.id]);
+        const data = queryClient.getQueryData(['movieList', user.id]);
         queryClient.setQueryData(
-          ['user', user.id],
+          ['movieList', user.id],
           data.map(m => (m.id !== movieId ? m : updatedMovie))
         );
       },

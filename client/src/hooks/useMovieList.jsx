@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import UserContext from '../store/user-context';
+import UserContext from '../context/user-context';
 import { useQuery } from 'react-query';
 import movieService from '../services/movies';
 import MovieOnList from '../components/MovieList/MovieOnList';
@@ -8,7 +8,7 @@ const useMovieList = () => {
   const { user } = useContext(UserContext);
   const [sort, setSort] = useState('all');
   const { data, isLoading, isError, isSuccess, error } = useQuery(
-    ['user', user?.id],
+    ['movieList', user?.id],
     movieService.getUserMovieList.bind(null, user?.id),
     {
       enabled: !!user,

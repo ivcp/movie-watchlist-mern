@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { createPortal } from 'react-dom';
 import useDeleteMovie from '../../hooks/useDeleteMovie';
-import ModalContext from '../../store/modal-context';
+import ModalContext from '../../context/modal-context';
 
 const DeletePrompt = () => {
   const { modalOpen, setModalOpen, movie } = useContext(ModalContext);

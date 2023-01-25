@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import UserContext from '../store/user-context';
+import UserContext from '../context/user-context';
 import { useMutation, useQueryClient } from 'react-query';
 import movieServices from '../services/movies';
 
@@ -11,9 +11,9 @@ const useDeleteMovie = movieId => {
     {
       onError: error => console.log(error.message),
       onSuccess: () => {
-        const data = queryClient.getQueryData(['user', user.id]);
+        const data = queryClient.getQueryData(['movieList', user.id]);
         queryClient.setQueryData(
-          ['user', user.id],
+          ['movieList', user.id],
           data.filter(m => m.id !== movieId)
         );
         const { title } = data.find(m => m.id === movieId);

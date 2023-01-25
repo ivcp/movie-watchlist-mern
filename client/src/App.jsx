@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { UserContextProvider } from './store/user-context';
-import { ModalContextProvider } from './store/modal-context';
+import { UserContextProvider } from './context/user-context';
+import { ModalContextProvider } from './context/modal-context';
 import Home from './pages/Home';
 import Layout from './layout/Layout';
 import Auth from './pages/Auth';
@@ -43,14 +43,14 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <UserContextProvider>
+    <UserContextProvider>
+      <QueryClientProvider client={queryClient}>
         <ModalContextProvider>
           <RouterProvider router={router} />
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </ModalContextProvider>
-      </UserContextProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </UserContextProvider>
   );
 }
 

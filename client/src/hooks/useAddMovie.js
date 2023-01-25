@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import UserContext from '../store/user-context';
+import UserContext from '../context/user-context';
 import movieService from '../services/movies';
 
 const useAddMovie = () => {
@@ -23,8 +23,8 @@ const useAddMovie = () => {
     {
       onError: error => console.log(error.message), //set notification
       onSuccess: movie => {
-        const data = queryClient.getQueryData(['user', user.id]);
-        queryClient.setQueryData(['user', user.id], [...data, movie]);
+        const data = queryClient.getQueryData(['movieList', user.id]);
+        queryClient.setQueryData(['movieList', user.id], [...data, movie]);
         console.log(`${movie.title} added to list`);
       },
     }

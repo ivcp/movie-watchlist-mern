@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import useField from '../../hooks/useField';
 import { useMutation } from 'react-query';
 import auth from '../../services/auth';
-import UserContext from '../../store/user-context';
+import UserContext from '../../context/user-context';
 import { useNavigate } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
