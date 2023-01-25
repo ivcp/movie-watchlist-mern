@@ -1,11 +1,10 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import useMovieList from '../../hooks/useMovieList';
 
 const MovieList = () => {
   const {
     user,
-    data,
+    movieList,
     sortedMovies,
     sort,
     setSort,
@@ -15,13 +14,9 @@ const MovieList = () => {
     error,
   } = useMovieList();
 
-  if (!user) {
-    return <Navigate to="/" replace />;
-  }
-
-  const allCount = data?.length;
-  const watchedCount = data?.filter(movie => movie.watched).length;
-  const unwatchedCount = data?.filter(movie => !movie.watched).length;
+  const allCount = movieList?.length;
+  const watchedCount = movieList?.filter(movie => movie.watched).length;
+  const unwatchedCount = movieList?.filter(movie => !movie.watched).length;
 
   return (
     <>
@@ -46,12 +41,13 @@ const MovieList = () => {
         </button>
       </div>
       <div>
+        {!user && <p>Log in to start adding movies to your list</p>}
         {isLoading && <p>Loading...</p>}
         {isError && <p>{error.message}</p>}
-        {isSuccess && data.length === 0 && (
+        {isSuccess && movieList.length === 0 && (
           <p>{`Add some movies to your list, ${user.name.split(' ')[0]}!`}</p>
         )}
-        {isSuccess && data.length > 0 && sortedMovies()}
+        {isSuccess && movieList.length > 0 && sortedMovies()}
       </div>
     </>
   );
