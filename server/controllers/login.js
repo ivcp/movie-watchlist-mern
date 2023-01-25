@@ -30,9 +30,7 @@ loginRouter.post('/', async (req, res) => {
 
   const token = getToken(user);
 
-  res
-    .status(200)
-    .json({ token, id: user._id, email: user.email, name: user.name });
+  res.status(200).json({ token, id: user._id, name: user.name });
 });
 
 module.exports = loginRouter;

@@ -86,7 +86,6 @@ usersRouter.post('/', async (req, res) => {
   res.status(201).json({
     token,
     id: savedUser._id,
-    email: savedUser.email,
     name: savedUser.name,
   });
 });
