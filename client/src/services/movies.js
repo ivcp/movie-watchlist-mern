@@ -5,6 +5,9 @@ let token = null;
 const setToken = newToken => {
   token = `bearer ${newToken}`;
 };
+const resetToken = () => {
+  token = null;
+};
 
 const addMovie = async movie => {
   const config = {
@@ -53,4 +56,5 @@ export default {
   updateMovie,
   getUserMovieList,
   setToken,
+  resetToken,
 };
