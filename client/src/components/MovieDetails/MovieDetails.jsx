@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import tmdbService from '../../services/tmdb';
+import getImdbRating from '../../services/imdb';
 import { useLoaderData } from 'react-router-dom';
 import useAddMovie from '../../hooks/useAddMovie';
 import useMovieList from '../../hooks/useMovieList';
@@ -21,7 +21,7 @@ const MovieDetails = () => {
     isSuccess: imdbSuccess,
   } = useQuery(
     ['imdbRating', movie.id],
-    tmdbService.getImdbRating.bind(null, movie?.imdb_id)
+    getImdbRating.bind(null, movie?.imdb_id)
   );
   const imdbRating = imdbData?.short.aggregateRating.ratingValue;
   const runtime = `${Math.floor(movie.runtime / 60)}h${movie.runtime % 60}m`;
