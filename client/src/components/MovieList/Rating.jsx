@@ -6,14 +6,7 @@ const Rating = ({ movie }) => {
   const updateMovie = useUpdateMovie(movie.id);
 
   const handleChange = e => {
-    updateMovie(
-      { rating: +e.target.value },
-      {
-        onSuccess: () => {
-          console.log(`Added rating for ${movie.title}!`);
-        },
-      }
-    );
+    updateMovie({ rating: +e.target.value });
   };
   return (
     <>

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
+import { toast } from 'react-toastify';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -26,7 +27,7 @@ const AuthForm = () => {
         //set user
         loginUser(user);
         //notification TODO:
-        console.log(
+        toast.success(
           `${user.name} ${isLogin ? 'logged in' : 'registered'} successfully`
         );
         navigate('/');

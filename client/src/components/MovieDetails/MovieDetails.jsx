@@ -35,14 +35,11 @@ const MovieDetails = () => {
     addMovie(movie);
   };
 
-  if (
-    movieListError &&
-    error.message === 'Token expired. Please log in again.'
-  ) {
+  if (movieListError && error.message.includes('Token expired')) {
     return <Navigate to="/" replace />; //test this
   }
 
-  //TODO: add staring, lazy load img
+  //TODO: lazy load img
   return (
     <div>
       {/* TODO: back btn only on mobile */}

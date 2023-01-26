@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import UserContext from '../context/user-context';
 import { useMutation, useQueryClient } from 'react-query';
 import movieServices from '../services/movies';
+import { toast } from 'react-toastify';
 
 const useDeleteMovie = movieId => {
   const { user } = useContext(UserContext);
@@ -17,7 +18,7 @@ const useDeleteMovie = movieId => {
           data.filter(m => m.id !== movieId)
         );
         const { title } = data.find(m => m.id === movieId);
-        console.log(`${title} removed from your list`);
+        toast.info(`${title} removed from your list`);
       },
     }
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useMovieList from '../../hooks/useMovieList';
 import movieService from '../../services/movies';
 
@@ -12,8 +13,7 @@ const Navigation = () => {
     window.localStorage.removeItem('loggedWatchlistUser');
     movieService.resetToken();
     setUser(null);
-    //TODO: set notification
-    console.log(`${user.name} logged out`);
+    toast.info(`${user.name} logged out`);
     navigate('/');
   };
 

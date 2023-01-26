@@ -7,16 +7,7 @@ const Watched = ({ movie }) => {
 
   const handleChange = e => {
     const { checked } = e.target;
-    updateMovie(
-      { watched: checked },
-      {
-        onSuccess: () => {
-          console.log(
-            `${movie.title} marked as ${checked ? 'watched' : 'unwatched'}!`
-          );
-        },
-      }
-    );
+    updateMovie({ watched: checked });
   };
   return (
     <>

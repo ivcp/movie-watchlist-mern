@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Route,
   createBrowserRouter,
@@ -8,6 +9,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { UserContextProvider } from './context/user-context';
 import { ModalContextProvider } from './context/modal-context';
+import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Layout from './layout/Layout';
 import Auth from './pages/Auth';
@@ -47,6 +49,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ModalContextProvider>
           <RouterProvider router={router} />
+          <ToastContainer theme="dark" position="top-center" />
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </ModalContextProvider>
       </QueryClientProvider>

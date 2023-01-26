@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 import UserContext from '../context/user-context';
 import movieService from '../services/movies';
 
@@ -26,6 +27,7 @@ const useAddMovie = () => {
         const data = queryClient.getQueryData(['movieList', user.id]);
         queryClient.setQueryData(['movieList', user.id], [...data, movie]);
         console.log(`${movie.title} added to list`);
+        toast.success(`${movie.title} added to list`);
       },
     }
   );
