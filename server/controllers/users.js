@@ -64,6 +64,14 @@ usersRouter.post('/', async (req, res) => {
     });
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({
+      error: 'please enter a valid email',
+    });
+  }
+
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     return res.status(400).json({

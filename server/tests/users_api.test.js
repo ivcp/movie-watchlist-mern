@@ -111,6 +111,21 @@ describe('addition of new user', () => {
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toHaveLength(1);
   });
+  it('fails if email format not valid', async () => {
+    await api
+      .post('/api/users')
+      .send({
+        firstName: 'name',
+        lastName: 'name',
+        email: 'tester@newemail',
+        password: '1234567',
+      })
+      .expect(400)
+      .expect({ error: 'please enter a valid email' });
+
+    const usersAtEnd = await helper.usersInDb();
+    expect(usersAtEnd).toHaveLength(1);
+  });
 
   describe('login', () => {
     it('logs in user', async () => {
