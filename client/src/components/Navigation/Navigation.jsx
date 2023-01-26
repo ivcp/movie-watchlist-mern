@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import useMovieList from '../../hooks/useMovieList';
 import movieService from '../../services/movies';
@@ -22,13 +22,13 @@ const Navigation = () => {
       <ul>
         <li>
           {/* //use navlinks */}
-          <Link to="/">home</Link>
+          <NavLink to="/">home</NavLink>
         </li>
         {user && (
           <li>
-            <Link to="/mymovies">
+            <NavLink to="/mymovies">
               my movies{isSuccess ? `(${movieList.length})` : ''}
-            </Link>
+            </NavLink>
           </li>
         )}
         {user ? (
@@ -37,7 +37,7 @@ const Navigation = () => {
           </li>
         ) : (
           <li>
-            <Link to="/login">log in</Link>
+            <NavLink to="/login">log in</NavLink>
           </li>
         )}
       </ul>
