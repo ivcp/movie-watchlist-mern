@@ -23,7 +23,7 @@ const MovieDetails = () => {
     ['imdbRating', movie.id],
     getImdbRating.bind(null, movie?.imdb_id)
   );
-  const imdbRating = imdbData?.short.aggregateRating.ratingValue;
+  const imdbRating = imdbData?.short?.aggregateRating?.ratingValue;
   const runtime = `${Math.floor(movie.runtime / 60)}h${movie.runtime % 60}m`;
   const year = movie.release_date.slice(0, 4);
 
@@ -60,18 +60,18 @@ const MovieDetails = () => {
           ))}
         </div>
         <div>
-          {(imdbError || imdbLoading) && (
-            <DetailsTag detail="-" text="IMDb score" />
-          )}
-          {imdbSuccess && (
-            <a
-              href={`https://www.imdb.com/title/${movie.imdb_id}`}
-              rel="noreferrer"
-              target="_blank"
-            >
+          <a
+            href={`https://www.imdb.com/title/${movie.imdb_id}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            {(imdbError || imdbLoading || !imdbRating) && (
+              <DetailsTag detail="-" text="IMDb score" />
+            )}
+            {imdbSuccess && imdbRating && (
               <DetailsTag detail={imdbRating.toString()} text="IMDb score" />
-            </a>
-          )}
+            )}
+          </a>
           <DetailsTag detail={runtime} text="runtime" />
           <DetailsTag detail={year} text="year" />
 
