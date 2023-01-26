@@ -4,7 +4,7 @@ import useSearch from '../../hooks/useSearch';
 const Search = () => {
   const { setQuery, data, isSuccess, isLoading, isError, error } = useSearch();
 
-  const handleChange = async ({ target }) => {
+  const handleChange = ({ target }) => {
     if (target.value.trim() === '') {
       setQuery('');
       return;
