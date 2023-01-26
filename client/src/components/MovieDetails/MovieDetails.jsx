@@ -7,7 +7,7 @@ import useAddMovie from '../../hooks/useAddMovie';
 import useMovieList from '../../hooks/useMovieList';
 import GenreTag from '../UI/GenreTag';
 import DetailsTag from './DetailsTag';
-import DeleteMovie from '../MovieList/DeleteMovie';
+import DeleteMovieBtn from '../MovieList/DeleteMovieBtn';
 
 const MovieDetails = () => {
   const movie = useLoaderData();
@@ -91,7 +91,7 @@ const MovieDetails = () => {
         </div>
         <p>{movie.overview}</p>
         {movieOnList && (
-          <DeleteMovie movie={movieOnList} text="remove from your list" />
+          <DeleteMovieBtn movie={movieOnList} text="remove from your list" />
         )}
       </article>
     </div>

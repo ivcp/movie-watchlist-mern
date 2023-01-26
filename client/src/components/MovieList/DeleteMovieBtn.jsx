@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ModalContext from '../../context/modal-context';
 import PropTypes from 'prop-types';
 
-const DeleteMovie = props => {
+const DeleteMovieBtn = props => {
   const { triggerPrompt } = useContext(ModalContext);
 
   return (
@@ -10,13 +10,13 @@ const DeleteMovie = props => {
   );
 };
 
-export default DeleteMovie;
+export default DeleteMovieBtn;
 
-DeleteMovie.defaultProps = {
+DeleteMovieBtn.defaultProps = {
   text: 'delete movie',
 };
 
-DeleteMovie.propTypes = {
+DeleteMovieBtn.propTypes = {
   movie: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired,
 };

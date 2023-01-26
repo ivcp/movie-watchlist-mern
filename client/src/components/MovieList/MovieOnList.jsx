@@ -4,7 +4,7 @@ import genres from '../../helpers/genres';
 import Rating from './Rating';
 import Watched from './Watched.jsx';
 import PropTypes from 'prop-types';
-import DeleteMovie from './DeleteMovie';
+import DeleteMovieBtn from './DeleteMovieBtn';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -38,7 +38,7 @@ const MovieOnList = ({ movie }) => {
           />
           <div>
             <Link to={`/movie/${movie.tmdbId}`}>more details</Link>
-            <DeleteMovie movie={movie} />
+            <DeleteMovieBtn movie={movie} />
           </div>
         </div>
       )}
