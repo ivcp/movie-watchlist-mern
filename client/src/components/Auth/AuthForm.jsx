@@ -53,6 +53,14 @@ const AuthForm = () => {
         password.onChange('');
         setIsLogin(true);
       },
+      onError: error => {
+        if (
+          !e &&
+          error.message === `user with email ${userData.email} does not exist`
+        ) {
+          setIsLogin(false);
+        }
+      },
     });
   };
 
