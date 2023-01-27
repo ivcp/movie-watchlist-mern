@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { it, vi } from 'vitest';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import useMovieList from '../../../hooks/useMovieList';
 import MovieList from '../MovieList';
