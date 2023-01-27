@@ -41,4 +41,12 @@ tmdbRouter.get('/details', async (req, res) => {
   );
 });
 
+tmdbRouter.get('/credits', async (req, res) => {
+  const { movieId } = req.query;
+  fetchMovies(
+    `${config.DETAILS}${movieId}/credits?api_key=${config.API_KEY}&language=en-US`,
+    res
+  );
+});
+
 module.exports = tmdbRouter;

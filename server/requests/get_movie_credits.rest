@@ -1,0 +1,1 @@
+GET http://localhost:3001/api/tmdb/credits?movieId=76600
