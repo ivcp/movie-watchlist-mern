@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import getImdbRating from '../../services/imdb';
-import { useLoaderData } from 'react-router-dom';
+import useMovieDetails from '../../hooks/useMovieDetails';
 import useAddMovie from '../../hooks/useAddMovie';
 import useMovieList from '../../hooks/useMovieList';
 import GenreTag from '../UI/GenreTag';
@@ -10,19 +8,12 @@ import DetailsTag from './DetailsTag';
 import DeleteMovieBtn from '../MovieList/DeleteMovieBtn';
 
 const MovieDetails = () => {
-  const [movie, credits] = useLoaderData();
+  const { movie, credits, imdbData, imdbError, imdbLoading, imdbSuccess } =
+    useMovieDetails();
   const addMovie = useAddMovie();
   const navigate = useNavigate();
   const { movieList, error, isError: movieListError } = useMovieList();
-  const {
-    data: imdbData,
-    isError: imdbError,
-    isLoading: imdbLoading,
-    isSuccess: imdbSuccess,
-  } = useQuery(
-    ['imdbRating', movie.id],
-    getImdbRating.bind(null, movie?.imdb_id)
-  );
+
   const imdbRating = imdbData?.short?.aggregateRating?.ratingValue;
   const runtime = `${Math.floor(movie.runtime / 60)}h${movie.runtime % 60}m`;
   const year = movie.release_date.slice(0, 4);
