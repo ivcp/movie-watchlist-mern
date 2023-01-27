@@ -1,7 +1,6 @@
 export const fetchData = async (url, config) => {
   const response = await fetch(url, config);
   if (!response.ok) {
-    console.log(response);
     if (response.status === 500) {
       throw new Error('Something went wrong :(');
     }

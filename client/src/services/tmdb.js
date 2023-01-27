@@ -15,10 +15,14 @@ const searchMovies = async query => {
 const getMovieDetails = async movieId => {
   return await fetchData(`/api/tmdb/details?movieId=${movieId}`);
 };
+const getMovieCredits = async movieId => {
+  return await fetchData(`/api/tmdb/credits?movieId=${movieId}`);
+};
 
 export default {
   getPopularMovies,
   getByGenre,
   searchMovies,
   getMovieDetails,
+  getMovieCredits,
 };
