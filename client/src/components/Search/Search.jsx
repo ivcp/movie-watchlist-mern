@@ -1,5 +1,6 @@
 import React from 'react';
 import useSearch from '../../hooks/useSearch';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
   const { setQuery, data, isSuccess, isLoading, isError, error } = useSearch();
@@ -22,7 +23,9 @@ const Search = () => {
           <p>matches:</p>
           <ul>
             {data.results.map(match => (
-              <li key={match.id}>{match.title}</li>
+              <li key={match.id}>
+                <Link to={`/movie/${match.id}`}>{match.title}</Link>
+              </li>
             ))}
           </ul>
         </div>
