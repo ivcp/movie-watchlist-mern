@@ -10,7 +10,7 @@ import DetailsTag from './DetailsTag';
 import DeleteMovieBtn from '../MovieList/DeleteMovieBtn';
 
 const MovieDetails = () => {
-  const movie = useLoaderData();
+  const [movie, credits] = useLoaderData();
   const addMovie = useAddMovie();
   const navigate = useNavigate();
   const { movieList, error, isError: movieListError } = useMovieList();
@@ -26,6 +26,8 @@ const MovieDetails = () => {
   const imdbRating = imdbData?.short?.aggregateRating?.ratingValue;
   const runtime = `${Math.floor(movie.runtime / 60)}h${movie.runtime % 60}m`;
   const year = movie.release_date.slice(0, 4);
+  const directors = credits.crew.filter(c => c.job === 'Director');
+  const starring = credits.cast.slice(0, 3);
 
   const movieOnList = movieList?.find(
     movieOnList => movieOnList.tmdbId === movie.id
@@ -45,15 +47,30 @@ const MovieDetails = () => {
       {/* TODO: back btn only on mobile */}
       <button onClick={() => navigate(-1)}>back</button>
       <article>
-        <img
-          src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
-          alt={movie.title}
-          loading="lazy" //??
-        />
+        {movie.backdrop_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
+            alt={movie.title}
+            loading="lazy" //??
+          />
+        ) : (
+          <p>no image available</p>
+        )}
         <h1>{movie.title}</h1>
         <div>
           {movie.genres.map(genre => (
             <GenreTag key={genre.id}>{genre.name}</GenreTag>
+          ))}
+        </div>
+        <div>
+          {directors.length > 0 && (
+            <h5>{directors.length > 1 ? 'directors' : 'director'}</h5>
+          )}
+          {directors.length > 0 &&
+            directors.map(d => <p key={d.id}>{d.name}</p>)}
+          <h5>starring</h5>
+          {starring.map(actor => (
+            <p key={actor.id}>{actor.name}</p>
           ))}
         </div>
         <div>
