@@ -2,7 +2,6 @@ const app = require('../app');
 const mongoose = require('mongoose');
 const supertest = require('supertest');
 const Movie = require('../models/movie');
-//const User = require('../models/movie');
 const helper = require('./helper');
 const movies = require('./movies');
 
