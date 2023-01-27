@@ -34,7 +34,13 @@ const router = createBrowserRouter(
       <Route path="/mymovies" element={<WatchList />} />
       <Route
         path="/movie/:movieId"
-        loader={({ params }) => tmdbService.getMovieDetails(params.movieId)}
+        loader={async ({ params }) => {
+          const response = await Promise.all([
+            tmdbService.getMovieDetails(params.movieId),
+            tmdbService.getMovieCredits(params.movieId),
+          ]);
+          return response;
+        }}
         element={<MovieDetailsPage />}
         errorElement={<MovieError />}
       />
