@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Search from '../Search';
 import useSearch from '../../../hooks/useSearch';
+import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../../hooks/useSearch');
 
@@ -61,9 +62,16 @@ const returnValue = {
 };
 
 describe('Search component', () => {
+  const setupRender = () => {
+    render(
+      <BrowserRouter>
+        <Search />
+      </BrowserRouter>
+    );
+  };
   it('renders loading text if isLoading', () => {
     useSearch.mockReturnValue(returnValue);
-    render(<Search />);
+    setupRender();
     screen.getByText(/loading.../i);
   });
   it('renders error msg text if isError', () => {
@@ -71,21 +79,21 @@ describe('Search component', () => {
     returnValue.isSuccess = false;
     returnValue.isLoading = false;
     useSearch.mockReturnValue(returnValue);
-    render(<Search />);
+    setupRender();
     screen.getByText(/test error message/i);
   });
   it('renders matches if isSuccess and there are matches', () => {
     returnValue.isError = false;
     returnValue.isSuccess = true;
     useSearch.mockReturnValue(returnValue);
-    render(<Search />);
+    setupRender();
     screen.getByText(/the thing/i);
     screen.getByText(/bunny the killer thing/i);
   });
   it('renders message if isSuccess and there are no matches', () => {
     returnValue.data.results = [];
     useSearch.mockReturnValue(returnValue);
-    render(<Search />);
+    setupRender();
     screen.getByText(/no matches found/i);
   });
   it('calls setQuery with correct args when user types', async () => {
