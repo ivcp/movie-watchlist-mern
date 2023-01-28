@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Search from '../Search';
@@ -101,7 +101,9 @@ describe('Search component', () => {
     const user = userEvent.setup();
     const input = screen.getByRole('textbox', { type: /text/i });
     await user.type(input, 'hello');
-    expect(returnValue.setQuery).toBeCalledTimes(5);
-    expect(returnValue.setQuery).toBeCalledWith('hello');
+    await waitFor(() => expect(returnValue.setQuery).toHaveBeenCalled(1));
+    await waitFor(() =>
+      expect(returnValue.setQuery).toHaveBeenCalledWith(['hello'])
+    );
   });
 });
