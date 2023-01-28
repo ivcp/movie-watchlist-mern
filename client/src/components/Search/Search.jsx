@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import useSearch from '../../hooks/useSearch';
 import { Link } from 'react-router-dom';
+import debounce from '../../helpers/debounce';
 
 const Search = () => {
   const { setQuery, data, isSuccess, isLoading, isError, error } = useSearch();
+
+  const updateDebounceQuery = useMemo(
+    () => debounce(query => setQuery(query)),
+    []
+  );
 
   const handleChange = ({ target }) => {
     if (target.value.trim() === '') {
       setQuery('');
       return;
     }
-    setQuery(target.value.trim());
+    updateDebounceQuery(target.value.trim());
   };
 
   return (
