@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: auto;
+  max-width: 300px;
+  margin-top: 2.5rem;
+}
+
+.menu {
+  border: none;
+  background: none;
+  color: hsl(var(--color-text));
+  display: flex;
+}

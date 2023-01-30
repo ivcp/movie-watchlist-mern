@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useMovieList from '../../hooks/useMovieList';
 import movieService from '../../services/movies';
+import styles from './Navigation.module.css';
 
 const Navigation = () => {
   const { user, setUser, movieList, isSuccess } = useMovieList();
@@ -18,8 +19,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav>
-      <ul>
+    <nav className={`${styles.nav}`}>
+      <ul role="list">
         <li>
           {/* //use navlinks */}
           <NavLink to="/">home</NavLink>

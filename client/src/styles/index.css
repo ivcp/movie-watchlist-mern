@@ -19,6 +19,10 @@ ol[role='list'] {
   list-style: none;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 html:focus-within {
   scroll-behavior: smooth;
 }
@@ -26,6 +30,7 @@ html:focus-within {
 body {
   min-height: 100vh;
   background-color: hsl(var(--color-bg));
+  color: hsl(var(--color-text));
   font-family: 'Nunito', sans-serif;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
