@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import ModalContext from '../../../context/modal-context';
 import useDeleteMovie from '../../../hooks/useDeleteMovie';
-import DeletePrompt from '../DeletePrompt';
+import DeletePrompt from '..';
 
 vi.mock('../../../hooks/useDeleteMovie');
 const returnValue = vi.fn();

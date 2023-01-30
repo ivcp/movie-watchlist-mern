@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import DeletePrompt from '../components/Modal/DeletePrompt';
+import DeletePrompt from '../components/DeletePrompt';
 
 const ModalContext = createContext({
   modalOpen: false,

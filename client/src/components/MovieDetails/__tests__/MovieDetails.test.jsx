@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import useMovieDetails from '../../../hooks/useMovieDetails';
 import useMovieList from '../../../hooks/useMovieList';
-import MovieDetails from '../MovieDetails';
+import MovieDetails from '..';
 import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../../hooks/useMovieDetails');

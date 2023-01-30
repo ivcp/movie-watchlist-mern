@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import Movies from '../Movies';
+import Movies from '..';
 import useFetchMoviesByGenre from '../../../hooks/useFetchMoviesByGenre';
 import { BrowserRouter } from 'react-router-dom';
 import useMovieList from '../../../hooks/useMovieList';
