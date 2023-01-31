@@ -1,10 +1,10 @@
-const debounce = fn => {
+const debounce = (fn, delay) => {
   let timeoutId;
   return (...args) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       fn(args);
-    }, 500);
+    }, delay);
   };
 };
 
