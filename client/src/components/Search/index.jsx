@@ -7,7 +7,7 @@ const Search = () => {
   const { setQuery, data, isSuccess, isLoading, isError, error } = useSearch();
 
   const updateDebounceQuery = useMemo(
-    () => debounce(query => setQuery(query)),
+    () => debounce(query => setQuery(query), 500),
     []
   );
 
