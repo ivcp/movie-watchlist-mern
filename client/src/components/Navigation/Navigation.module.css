@@ -1,36 +1,78 @@
 .nav {
   position: absolute;
-  background-color: hsl(var(--color-primary) / 0.7);
+  background-color: hsl(var(--color-bg-light));
   border-radius: 2rem;
-  top: 6.5rem;
-  right: 0;
+  border: 1.5px solid hsl(var(--color-bg-dark));
+  box-shadow: 5px 5px 0 0 hsl(var(--color-bg-dark));
+  top: 4rem;
+  right: 0.5rem;
   left: 0;
+  z-index: 100;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  animation: slide-in 0.4s ease;
 }
 
 .nav ul {
-  margin-block: 5rem;
+  margin-block: 6rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav a {
   text-decoration: none;
   color: hsl(var(--color-text));
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 600;
 }
 
-.nav.in {
+.myMovies {
+  display: flex;
+  align-items: center;
 }
-.nav.out {
+.numberOfMovies {
+  display: inline-block;
+  margin-left: 1rem;
+  background-color: hsl(var(--color-bg-light));
+  border: 1px solid hsl(var(--color-bg-dark));
+  box-shadow: 3px 3px 0 0 hsl(var(--color-bg-dark));
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: hsl(var(--color-primary));
+  text-align: center;
+  width: 3.2rem;
+  height: 2.2rem;
+  border-radius: 40%;
+}
+
+.logOut {
+  border: none;
+  background: none;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+:global(.slideOut) {
+  animation: slide-out 0.45s ease;
 }
 
 @keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 @keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
 }
