@@ -4,6 +4,7 @@ import useFetchMoviesByGenre from '../../hooks/useFetchMoviesByGenre';
 import Movie from './Movie';
 import Pagination from './Pagination';
 import MovieCard from '../UI/MovieCard';
+import Search from '../Search';
 
 const Movies = () => {
   const {
@@ -19,7 +20,10 @@ const Movies = () => {
 
   return (
     <div>
-      <GenreFilter setGenre={setGenre} setPage={setPage} />
+      <div>
+        <Search />
+        <GenreFilter setGenre={setGenre} setPage={setPage} />
+      </div>
       {isLoading && <p>Loading...</p>}
       {isError && <p>{error.message}</p>}
       <div>
