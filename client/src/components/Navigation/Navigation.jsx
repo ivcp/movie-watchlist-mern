@@ -5,11 +5,13 @@ import { toast } from 'react-toastify';
 import useMovieList from '../../hooks/useMovieList';
 import movieService from '../../services/movies';
 import styles from './Navigation.module.css';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 const Navigation = forwardRef(({ setShowNavigation }, ref) => {
   const { user, setUser, movieList, isSuccess } = useMovieList();
   const navigate = useNavigate();
   const navRef = useRef(null);
+  const isDesktop = useMediaQuery('(min-width: 37.5em)');
 
   useImperativeHandle(ref, () => ({
     slideOut() {
@@ -25,17 +27,22 @@ const Navigation = forwardRef(({ setShowNavigation }, ref) => {
     navigate('/');
   };
   const removeMobileNav = () => {
-    setShowNavigation(false);
+    !isDesktop && setShowNavigation(false);
   };
   return (
     <nav className={styles.nav} ref={navRef}>
       <ul role="list" onClick={removeMobileNav}>
         <li>
-          <NavLink to="/">home</NavLink>
+          <NavLink to="/" className={styles.link}>
+            home
+          </NavLink>
         </li>
         {user && (
           <li>
-            <NavLink to="/mymovies" className={styles.myMovies}>
+            <NavLink
+              to="/mymovies"
+              className={`${styles.link} ${styles.myMovies}`}
+            >
               my movies{' '}
               <div className={styles.numberOfMovies}>
                 {isSuccess ? `${movieList.length}` : ''}
@@ -51,7 +58,9 @@ const Navigation = forwardRef(({ setShowNavigation }, ref) => {
           </li>
         ) : (
           <li>
-            <NavLink to="/login">log in</NavLink>
+            <NavLink to="/login" className={styles.link}>
+              log in
+            </NavLink>
           </li>
         )}
       </ul>

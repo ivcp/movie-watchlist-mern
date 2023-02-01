@@ -1,9 +1,9 @@
 .nav {
   position: absolute;
   background-color: hsl(var(--color-bg-light));
-  border-radius: 2rem;
-  border: 1.5px solid hsl(var(--color-bg-dark));
-  box-shadow: 5px 5px 0 0 hsl(var(--color-bg-dark));
+  border-radius: var(--radius);
+  border: var(--border);
+  box-shadow: 5px 5px var(--shadow);
   top: 4rem;
   right: 0.5rem;
   left: 0;
@@ -14,6 +14,17 @@
   animation: slide-in 0.4s ease;
 }
 
+@media (min-width: 37.5em) {
+  .nav {
+    position: relative;
+    border: none;
+    box-shadow: none;
+    background-color: inherit;
+    top: 0;
+    animation: none;
+  }
+}
+
 .nav ul {
   margin-block: 6rem;
   display: flex;
@@ -21,11 +32,36 @@
   gap: 2.5rem;
 }
 
-.nav a {
+@media (min-width: 37.5em) {
+  .nav ul {
+    flex-direction: row;
+    margin-block: 0;
+    gap: 4.8rem;
+  }
+}
+
+.link {
   text-decoration: none;
   color: hsl(var(--color-text));
   font-size: 2.2rem;
   font-weight: 600;
+}
+
+@media (min-width: 37.5em) {
+  .link {
+    font-size: 2rem;
+    font-weight: 800;
+    color: hsl(var(--color-text) / 0.7);
+    transition: color 0.2s;
+  }
+
+  .link:hover {
+    color: hsl(var(--color-text));
+  }
+}
+
+:global(.active) {
+  color: hsl(var(--color-text));
 }
 
 .myMovies {
@@ -46,13 +82,31 @@
   height: 2.2rem;
   border-radius: 40%;
 }
+@media (min-width: 37.5em) {
+  .numberOfMovies {
+    font-size: 1.2rem;
+  }
+}
 
 .logOut {
   border: none;
   background: none;
   font-size: 2.2rem;
   font-weight: 600;
-  color: inherit;
+  color: hsl(var(--color-text));
+}
+
+@media (min-width: 37.5em) {
+  .logOut {
+    font-size: 2rem;
+    font-weight: 800;
+    cursor: pointer;
+    color: hsl(var(--color-text) / 0.7);
+    transition: color 0.2s;
+  }
+  .logOut:hover {
+    color: hsl(var(--color-text));
+  }
 }
 
 :global(.slideOut) {
