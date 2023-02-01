@@ -1,0 +1,35 @@
+.inputContainer {
+  margin-top: 4.8rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.input {
+  background-color: hsl(var(--color-bg-light));
+  border: var(--border);
+  box-shadow: 5px 5px var(--shadow);
+  border-radius: var(--radius);
+  width: 22.2rem;
+  height: 4.4rem;
+  display: block;
+  margin-inline: auto;
+  padding-inline: 3.2rem;
+  padding-top: 0.2rem;
+  color: hsl(var(--color-text));
+  font-size: 1.2rem;
+}
+
+.input::placeholder {
+  color: hsl(var(--color-text) / 0.8);
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  transform: translateX(-9rem);
+}

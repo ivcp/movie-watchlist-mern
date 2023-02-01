@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import useSearch from '../../hooks/useSearch';
 import { Link } from 'react-router-dom';
 import debounce from '../../helpers/debounce';
+import styles from './Search.module.css';
+import { TbSearch } from 'react-icons/tb';
 
 const Search = () => {
   const { setQuery, data, isSuccess, isLoading, isError, error } = useSearch();
@@ -20,8 +22,14 @@ const Search = () => {
   };
 
   return (
-    <div>
-      <input type="text" onChange={handleChange} />
+    <div className={styles.inputContainer}>
+      <TbSearch size={14} stroke-width={3} className={styles.searchIcon} />
+      <input
+        type="text"
+        onChange={handleChange}
+        className={styles.input}
+        placeholder="search"
+      />
       {isLoading && <p>Loading...</p>}
       {isError && <p>{error.message}</p>}
       {isSuccess && data.results.length > 0 && (
