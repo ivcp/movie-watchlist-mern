@@ -11,6 +11,7 @@ const useSearch = () => {
   );
 
   return {
+    query,
     setQuery,
     data,
     isSuccess,
