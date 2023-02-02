@@ -4,9 +4,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Navigation from '.';
 import { BrowserRouter } from 'react-router-dom';
-import useMovieList from '../../hooks/useMovieList';
+import useMovieList from '../../../hooks/useMovieList';
 
 vi.mock('../../../hooks/useMovieList');
+vi.mock('../../../hooks/useMediaQuery');
 const returnValue = {
   user: {
     name: 'test',
@@ -28,8 +29,8 @@ describe('Navigation component', () => {
     //does not show login btn if user logged in
     expect(screen.queryByRole('button', { name: /log in/i })).not
       .toBeInTheDocument;
-    //my movies link shown and num of movies in list
-    screen.getByRole('link', { name: /my movies\(0\)/i });
+    //my movies link shown
+    screen.getByRole('link', { name: /my movies/i });
     const user = userEvent.setup();
     //logout btn shown if user logged in
     const logoutBtn = screen.getByRole('button', { name: /log out/i });

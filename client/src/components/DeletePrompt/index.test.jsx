@@ -6,7 +6,7 @@ import ModalContext from '../../context/modal-context';
 import useDeleteMovie from '../../hooks/useDeleteMovie';
 import DeletePrompt from '.';
 
-vi.mock('../../../hooks/useDeleteMovie');
+vi.mock('../../hooks/useDeleteMovie');
 const returnValue = vi.fn();
 const modalEl = document.createElement('div');
 modalEl.setAttribute('id', 'modal');

@@ -6,8 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import ModalContext from '../../../../context/modal-context';
 
-vi.mock('../../../hooks/useDeleteMovie');
-vi.mock('../../../hooks/useUpdateMovie');
+vi.mock('../../../../hooks/useDeleteMovie');
+vi.mock('../../hooks/useUpdateMovie');
 
 describe('MovieOnList component', () => {
   const customRender = (ui, { providerProps, ...renderOptions }) => {

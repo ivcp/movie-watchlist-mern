@@ -19,8 +19,8 @@ const movie = {
   id: '63c55c74ce066ec65b51a560',
 };
 
-vi.mock('../../../hooks/useAddMovie');
-vi.mock('../../../hooks/useMovieList');
+vi.mock('../../../../hooks/useAddMovie');
+vi.mock('../../../../hooks/useMovieList');
 const returnValue1 = vi.fn();
 useAddMovie.mockReturnValue(returnValue1);
 useMovieList.mockReturnValue({ movieList: [] });

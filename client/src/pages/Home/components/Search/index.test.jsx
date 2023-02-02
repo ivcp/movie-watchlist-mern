@@ -4,9 +4,11 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Search from '../..';
 import useSearch from '../../hooks/useSearch';
+import useFetchMoviesByGenre from '../../hooks/useFetchMoviesByGenre';
 import { BrowserRouter } from 'react-router-dom';
 
-vi.mock('../../../hooks/useSearch');
+vi.mock('../../hooks/useSearch');
+vi.mock('../../hooks/useFetchMoviesByGenre');
 
 const data = {
   page: 1,
@@ -60,6 +62,8 @@ const returnValue = {
     message: 'test error message',
   },
 };
+
+useFetchMoviesByGenre.mockReturnValue({ movies: [] });
 
 describe('Search component', () => {
   const setupRender = () => {

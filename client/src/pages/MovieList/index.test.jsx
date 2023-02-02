@@ -5,9 +5,9 @@ import userEvent from '@testing-library/user-event';
 import useMovieList from '../../hooks/useMovieList';
 import MovieList from '.';
 
-vi.mock('../../../hooks/useMovieList');
-vi.mock('../../../hooks/useUpdateMovie');
-vi.mock('../../../hooks/useDeleteMovie');
+vi.mock('../../hooks/useMovieList');
+vi.mock('./hooks/useUpdateMovie');
+vi.mock('../../hooks/useDeleteMovie');
 
 describe('MovieList component', () => {
   it('renders loading if isLoading', () => {

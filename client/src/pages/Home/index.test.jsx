@@ -6,10 +6,12 @@ import Movies from '.';
 import useFetchMoviesByGenre from './hooks/useFetchMoviesByGenre';
 import { BrowserRouter } from 'react-router-dom';
 import useMovieList from '../../hooks/useMovieList';
+import useSearch from './hooks/useSearch';
 
-vi.mock('../../../hooks/useFetchMoviesByGenre');
-vi.mock('../../../hooks/useAddMovie');
-vi.mock('../../../hooks/useMovieList');
+vi.mock('./hooks/useFetchMoviesByGenre');
+vi.mock('./hooks/useSearch');
+vi.mock('../../hooks/useAddMovie');
+vi.mock('../../hooks/useMovieList');
 useMovieList.mockReturnValue({ movieList: [] });
 const movies = {
   page: 1,
@@ -63,6 +65,8 @@ const returnValue = {
   setPage: vi.fn(),
 };
 
+useSearch.mockReturnValue({ setQuery: vi.fn() });
+
 describe('movies component', () => {
   const setup = () => {
     render(
@@ -73,13 +77,11 @@ describe('movies component', () => {
   };
 
   it('renders loading text if loading', () => {
-    //TODO:spinner
     useFetchMoviesByGenre.mockReturnValue(returnValue);
     setup();
     screen.getByText(/loading.../i);
   });
   it('renders message if error', () => {
-    //TODO:notification?
     returnValue.isSuccess = false;
     returnValue.isLoading = false;
     returnValue.isError = true;

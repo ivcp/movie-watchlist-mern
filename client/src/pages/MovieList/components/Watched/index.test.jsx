@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Watched from '.';
-import useUpdateMovie from '../../../../hooks/useUpdateMovie';
+import useUpdateMovie from '../../hooks/useUpdateMovie';
 
-vi.mock('../../../hooks/useUpdateMovie');
+vi.mock('../../hooks/useUpdateMovie');
 
 const returnValue = vi.fn();
 
