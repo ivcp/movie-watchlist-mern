@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
-import Navigation from '../components/Navigation/Navigation';
+import Navigation from './components/Navigation';
 import { useLocation } from 'react-router-dom';
 import styles from './Layout.module.css';
 import utils from '../styles/utils.module.css';

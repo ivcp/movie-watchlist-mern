@@ -13,10 +13,10 @@ import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Layout from './layout/Layout';
 import Auth from './pages/Auth';
-import WatchList from './pages/Watchlist';
-import MovieDetailsPage from './pages/MovieDetailsPage';
+import MovieList from './pages/MovieList';
+import MovieDetails from './pages/MovieDetails';
 import tmdbService from './services/tmdb';
-import MovieError from './components/MovieDetails/MovieError';
+import MovieError from './pages/MovieDetails/components/MovieError';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +31,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="/login" element={<Auth />} />
-      <Route path="/mymovies" element={<WatchList />} />
+      <Route path="/mymovies" element={<MovieList />} />
       <Route
         path="/movie/:movieId"
         loader={async ({ params }) => {
@@ -41,7 +41,7 @@ const router = createBrowserRouter(
           ]);
           return response;
         }}
-        element={<MovieDetailsPage />}
+        element={<MovieDetails />}
         errorElement={<MovieError />}
       />
       <Route path="*" element={<p>PAGE NOT FOUND</p>} />

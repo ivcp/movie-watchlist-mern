@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import UserContext from '../context/user-context';
 import { useQuery } from 'react-query';
 import movieService from '../services/movies';
-import MovieOnList from '../components/MovieList/MovieOnList';
+import MovieOnList from '../pages/MovieList/components/MovieOnList';
 
 const useMovieList = () => {
   const { user, setUser } = useContext(UserContext);
