@@ -1,3 +1,7 @@
-.searchAndFilterContainer {
-  /* flex it on desktop*/
+@media (min-width: 37.5em) {
+  .searchAndFilterContainer {
+    max-width: 87rem;
+    margin-inline: auto;
+    display: flex;
+  }
 }
