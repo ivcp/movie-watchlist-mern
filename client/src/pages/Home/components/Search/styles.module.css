@@ -6,8 +6,8 @@
 
 .input {
   background-color: hsl(var(--color-bg-light));
-  border: var(--border);
-  box-shadow: 5px 5px var(--shadow);
+  border: var(--border-regular);
+  box-shadow: var(--shadow-5px);
   border-radius: var(--radius);
   width: 22.2rem;
   height: 4.4rem;
@@ -28,7 +28,7 @@
     margin-inline: 0;
     padding-inline: 4.4rem;
     font-size: 1.4rem;
-    box-shadow: 6px 6px var(--shadow);
+    box-shadow: var(--shadow-6px);
   }
 }
 
@@ -95,9 +95,9 @@
 
 @media (min-width: 37.5em) {
   .results {
-    border: var(--border);
+    border: var(--border-regular);
     border-radius: var(--radius);
-    box-shadow: 8px 8px var(--shadow);
+    box-shadow: var(--shadow-8px);
     margin-top: 0.5rem;
     background-color: hsl(var(--color-bg-light));
     z-index: 5;

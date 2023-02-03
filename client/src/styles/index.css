@@ -5,8 +5,15 @@
   --color-bg-dark: 200 12% 10%;
   --color-bg-light: 210 11% 15%;
 
-  --border: 1.5px solid hsl(var(--color-bg-dark));
-  --shadow: 0 0 hsl(var(--color-bg-dark));
+  --border-thin: 1px solid hsl(var(--color-bg-dark));
+  --border-regular: 1.5px solid hsl(var(--color-bg-dark));
+  --border-bold: 2px solid hsl(var(--color-bg-dark));
+  --shadow-2px: 2px 2px 0 0 hsl(var(--color-bg-dark));
+  --shadow-3px: 3px 3px 0 0 hsl(var(--color-bg-dark));
+  --shadow-4px: 4px 4px 0 0 hsl(var(--color-bg-dark));
+  --shadow-5px: 5px 5px 0 0 hsl(var(--color-bg-dark));
+  --shadow-6px: 6px 6px 0 0 hsl(var(--color-bg-dark));
+  --shadow-8px: 8px 8px 0 0 hsl(var(--color-bg-dark));
   --radius: 2rem;
 }
 

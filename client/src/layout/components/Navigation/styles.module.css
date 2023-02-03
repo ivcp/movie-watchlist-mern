@@ -2,8 +2,8 @@
   position: absolute;
   background-color: hsl(var(--color-bg-light));
   border-radius: var(--radius);
-  border: var(--border);
-  box-shadow: 5px 5px var(--shadow);
+  border: var(--border-regular);
+  box-shadow: var(--shadow-5px);
   top: 4rem;
   right: 1.8rem;
   left: 0;
@@ -72,8 +72,8 @@
   display: inline-block;
   margin-left: 1rem;
   background-color: hsl(var(--color-bg-light));
-  border: 1px solid hsl(var(--color-bg-dark));
-  box-shadow: 3px 3px 0 0 hsl(var(--color-bg-dark));
+  border: var(--border-thin);
+  box-shadow: var(--shadow-3px);
   font-size: 1.4rem;
   font-weight: 800;
   color: hsl(var(--color-primary));
