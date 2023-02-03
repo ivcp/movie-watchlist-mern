@@ -5,7 +5,7 @@
   border: var(--border-regular);
   box-shadow: var(--shadow-5px);
   top: 4rem;
-  right: 1.8rem;
+  right: 0.5rem;
   left: 0;
   z-index: 100;
   display: flex;
