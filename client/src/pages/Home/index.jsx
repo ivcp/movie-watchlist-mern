@@ -1,5 +1,5 @@
 import React from 'react';
-import GenreFilter from './components/GenreFIlter';
+import GenreFilter from './components/GenreFilter';
 import useFetchMoviesByGenre from './hooks/useFetchMoviesByGenre';
 import Movie from './components/Movie';
 import Pagination from './components/Pagination';

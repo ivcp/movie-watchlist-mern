@@ -1,0 +1,29 @@
+.genreContainer {
+  display: flex;
+  overflow-x: scroll;
+  max-width: 29rem;
+  margin-inline: auto;
+  gap: 1.9rem;
+}
+
+.genre {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.genreContainer div:first-of-type > label > div {
+  background-color: rebeccapurple;
+}
+
+.emoji {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.5rem;
+  font-size: 2.6rem;
+  height: 5.5rem;
+  width: 5.5rem;
+  border: var(--border-regular);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-3px);
+}
