@@ -142,7 +142,8 @@
   .results li {
     width: 100%;
   }
-  .results li:hover {
+  .results li:hover,
+  .results li:focus {
     background-color: hsl(var(--color-bg-dark));
   }
 }

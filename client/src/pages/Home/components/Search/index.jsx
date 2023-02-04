@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import debounce from '../../../../helpers/debounce';
 import styles from './styles.module.css';
 import { TbSearch } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const { query, setQuery, data, isSuccess, isLoading, isError, error } =
     useSearch();
+  const navigate = useNavigate();
   const inputRef = useRef(null);
+
   const updateDebounceQuery = useMemo(
     () => debounce(query => setQuery(query), 500),
     []
@@ -27,6 +30,28 @@ const Search = () => {
     inputRef.current.value = '';
   };
 
+  const arrowNavigation = e => {
+    if (e.keyCode !== 40) return;
+    if (!isSuccess) return;
+    document.querySelector('li[role="tab"]').focus();
+  };
+
+  const selectSearchResult = (movie, e) => {
+    if (e.keyCode === 13) navigate(`/movie/${movie}`);
+    if (e.keyCode === 40) {
+      e.target.nextElementSibling
+        ? e.target.nextElementSibling.focus()
+        : document.querySelector('li[role="tab"]').focus();
+    }
+    if (e.keyCode === 38) {
+      if (e.target.previousElementSibling) {
+        e.target.previousElementSibling.focus();
+        return;
+      }
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <>
       <div className={styles.inputContainer}>
@@ -37,6 +62,7 @@ const Search = () => {
           className={styles.input}
           placeholder="search"
           ref={inputRef}
+          onKeyDown={arrowNavigation}
         />
         {query && (
           <button onClick={clearInput} className={styles.clearBtn}>
@@ -56,9 +82,14 @@ const Search = () => {
         {isSuccess && data.results.length > 0 && (
           <div className={styles.results}>
             <p>matches:</p>
-            <ul role="list">
+            <ul role="tablist">
               {data.results.map(match => (
-                <li key={match.id}>
+                <li
+                  key={match.id}
+                  role="tab"
+                  tabIndex={0}
+                  onKeyDown={e => selectSearchResult(match.id, e)}
+                >
                   <Link to={`/movie/${match.id}`}>
                     {match.title}
                     <span>&gt;</span>
