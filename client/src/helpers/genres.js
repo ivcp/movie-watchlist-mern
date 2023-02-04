@@ -20,6 +20,11 @@ const genres = [
     emoji: '😱',
   },
   {
+    id: 18,
+    name: 'Drama',
+    emoji: '😮',
+  },
+  {
     id: 28,
     name: 'Action',
     emoji: '🏃',
@@ -43,11 +48,6 @@ const genres = [
     id: 99,
     name: 'Docu',
     emoji: '📽️',
-  },
-  {
-    id: 18,
-    name: 'Drama',
-    emoji: '😮',
   },
   {
     id: 10751,
