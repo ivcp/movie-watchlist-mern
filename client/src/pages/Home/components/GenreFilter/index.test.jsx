@@ -3,6 +3,9 @@ import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import GenreFilter from '.';
+
+vi.mock('../../../../hooks/useMediaQuery');
+
 describe('genreFilter component', () => {
   it('checks "all" category by default', () => {
     render(<GenreFilter />);

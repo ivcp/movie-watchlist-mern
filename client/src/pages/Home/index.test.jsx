@@ -12,6 +12,7 @@ vi.mock('./hooks/useFetchMoviesByGenre');
 vi.mock('./hooks/useSearch');
 vi.mock('../../hooks/useAddMovie');
 vi.mock('../../hooks/useMovieList');
+vi.mock('../../hooks/useMediaQuery');
 useMovieList.mockReturnValue({ movieList: [] });
 const movies = {
   page: 1,

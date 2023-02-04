@@ -5,10 +5,11 @@ import userEvent from '@testing-library/user-event';
 import Search from '../..';
 import useSearch from '../../hooks/useSearch';
 import useFetchMoviesByGenre from '../../hooks/useFetchMoviesByGenre';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 
 vi.mock('../../hooks/useSearch');
 vi.mock('../../hooks/useFetchMoviesByGenre');
+vi.mock('../../../../hooks/useMediaQuery');
 
 const data = {
   page: 1,
@@ -101,7 +102,7 @@ describe('Search component', () => {
     screen.getByText(/no matches found/i);
   });
   it('calls setQuery with correct args when user types', async () => {
-    render(<Search />);
+    setupRender();
     const user = userEvent.setup();
     const input = screen.getByRole('textbox', { type: /text/i });
     await user.type(input, 'hello');
