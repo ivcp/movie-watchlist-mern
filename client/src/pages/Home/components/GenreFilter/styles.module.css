@@ -9,16 +9,15 @@
 .genre {
   text-align: center;
   font-size: 1.2rem;
-}
-
-.genreContainer div:first-of-type > label > div {
-  background-color: rebeccapurple;
+  text-transform: lowercase;
+  line-height: 1.2;
 }
 
 .emoji {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-inline: auto;
   width: 5.5rem;
   font-size: 2.6rem;
   height: 5.5rem;
@@ -26,4 +25,14 @@
   border: var(--border-regular);
   border-radius: var(--radius);
   box-shadow: var(--shadow-3px);
+  margin-bottom: 0.5rem;
+  overflow-wrap: break-word;
+}
+
+:global(.selectedGenre) {
+  background-color: hsl(var(--color-bg-light));
+}
+:global(.selectedGenre + span) {
+  color: hsl(var(--color-primary));
+  font-weight: 600;
 }

@@ -17,7 +17,7 @@ const genres = [
   {
     id: 27,
     name: 'Horror',
-    emoji: '😨',
+    emoji: '😱',
   },
   {
     id: 28,
@@ -37,11 +37,11 @@ const genres = [
   {
     id: 80,
     name: 'Crime',
-    emoji: '💣',
+    emoji: '🚓',
   },
   {
     id: 99,
-    name: 'Documentary',
+    name: 'Docu',
     emoji: '📽️',
   },
   {
