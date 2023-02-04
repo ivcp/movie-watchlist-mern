@@ -86,6 +86,7 @@
     height: 5rem;
     width: 5.5rem;
     font-size: 1.6rem;
+    margin-bottom: 1rem;
     box-shadow: var(--shadow-4px);
     cursor: pointer;
   }
