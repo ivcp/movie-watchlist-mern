@@ -9,8 +9,14 @@
     margin-inline: auto;
     padding-inline: 0.5rem;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+  }
+}
+@media (min-width: 50em) {
+  .searchAndFilterContainer {
+    flex-direction: row;
     align-items: flex-start;
-    /* overflow-x: visible; */
   }
 }

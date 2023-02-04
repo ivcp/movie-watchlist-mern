@@ -23,8 +23,12 @@
   max-width: 29rem;
   margin-inline: auto;
   gap: 1.9rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
+.genreContainer::-webkit-scrollbar {
+  display: none;
+}
 @media (min-width: 37.5em) {
   .genreContainer::-webkit-scrollbar {
     display: none;
@@ -32,7 +36,7 @@
   .genreContainer {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    max-width: 32rem;
+    max-width: 35.5rem;
   }
   .genrePicker {
     display: flex;

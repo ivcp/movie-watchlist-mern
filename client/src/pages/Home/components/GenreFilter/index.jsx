@@ -31,7 +31,7 @@ const GenreFilter = ({ setGenre, setPage }) => {
         {isDesktop && (
           <button
             className={styles.navButton}
-            onClick={() => (sliderRef.current.scrollLeft -= 200)}
+            onClick={() => (sliderRef.current.scrollLeft -= 72)}
           >
             <TbChevronLeft size={20} strokeWidth={2} />
             <span className={utils.srOnly}>scroll left</span>
@@ -64,7 +64,7 @@ const GenreFilter = ({ setGenre, setPage }) => {
         {isDesktop && (
           <button
             className={styles.navButton}
-            onClick={() => (sliderRef.current.scrollLeft += 200)}
+            onClick={() => (sliderRef.current.scrollLeft += 72)}
           >
             <TbChevronRight size={20} strokeWidth={2} />
             <span className={utils.srOnly}>scroll right</span>
