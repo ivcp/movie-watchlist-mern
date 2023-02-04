@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Search from '../..';
 import useSearch from '../../hooks/useSearch';
 import useFetchMoviesByGenre from '../../hooks/useFetchMoviesByGenre';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 vi.mock('../../hooks/useSearch');
 vi.mock('../../hooks/useFetchMoviesByGenre');
