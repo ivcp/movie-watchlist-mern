@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useMovieList from '../../../../hooks/useMovieList';
 import styles from './styles.module.css';
+import utils from '../../../../styles/utils.module.css';
 import noImageFound from '../../../../assets/no-img.svg';
 import { TbChecks } from 'react-icons/tb';
 
@@ -34,6 +35,7 @@ const Movie = ({ movie, imageSize, skeleton }) => {
           ) : (
             '+'
           )}
+          <span className={utils.srOnly}>add movie</span>
         </button>
       ) : null}
       <Link to={`/movie/${movie.id}`}>
