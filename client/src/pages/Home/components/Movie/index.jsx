@@ -3,6 +3,7 @@ import useAddMovie from '../../../../hooks/useAddMovie';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useMovieList from '../../../../hooks/useMovieList';
+import styles from './styles.module.css';
 
 const Movie = ({ movie }) => {
   const addMovie = useAddMovie();
@@ -11,16 +12,20 @@ const Movie = ({ movie }) => {
   const movieIsOnList = movieList?.find(m => m.tmdbId === movie.id);
 
   return (
-    <>
-      <Link to={`/movie/${movie.id}`}>
-        <div>
-          <h4>{movie.title}</h4>
-        </div>
-      </Link>
-      <button onClick={() => addMovie(movie)}>
+    <article className={styles.movieCard}>
+      <button className={styles.button} onClick={() => addMovie(movie)}>
         {movieIsOnList ? 'in the list' : '+'}
       </button>
-    </>
+      <Link to={`/movie/${movie.id}`}>
+        <img
+          src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
+          alt=""
+          loading="lazy"
+          className={styles.img}
+        />
+        <h1 className={styles.title}>{movie.title}</h1>
+      </Link>
+    </article>
   );
 };
 
