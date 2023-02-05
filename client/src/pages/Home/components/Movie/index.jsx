@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useMovieList from '../../../../hooks/useMovieList';
 import styles from './styles.module.css';
+import noImageFound from '../../../../assets/no-img.svg';
 
 const Movie = ({ movie, imageSize }) => {
   const addMovie = useAddMovie();
   const { movieList } = useMovieList();
 
   const movieIsOnList = movieList?.find(m => m.tmdbId === movie.id);
-
+  const image = movie.backdrop_path
+    ? `https://image.tmdb.org/t/p/${imageSize}/${movie.backdrop_path}`
+    : noImageFound;
   return (
     <article className={styles.movieCard}>
       <button className={styles.button} onClick={() => addMovie(movie)}>
@@ -18,7 +21,7 @@ const Movie = ({ movie, imageSize }) => {
       </button>
       <Link to={`/movie/${movie.id}`}>
         <img
-          src={`https://image.tmdb.org/t/p/${imageSize}/${movie.backdrop_path}`}
+          src={image}
           alt={movie.title}
           loading="lazy"
           className={styles.img}
