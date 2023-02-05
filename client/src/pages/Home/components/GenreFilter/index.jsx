@@ -39,11 +39,13 @@ const GenreFilter = ({ setGenre, setPage }) => {
         )}
         <div className={styles.genreContainer} ref={sliderRef}>
           {genres.map(genre => (
-            <div key={genre.id} className={styles.genre}>
+            <div key={genre.id} className={styles.genre} role="radiogroup">
               <input
                 type="radio"
                 id={genre.id}
                 name="genre"
+                role="radio"
+                tabIndex="0"
                 onChange={handleSelect}
                 defaultChecked={genre.id === selected}
                 className={utils.srOnly}
