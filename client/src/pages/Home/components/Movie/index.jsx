@@ -45,7 +45,7 @@ const Movie = ({ movie, imageSize, skeleton }) => {
             className={styles.img}
           />
         ) : (
-          <div className={styles.imgSkeleton}></div>
+          <div className={styles.imgSkeleton} data-testid="loading-image"></div>
         )}
         {!skeleton ? <h1 className={styles.title}>{movie.title}</h1> : null}
       </Link>

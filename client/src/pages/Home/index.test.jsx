@@ -77,10 +77,11 @@ describe('movies component', () => {
     );
   };
 
-  it('renders loading text if loading', () => {
+  it('renders skeletons if loading', () => {
     useFetchMoviesByGenre.mockReturnValue(returnValue);
     setup();
-    screen.getByText(/loading.../i);
+    const skeletons = screen.getAllByTestId('loading-image');
+    expect(skeletons).toHaveLength(10);
   });
   it('renders message if error', () => {
     returnValue.isSuccess = false;
