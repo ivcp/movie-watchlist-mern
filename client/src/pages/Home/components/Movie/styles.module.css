@@ -14,12 +14,6 @@
   grid-column: 1/-1;
 }
 
-@media (min-width: 37.5em) {
-  .movieCard a > img:first-of-type {
-    width: 87rem;
-  }
-}
-
 .img {
   width: 30rem;
   border: var(--border-regular);
@@ -32,6 +26,7 @@
     width: 27.5rem;
     height: 20rem;
     object-fit: cover;
+    border: var(--border-bold);
   }
 }
 
@@ -68,6 +63,7 @@
   color: hsl(var(--color-primary));
   z-index: 10;
   position: relative;
+  transition: background 0.2s, color 0.2s;
 }
 
 .button::before {
@@ -86,6 +82,12 @@
   .button {
     width: 4rem;
     height: 4rem;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: hsl(var(--color-primary) / 0.6);
+    color: hsl(var(--color-bg-dark));
   }
 
   .button::before {

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import useMovieList from '../../../../hooks/useMovieList';
 import styles from './styles.module.css';
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, imageSize }) => {
   const addMovie = useAddMovie();
   const { movieList } = useMovieList();
 
@@ -18,8 +18,8 @@ const Movie = ({ movie }) => {
       </button>
       <Link to={`/movie/${movie.id}`}>
         <img
-          src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
-          alt=""
+          src={`https://image.tmdb.org/t/p/${imageSize}/${movie.backdrop_path}`}
+          alt={movie.title}
           loading="lazy"
           className={styles.img}
         />

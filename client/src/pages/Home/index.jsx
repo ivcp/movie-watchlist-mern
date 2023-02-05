@@ -5,6 +5,7 @@ import Movie from './components/Movie';
 import Pagination from './components/Pagination';
 import Search from './components/Search';
 import styles from './styles.module.css';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 const Movies = () => {
   const {
@@ -17,6 +18,7 @@ const Movies = () => {
     setGenre,
     setPage,
   } = useFetchMoviesByGenre();
+  const isDesktop = useMediaQuery('(min-width: 56.25em)');
 
   return (
     <>
@@ -29,7 +31,13 @@ const Movies = () => {
       <div className={styles.movies}>
         {isSuccess &&
           movies.results.length > 0 &&
-          movies.results.map(movie => <Movie key={movie.id} movie={movie} />)}
+          movies.results.map((movie, i) => (
+            <Movie
+              key={movie.id}
+              movie={movie}
+              imageSize={i === 0 && isDesktop ? 'w780' : 'w300'}
+            />
+          ))}
       </div>
       {isSuccess && (
         <Pagination

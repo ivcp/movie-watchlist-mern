@@ -45,5 +45,21 @@
   .movies > article:first-of-type {
     width: 87rem;
     grid-column: 1/-1;
+    margin-bottom: -4.5rem;
+  }
+  .movies > article:first-of-type > a > img {
+    width: 87rem;
+    height: 24rem;
+    box-shadow: var(--shadow-8px);
+    object-position: 50% 25%;
+  }
+  .movies > article:first-of-type > a > h1 {
+    transform: translateY(-170%);
+    margin-left: 2.4rem;
+    background-color: hsl(var(--color-bg-dark) / 0.6);
+    width: fit-content;
+    border-radius: var(--radius);
+    padding: 0.4rem 2rem;
+    font-size: 3.2rem;
   }
 }
