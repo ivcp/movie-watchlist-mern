@@ -16,6 +16,7 @@
 
 .img {
   width: 30rem;
+  height: 16.8rem;
   border: var(--border-regular);
   border-radius: var(--radius);
   box-shadow: var(--shadow-6px);
@@ -27,6 +28,33 @@
     height: 20rem;
     object-fit: cover;
     border: var(--border-bold);
+  }
+}
+
+.imgSkeleton {
+  width: 30rem;
+  height: 16.8rem;
+  border: var(--border-regular);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-6px);
+  animation: loadingSkeleton 0.8s linear infinite alternate;
+}
+
+@media (min-width: 37.5em) {
+  .imgSkeleton {
+    width: 27.5rem;
+    height: 20rem;
+    object-fit: cover;
+    border: var(--border-bold);
+  }
+}
+
+@keyframes loadingSkeleton {
+  from {
+    background-color: hsl(var(--color-bg));
+  }
+  to {
+    background-color: hsl(var(--color-bg-dark));
   }
 }
 

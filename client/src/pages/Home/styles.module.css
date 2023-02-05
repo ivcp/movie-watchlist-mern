@@ -53,6 +53,13 @@
     box-shadow: var(--shadow-8px);
     object-position: 50% 25%;
   }
+  .movies > article:first-of-type > a > div {
+    width: 87rem;
+    height: 24rem;
+    box-shadow: var(--shadow-8px);
+    object-position: 50% 25%;
+    margin-bottom: 6rem;
+  }
   .movies > article:first-of-type > a > h1 {
     transform: translateY(-170%);
     margin-left: 2.4rem;

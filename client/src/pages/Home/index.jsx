@@ -18,6 +18,7 @@ const Movies = () => {
     setGenre,
     setPage,
   } = useFetchMoviesByGenre();
+
   const isDesktop = useMediaQuery('(min-width: 56.25em)');
 
   return (
@@ -26,7 +27,13 @@ const Movies = () => {
         <Search />
         <GenreFilter setGenre={setGenre} setPage={setPage} />
       </div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <div className={styles.movies}>
+          {[...Array(10)].map((_, i) => (
+            <Movie key={i} skeleton movie={{}} />
+          ))}
+        </div>
+      )}
       {isError && <p>{error.message}</p>}
       <div className={styles.movies}>
         {isSuccess &&

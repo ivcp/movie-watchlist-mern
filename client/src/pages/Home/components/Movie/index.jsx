@@ -6,27 +6,36 @@ import useMovieList from '../../../../hooks/useMovieList';
 import styles from './styles.module.css';
 import noImageFound from '../../../../assets/no-img.svg';
 
-const Movie = ({ movie, imageSize }) => {
+const Movie = ({ movie, imageSize, skeleton }) => {
   const addMovie = useAddMovie();
-  const { movieList } = useMovieList();
+  const data = skeleton ? null : useMovieList();
 
-  const movieIsOnList = movieList?.find(m => m.tmdbId === movie.id);
-  const image = movie.backdrop_path
-    ? `https://image.tmdb.org/t/p/${imageSize}/${movie.backdrop_path}`
-    : noImageFound;
+  const movieIsOnList =
+    !skeleton && data.movieList?.find(m => m.tmdbId === movie.id);
+  const image =
+    !skeleton && movie.backdrop_path
+      ? `https://image.tmdb.org/t/p/${imageSize}/${movie.backdrop_path}`
+      : noImageFound;
+
   return (
     <article className={styles.movieCard}>
-      <button className={styles.button} onClick={() => addMovie(movie)}>
-        {movieIsOnList ? 'in the list' : '+'}
-      </button>
+      {!skeleton ? (
+        <button className={styles.button} onClick={() => addMovie(movie)}>
+          {movieIsOnList ? 'in the list' : '+'}
+        </button>
+      ) : null}
       <Link to={`/movie/${movie.id}`}>
-        <img
-          src={image}
-          alt={movie.title}
-          loading="lazy"
-          className={styles.img}
-        />
-        <h1 className={styles.title}>{movie.title}</h1>
+        {!skeleton ? (
+          <img
+            src={image}
+            alt={movie.title}
+            loading="lazy"
+            className={styles.img}
+          />
+        ) : (
+          <div className={styles.imgSkeleton}></div>
+        )}
+        {!skeleton ? <h1 className={styles.title}>{movie.title}</h1> : null}
       </Link>
     </article>
   );
