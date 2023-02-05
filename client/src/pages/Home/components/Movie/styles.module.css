@@ -2,16 +2,37 @@
   display: grid;
 }
 
+@media (min-width: 37.5em) {
+  .movieCard {
+    width: 27.5rem;
+  }
+}
+
 .movieCard a {
   text-decoration: none;
   grid-row: 1/2;
   grid-column: 1/-1;
 }
 
+@media (min-width: 37.5em) {
+  .movieCard a > img:first-of-type {
+    width: 87rem;
+  }
+}
+
 .img {
+  width: 30rem;
   border: var(--border-regular);
   border-radius: var(--radius);
   box-shadow: var(--shadow-6px);
+}
+
+@media (min-width: 37.5em) {
+  .img {
+    width: 27.5rem;
+    height: 20rem;
+    object-fit: cover;
+  }
 }
 
 .title {
@@ -21,6 +42,12 @@
   font-weight: 800;
   line-height: 1.2;
   color: hsl(var(--color-text));
+}
+
+@media (min-width: 37.5em) {
+  .title {
+    font-size: 2rem;
+  }
 }
 
 .button {
@@ -53,4 +80,16 @@
   height: 3.1rem;
   background-color: transparent;
   box-shadow: var(--shadow-2px);
+}
+
+@media (min-width: 37.5em) {
+  .button {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .button::before {
+    width: 3.9rem;
+    height: 3.9rem;
+  }
 }

@@ -19,7 +19,7 @@ const Movies = () => {
   } = useFetchMoviesByGenre();
 
   return (
-    <div>
+    <>
       <div className={styles.searchAndFilterContainer}>
         <Search />
         <GenreFilter setGenre={setGenre} setPage={setPage} />
@@ -39,7 +39,7 @@ const Movies = () => {
           setPage={setPage}
         />
       )}
-    </div>
+    </>
   );
 };
 

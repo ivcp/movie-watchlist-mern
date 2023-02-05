@@ -15,7 +15,7 @@
     align-items: center;
   }
 }
-@media (min-width: 50em) {
+@media (min-width: 56.25em) {
   .searchAndFilterContainer {
     flex-direction: row;
     align-items: flex-start;
@@ -27,4 +27,23 @@
   margin-inline: auto;
   display: grid;
   gap: 2.4rem;
+}
+
+@media (min-width: 37.5em) {
+  .movies {
+    width: 80%;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+}
+
+@media (min-width: 56.25em) {
+  .movies {
+    width: 87rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .movies > article:first-of-type {
+    width: 87rem;
+    grid-column: 1/-1;
+  }
 }

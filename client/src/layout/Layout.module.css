@@ -10,10 +10,17 @@
 }
 @media (min-width: 37.5em) {
   .header {
-    max-width: 87rem;
+    max-width: 80%;
     align-items: baseline;
   }
 }
+
+@media (min-width: 56.25em) {
+  .header {
+    max-width: 87rem;
+  }
+}
+
 .menu {
   border: none;
   background: none;
