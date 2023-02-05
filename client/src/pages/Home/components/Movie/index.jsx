@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import useMovieList from '../../../../hooks/useMovieList';
 import styles from './styles.module.css';
 import noImageFound from '../../../../assets/no-img.svg';
+import { TbChecks } from 'react-icons/tb';
 
 const Movie = ({ movie, imageSize, skeleton }) => {
   const addMovie = useAddMovie();
@@ -20,8 +21,19 @@ const Movie = ({ movie, imageSize, skeleton }) => {
   return (
     <article className={styles.movieCard}>
       {!skeleton ? (
-        <button className={styles.button} onClick={() => addMovie(movie)}>
-          {movieIsOnList ? 'in the list' : '+'}
+        <button
+          className={styles.button}
+          onClick={() => addMovie(movie)}
+          disabled={movieIsOnList}
+        >
+          {movieIsOnList ? (
+            <TbChecks
+              size={21}
+              color={movieIsOnList.watched ? 'none' : '#CDD2D6'}
+            />
+          ) : (
+            '+'
+          )}
         </button>
       ) : null}
       <Link to={`/movie/${movie.id}`}>

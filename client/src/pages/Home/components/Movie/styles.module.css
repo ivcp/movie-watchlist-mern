@@ -88,6 +88,9 @@
   height: 3.2rem;
   font-size: 2rem;
   font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: hsl(var(--color-primary));
   z-index: 10;
   position: relative;
@@ -110,7 +113,12 @@
   .button {
     width: 4rem;
     height: 4rem;
+    font-size: 3.2rem;
     cursor: pointer;
+  }
+  .button > svg {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .button:hover {
