@@ -62,6 +62,9 @@
   .genre:hover .emoji {
     background-color: hsl(var(--color-bg-light));
   }
+  .genre:active .emoji {
+    box-shadow: var(--shadow-2px);
+  }
 }
 
 .emoji {
@@ -78,7 +81,7 @@
   box-shadow: var(--shadow-3px);
   margin-bottom: 0.5rem;
   overflow-wrap: break-word;
-  transition: background 0.2s;
+  transition: background 0.2s, box-shadow 0.2s;
 }
 
 @media (min-width: 37.5em) {
