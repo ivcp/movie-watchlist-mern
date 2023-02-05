@@ -3,7 +3,6 @@ import GenreFilter from './components/GenreFilter';
 import useFetchMoviesByGenre from './hooks/useFetchMoviesByGenre';
 import Movie from './components/Movie';
 import Pagination from './components/Pagination';
-import MovieCard from '../UI/MovieCard';
 import Search from './components/Search';
 import styles from './styles.module.css';
 
@@ -27,14 +26,10 @@ const Movies = () => {
       </div>
       {isLoading && <p>Loading...</p>}
       {isError && <p>{error.message}</p>}
-      <div>
+      <div className={styles.movies}>
         {isSuccess &&
           movies.results.length > 0 &&
-          movies.results.map(movie => (
-            <MovieCard key={movie.id}>
-              <Movie movie={movie} />
-            </MovieCard>
-          ))}
+          movies.results.map(movie => <Movie key={movie.id} movie={movie} />)}
       </div>
       {isSuccess && (
         <Pagination
