@@ -22,7 +22,7 @@ const useAddMovie = () => {
       });
     },
     {
-      onError: error => console.log(error.message), //set notification
+      onError: error => toast.info(error.message),
       onSuccess: movie => {
         const data = queryClient.getQueryData(['movieList', user.id]);
         queryClient.setQueryData(['movieList', user.id], [...data, movie]);
