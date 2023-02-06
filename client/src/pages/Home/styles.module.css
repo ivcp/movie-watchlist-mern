@@ -29,6 +29,10 @@
   gap: 2.4rem;
 }
 
+.movies > article:last-of-type {
+  margin-bottom: 4rem;
+}
+
 @media (min-width: 37.5em) {
   .movies {
     width: 80%;
@@ -47,6 +51,10 @@
     grid-column: 1/-1;
     margin-bottom: -4.5rem;
   }
+  .movies > article:last-of-type {
+    margin-bottom: 0;
+  }
+
   .movies > article:first-of-type > a > img {
     width: 87rem;
     height: 24rem;
