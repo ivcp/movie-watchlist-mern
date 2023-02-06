@@ -1,6 +1,10 @@
 import React from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Pagination from '.';
+
+vi.mock('../../../../hooks/useMediaQuery');
+
 describe('pagination component', () => {
   it('disables prevBtn initially', () => {
     const page = 1;

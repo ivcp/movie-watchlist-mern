@@ -41,7 +41,7 @@ describe('Movie component', () => {
   it('calls addMovie', async () => {
     setup();
     const user = userEvent.setup();
-    await user.click(screen.getByRole('button', { name: '+' }));
+    await user.click(screen.getByRole('button', { name: /\+/i }));
     expect(returnValue1).toBeCalledWith(movie);
   });
 });
