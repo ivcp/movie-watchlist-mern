@@ -1,0 +1,10 @@
+.container {
+  max-width: 30rem;
+  margin-inline: auto;
+  margin-top: 3.8rem;
+}
+
+.sortButtons {
+  display: flex;
+  justify-content: space-between;
+}

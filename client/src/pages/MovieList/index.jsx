@@ -1,5 +1,6 @@
 import React from 'react';
 import useMovieList from '../../hooks/useMovieList';
+import styles from './styles.module.css';
 
 const MovieList = () => {
   const {
@@ -19,8 +20,8 @@ const MovieList = () => {
   const unwatchedCount = movieList?.filter(movie => !movie.watched).length;
 
   return (
-    <>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.sortButtons}>
         <button
           style={{ fontWeight: sort === 'all' ? 'bold' : 'normal' }}
           onClick={() => setSort('all')}
@@ -49,7 +50,7 @@ const MovieList = () => {
         )}
         {isSuccess && movieList.length > 0 && sortedMovies()}
       </div>
-    </>
+    </div>
   );
 };
 
