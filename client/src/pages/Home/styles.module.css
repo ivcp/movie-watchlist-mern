@@ -60,7 +60,13 @@
     height: 24rem;
     box-shadow: var(--shadow-8px);
     object-position: 50% 25%;
+    transition: object-position 2s ease;
   }
+
+  .movies > article:first-of-type > a > img:hover {
+    object-position: center;
+  }
+
   .movies > article:first-of-type > a > div {
     width: 87rem;
     height: 24rem;

@@ -20,6 +20,7 @@
   border: var(--border-regular);
   border-radius: var(--radius);
   box-shadow: var(--shadow-6px);
+  transition: object-position 2s ease;
 }
 
 @media (min-width: 37.5em) {
@@ -28,6 +29,12 @@
     height: 20rem;
     object-fit: cover;
     border: var(--border-bold);
+  }
+}
+
+@media (min-width: 56.25em) {
+  .img:hover {
+    object-position: right;
   }
 }
 
