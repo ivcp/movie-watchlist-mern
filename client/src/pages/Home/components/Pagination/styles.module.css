@@ -34,7 +34,4 @@
     border: none;
     gap: 2rem;
   }
-  .pagination span {
-    display: none;
-  }
 }

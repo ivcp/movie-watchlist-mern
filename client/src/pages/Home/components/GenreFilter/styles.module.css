@@ -102,7 +102,7 @@
   color: hsl(var(--color-primary));
   font-weight: 600;
 }
-
+/* 
 .navButton {
   background: none;
   color: hsl(var(--color-text));
@@ -117,4 +117,4 @@
 
 .navButton:hover {
   background-color: hsl(var(--color-bg-light));
-}
+} */

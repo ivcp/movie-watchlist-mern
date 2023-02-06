@@ -5,9 +5,8 @@ import styles from './styles.module.css';
 import utils from '../../../../styles/utils.module.css';
 import emoji from 'react-easy-emoji';
 import { TbArrowsLeftRight } from 'react-icons/tb';
-import { TbChevronRight } from 'react-icons/tb';
-import { TbChevronLeft } from 'react-icons/tb';
 import useMediaQuery from '../../../../hooks/useMediaQuery';
+import NavButton from '../NavButton';
 
 const GenreFilter = ({ setGenre, setPage }) => {
   const [selected, setSelected] = useState('all');
@@ -28,15 +27,7 @@ const GenreFilter = ({ setGenre, setPage }) => {
         </div>
       )}
       <div className={styles.genrePicker}>
-        {isDesktop && (
-          <button
-            className={styles.navButton}
-            onClick={() => (sliderRef.current.scrollLeft -= 72)}
-          >
-            <TbChevronLeft size={20} strokeWidth={2} />
-            <span className={utils.srOnly}>scroll left</span>
-          </button>
-        )}
+        <NavButton left isDesktop={isDesktop} sliderRef={sliderRef} />
         <div className={styles.genreContainer} ref={sliderRef}>
           {genres.map(genre => (
             <div key={genre.id} className={styles.genre} role="radiogroup">
@@ -63,15 +54,7 @@ const GenreFilter = ({ setGenre, setPage }) => {
             </div>
           ))}
         </div>
-        {isDesktop && (
-          <button
-            className={styles.navButton}
-            onClick={() => (sliderRef.current.scrollLeft += 72)}
-          >
-            <TbChevronRight size={20} strokeWidth={2} />
-            <span className={utils.srOnly}>scroll right</span>
-          </button>
-        )}
+        <NavButton isDesktop={isDesktop} sliderRef={sliderRef} />
       </div>
     </>
   );
