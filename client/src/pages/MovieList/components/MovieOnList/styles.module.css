@@ -3,7 +3,7 @@
   border-radius: var(--radius);
   background-color: hsl(var(--color-bg-light));
   box-shadow: var(--shadow-6px);
-  width: 30rem;
+  width: 100%;
 }
 
 .titleContainer {
@@ -15,7 +15,7 @@
 
 .titleContainer > h1 {
   font-size: 1.6rem;
-  max-width: 26rem;
+  max-width: 28rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
