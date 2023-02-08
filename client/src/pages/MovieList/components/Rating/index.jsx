@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import useUpdateMovie from '../../hooks/useUpdateMovie';
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
-import utils from '../../../../styles/utils.module.css';
 import styles from './styles.module.css';
 
 const Rating = ({ movie }) => {
@@ -15,35 +14,37 @@ const Rating = ({ movie }) => {
   };
   const openRating = () => {
     setShowSelect(true);
+    selectRef.current.size = '11';
+    selectRef.current.focus();
   };
   return (
     <>
-      <label htmlFor="rating" className={styles.label}>
-        {movie.rating === null && <FaStar size={16} onClick={openRating} />}
+      <label
+        htmlFor={movie.title}
+        className={styles.label}
+        onClick={openRating}
+      >
+        {movie.rating === null && <FaStar size={16} />}
         {Number.isFinite(movie.rating) && (
-          <p className={styles.userRating} onClick={openRating}>
-            {movie.rating}/10
-          </p>
+          <p className={styles.userRating}>{movie.rating}/10</p>
         )}
-        <span>add rating</span>
+        <span>{movie.rating ? 'change ' : 'add '}rating</span>
       </label>
       <select
         className={`${styles.select} ${showSelect ? styles.visible : ''}`}
         name="rating"
-        id="rating"
+        id={movie.title}
         defaultValue=""
         onChange={handleChange}
         ref={selectRef}
-        onFocus={() => {
-          selectRef.current.size = '11';
-        }}
         onBlur={() => {
           setShowSelect(false);
+          selectRef.current.size = '0';
         }}
       >
         <option value="" disabled hidden></option>
         {[...Array(11)].map((_, i) => (
-          <option key={i} value={i}>
+          <option key={i} value={i.toString()}>
             {i}
           </option>
         ))}

@@ -17,15 +17,17 @@ const MovieOnList = ({ movie }) => {
   };
   return (
     <article className={styles.movieCard}>
-      <h4>{movie.title}</h4>
-      <div className={styles.ratingAndWatchedContainer}>
-        {movie.watched && <Rating movie={movie} />}
-        <Watched movie={movie} />
+      <div className={styles.titleContainer}>
+        <h1>{movie.title}</h1>
+        <div className={styles.ratingAndWatchedContainer}>
+          {movie.watched && <Rating movie={movie} />}
+          <Watched movie={movie} />
+        </div>
+        <button onClick={expandDetails} className={styles.expandButton}>
+          <TbChevronDown size={16} strokeWidth={2.5} />
+          <span className={utils.srOnly}>expand</span>
+        </button>
       </div>
-      <button onClick={expandDetails} className={styles.expandButton}>
-        <TbChevronDown size={14} strokeWidth={2} />
-        <span className={utils.srOnly}>expand</span>
-      </button>
       {showDetails && (
         <div>
           <div>

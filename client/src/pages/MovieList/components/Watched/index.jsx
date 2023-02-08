@@ -15,7 +15,7 @@ const Watched = ({ movie }) => {
     <div>
       <label htmlFor={movie.id} className={styles.label}>
         <TbChecks
-          size={21}
+          size={22}
           className={`${styles.checks} ${movie.watched ? styles.watched : ''}`}
         />
         <span>mark as {movie.watched ? 'unwatched' : 'watched'}</span>

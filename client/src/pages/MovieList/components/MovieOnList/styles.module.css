@@ -3,12 +3,27 @@
   border-radius: var(--radius);
   background-color: hsl(var(--color-bg-light));
   box-shadow: var(--shadow-6px);
+  width: 30rem;
 }
 
-.expandButton {
-  border: none;
-  background: none;
-  color: hsl(var(--color-text));
+.titleContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 7rem;
+}
+
+.titleContainer > h1 {
+  font-size: 1.6rem;
+  max-width: 26rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  grid-row: 1;
+  grid-column: 1/-1;
+  justify-self: center;
+  align-self: end;
+  margin-bottom: 0.4rem;
 }
 
 .ratingAndWatchedContainer {
@@ -16,4 +31,22 @@
   justify-content: center;
   align-items: center;
   gap: 2.4rem;
+  grid-column: 1/-1;
+  grid-row: 2/3;
+  justify-self: center;
+  align-self: end;
+  margin-bottom: 0.2rem;
+  position: relative;
+}
+
+.expandButton {
+  border: none;
+  background: none;
+  color: hsl(var(--color-text));
+  grid-column: 2/-1;
+  grid-row: 1/-1;
+  justify-self: end;
+  align-self: center;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
 }

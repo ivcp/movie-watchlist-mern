@@ -13,7 +13,9 @@
 .select {
   display: none;
   position: absolute;
-  width: 4rem;
+  width: 50%;
+  left: 0;
+  z-index: 100;
 }
 
 .select.visible {
@@ -23,8 +25,8 @@
 .userRating {
   font-size: 1.6rem;
   font-weight: 800;
-  line-height: 1;
-  margin-block: 0.22rem;
+  line-height: 1.05;
+  margin-top: 0.4rem;
   -webkit-text-stroke: 0.6px hsl(var(--color-primary));
   color: transparent;
 }

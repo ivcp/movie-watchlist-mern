@@ -8,6 +8,7 @@
 
 .checks {
   color: hsl(var(--color-text));
+  margin-bottom: -0.2rem;
 }
 
 .checks.watched {
