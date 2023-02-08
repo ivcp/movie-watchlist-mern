@@ -1,5 +1,6 @@
 import React from 'react';
 import useMovieList from '../../hooks/useMovieList';
+import SortBtn from './components/SortBtn';
 import styles from './styles.module.css';
 
 const MovieList = () => {
@@ -22,24 +23,19 @@ const MovieList = () => {
   return (
     <div className={styles.container}>
       <div className={styles.sortButtons}>
-        <button
-          style={{ fontWeight: sort === 'all' ? 'bold' : 'normal' }}
-          onClick={() => setSort('all')}
-        >
-          all({allCount})
-        </button>
-        <button
-          style={{ fontWeight: sort === 'watched' ? 'bold' : 'normal' }}
-          onClick={() => setSort('watched')}
-        >
-          watched({watchedCount})
-        </button>
-        <button
-          style={{ fontWeight: sort === 'unwatched' ? 'bold' : 'normal' }}
-          onClick={() => setSort('unwatched')}
-        >
-          unwatched({unwatchedCount})
-        </button>
+        <SortBtn sort={sort} count={allCount} setSort={setSort} text="all" />
+        <SortBtn
+          sort={sort}
+          count={watchedCount}
+          setSort={setSort}
+          text="watched"
+        />
+        <SortBtn
+          sort={sort}
+          count={unwatchedCount}
+          setSort={setSort}
+          text="unwatched"
+        />
       </div>
       <div>
         {!user && <p>Log in to start adding movies to your list</p>}
