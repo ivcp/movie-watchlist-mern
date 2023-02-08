@@ -1,0 +1,30 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.label > svg {
+  margin-block: 0.22rem;
+}
+
+.select {
+  display: none;
+  position: absolute;
+  width: 4rem;
+}
+
+.select.visible {
+  display: block;
+}
+
+.userRating {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-block: 0.22rem;
+  -webkit-text-stroke: 0.6px hsl(var(--color-primary));
+  color: transparent;
+}

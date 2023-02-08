@@ -1,0 +1,15 @@
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.checks {
+  color: hsl(var(--color-text));
+}
+
+.checks.watched {
+  color: hsl(var(--color-primary));
+}

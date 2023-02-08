@@ -8,3 +8,20 @@
   display: flex;
   justify-content: space-between;
 }
+
+.noUserMessage {
+  composes: container;
+  font-size: 1.5rem;
+}
+
+.message {
+  composes: container;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.list {
+  margin-top: 3.2rem;
+  display: grid;
+  gap: 1.6rem;
+}

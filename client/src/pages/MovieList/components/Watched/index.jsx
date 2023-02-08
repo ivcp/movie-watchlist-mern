@@ -1,7 +1,9 @@
 import React from 'react';
 import useUpdateMovie from '../../hooks/useUpdateMovie';
 import PropTypes from 'prop-types';
-
+import { TbChecks } from 'react-icons/tb';
+import utils from '../../../../styles/utils.module.css';
+import styles from './styles.module.css';
 const Watched = ({ movie }) => {
   const updateMovie = useUpdateMovie(movie.id);
 
@@ -10,17 +12,23 @@ const Watched = ({ movie }) => {
     updateMovie({ watched: checked });
   };
   return (
-    <>
-      <p>{movie.watched ? '✔️✔️' : '✔️'}</p>
-      <label htmlFor={movie.id}>watched:</label>
+    <div>
+      <label htmlFor={movie.id} className={styles.label}>
+        <TbChecks
+          size={21}
+          className={`${styles.checks} ${movie.watched ? styles.watched : ''}`}
+        />
+        <span>mark as {movie.watched ? 'unwatched' : 'watched'}</span>
+      </label>
       <input
         type="checkbox"
         name="watched"
         id={movie.id}
         defaultChecked={movie.watched}
         onChange={handleChange}
+        className={utils.srOnly}
       />
-    </>
+    </div>
   );
 };
 

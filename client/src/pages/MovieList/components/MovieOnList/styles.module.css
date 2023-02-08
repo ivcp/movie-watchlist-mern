@@ -1,0 +1,19 @@
+.movieCard {
+  border: var(--border-regular);
+  border-radius: var(--radius);
+  background-color: hsl(var(--color-bg-light));
+  box-shadow: var(--shadow-6px);
+}
+
+.expandButton {
+  border: none;
+  background: none;
+  color: hsl(var(--color-text));
+}
+
+.ratingAndWatchedContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
+}

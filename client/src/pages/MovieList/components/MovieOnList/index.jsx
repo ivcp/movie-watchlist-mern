@@ -5,6 +5,9 @@ import Rating from '../Rating';
 import Watched from '../Watched/index.jsx';
 import PropTypes from 'prop-types';
 import DeleteMovieBtn from '../DeleteMovieBtn';
+import styles from './styles.module.css';
+import utils from '../../../../styles/utils.module.css';
+import { TbChevronDown } from 'react-icons/tb';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -13,13 +16,16 @@ const MovieOnList = ({ movie }) => {
     setShowDetails(prev => !prev);
   };
   return (
-    <article>
+    <article className={styles.movieCard}>
       <h4>{movie.title}</h4>
-      <div>
+      <div className={styles.ratingAndWatchedContainer}>
         {movie.watched && <Rating movie={movie} />}
         <Watched movie={movie} />
       </div>
-      <button onClick={expandDetails}>expand</button>
+      <button onClick={expandDetails} className={styles.expandButton}>
+        <TbChevronDown size={14} strokeWidth={2} />
+        <span className={utils.srOnly}>expand</span>
+      </button>
       {showDetails && (
         <div>
           <div>
