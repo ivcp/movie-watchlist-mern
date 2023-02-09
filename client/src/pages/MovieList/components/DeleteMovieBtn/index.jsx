@@ -1,12 +1,20 @@
 import React, { useContext } from 'react';
 import ModalContext from '../../../../context/modal-context';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
+import { IoMdTrash } from 'react-icons/io';
 
 const DeleteMovieBtn = props => {
   const { triggerPrompt } = useContext(ModalContext);
 
   return (
-    <button onClick={() => triggerPrompt(props.movie)}>{props.text}</button>
+    <button
+      className={styles.delete}
+      onClick={() => triggerPrompt(props.movie)}
+    >
+      <span>{props.text}</span>
+      <IoMdTrash />
+    </button>
   );
 };
 
