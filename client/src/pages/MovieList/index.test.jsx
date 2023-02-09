@@ -27,15 +27,15 @@ describe('MovieList component', () => {
     returnValue.isError = false;
     useMovieList.mockReturnValue(returnValue);
     render(<MovieList />);
-    screen.getByRole('button', { name: 'all(3)' });
-    screen.getByRole('button', { name: 'watched(1)' });
-    screen.getByRole('button', { name: 'unwatched(2)' });
+    screen.getByRole('button', { name: 'all 3' });
+    screen.getByRole('button', { name: 'watched 1' });
+    screen.getByRole('button', { name: 'unwatched 2' });
   });
   it('filters movies by watched status', async () => {
     render(<MovieList />);
     const user = userEvent.setup();
     const allBtn = screen.getByRole('button', { name: /all/i });
-    const watchedBtn = screen.getByRole('button', { name: 'watched(1)' });
+    const watchedBtn = screen.getByRole('button', { name: 'watched 1' });
     const unwatchedBtn = screen.getByRole('button', { name: /unwatched/i });
     await user.click(watchedBtn);
     expect(returnValue.setSort).toBeCalledWith('watched');

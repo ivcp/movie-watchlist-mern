@@ -24,7 +24,7 @@ describe('Watched component', () => {
     };
     useUpdateMovie.mockReturnValue(returnValue);
     render(<Watched movie={movie} />);
-    const watched = screen.getByLabelText(/watched:/i);
+    const watched = screen.getByLabelText(/mark as unwatched/i);
     expect(watched).toBeChecked();
     const user = userEvent.setup();
     await user.click(watched);

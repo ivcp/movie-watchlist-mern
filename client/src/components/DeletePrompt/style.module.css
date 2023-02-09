@@ -1,0 +1,67 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: hsl(var(--color-primary) / 0.1);
+  z-index: 1000;
+}
+
+.modal {
+  background-color: hsl(var(--color-bg));
+  margin-top: 15rem;
+  height: 16rem;
+  width: 90%;
+  font-size: 1.4rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-inline: 2rem;
+  border-radius: var(--radius);
+  border: var(--border-regular);
+  box-shadow: var(--shadow-6px);
+}
+
+@media (min-width: 37.5em) {
+  .modal {
+    width: 40em;
+  }
+}
+
+.modal > div {
+  display: flex;
+  gap: 8rem;
+}
+
+.modal button {
+  font-weight: 600;
+  font-size: 1.6rem;
+  border: none;
+  background: none;
+  color: inherit;
+  border-radius: var(--radius);
+  padding: 0.5rem 2rem;
+}
+
+@media (min-width: 37.5em) {
+  .modal button {
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .modal button:hover {
+    cursor: pointer;
+    background: hsl(var(--color-bg-light));
+  }
+}
+.modal button:first-of-type {
+  border: 1px solid #b15037;
+
+  box-shadow: var(--shadow-4px);
+}

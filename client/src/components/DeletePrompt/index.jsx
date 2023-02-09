@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { createPortal } from 'react-dom';
 import useDeleteMovie from '../../hooks/useDeleteMovie';
 import ModalContext from '../../context/modal-context';
+import styles from './style.module.css';
 
 const DeletePrompt = () => {
   const { modalOpen, setModalOpen, movie } = useContext(ModalContext);
@@ -9,38 +10,30 @@ const DeletePrompt = () => {
   if (modalOpen) {
     return createPortal(
       <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'orangered',
-          opacity: 0.8,
-        }}
+        className={styles.overlay}
         data-testid="overlay"
         onClick={() => setModalOpen(false)}
       >
         <div
-          style={{ backgroundColor: 'white' }}
+          className={styles.modal}
           data-testid="modal-box"
           onClick={e => e.stopPropagation()}
         >
           <p>
-            Are you sure that you want to delete ${movie.title} from your list?{' '}
+            {`Are you sure that you want to delete ${movie.title} from your
+            list?`}
           </p>
-          <button
-            onClick={() => {
-              deleteMovie();
-              setModalOpen(false);
-            }}
-          >
-            yes
-          </button>
-          <button onClick={() => setModalOpen(false)}>cancel</button>
+          <div>
+            <button
+              onClick={() => {
+                deleteMovie();
+                setModalOpen(false);
+              }}
+            >
+              yes
+            </button>
+            <button onClick={() => setModalOpen(false)}>cancel</button>
+          </div>
         </div>
       </div>,
       document.getElementById('modal')

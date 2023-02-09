@@ -8,6 +8,7 @@ import ModalContext from '../../../../context/modal-context';
 
 vi.mock('../../../../hooks/useDeleteMovie');
 vi.mock('../../hooks/useUpdateMovie');
+vi.mock('../../../../hooks/useMediaQuery');
 
 describe('MovieOnList component', () => {
   const customRender = (ui, { providerProps, ...renderOptions }) => {
