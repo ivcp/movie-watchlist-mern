@@ -8,6 +8,9 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
 import { toast } from 'react-toastify';
+import styles from './styles.module.css';
+import { BsEyeFill } from 'react-icons/bs';
+import utils from '../../styles/utils.module.css';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -22,11 +25,9 @@ const AuthForm = () => {
   const { mutate } = useMutation(
     credentials => auth(credentials, isLogin ? 'login' : 'users'),
     {
-      onError: error => console.log(error.message),
+      onError: error => toast.error(error.message),
       onSuccess: user => {
-        //set user
         loginUser(user);
-        //notification TODO:
         toast.success(
           `${user.name} ${isLogin ? 'logged in' : 'registered'} successfully`
         );
@@ -66,51 +67,72 @@ const AuthForm = () => {
   };
 
   return (
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <h1>{isLogin ? 'log in' : 'register'}</h1>
-      <form onSubmit={handleSubmitForm}>
-        {!isLogin && (
-          <>
-            <input {...firstName} />
-            <input {...lastName} />
-          </>
-        )}
-        <input {...email} />
-        <input type={showPassword ? 'text' : 'password'} {...password} />
-        <button type="button" onClick={() => setShowPassword(prev => !prev)}>
-          show password
-        </button>
-        <button type="sumbit">
-          {isLogin ? 'log in' : 'register and log in'}
-        </button>
-        <GoogleLogin
-          onSuccess={credentialResponse => {
-            const credentials = jwt_decode(credentialResponse.credential);
-            userData.email = credentials.email;
-            userData.password = credentials.sub;
-            if (!isLogin) {
-              userData.firstName = credentials.given_name;
-              userData.lastName = credentials.family_name;
-            }
-            handleSubmitForm();
-          }}
-          onError={() => {
-            console.log('Error');
-          }}
-          shape="circle"
-          text="continue_with"
-        />
-        {isLogin ? (
-          <button onClick={() => setIsLogin(false)} type="button">
-            don&apos;t have an account? register
+    <div className={styles.auth}>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+        <h1>{isLogin ? 'log in' : 'register'}</h1>
+        <form className={styles.form} onSubmit={handleSubmitForm}>
+          {!isLogin && (
+            <>
+              <input {...firstName} />
+              <input {...lastName} />
+            </>
+          )}
+          <input {...email} />
+          <div className={styles.passwordContainer}>
+            <input type={showPassword ? 'text' : 'password'} {...password} />
+            <button
+              className={styles.showPassword}
+              type="button"
+              onClick={() => setShowPassword(prev => !prev)}
+            >
+              <BsEyeFill size={18} />
+              <span className={utils.srOnly}>show password</span>
+            </button>
+          </div>
+          <button className={styles.submitBtn} type="sumbit">
+            {isLogin ? 'log in' : 'register and log in'}
           </button>
-        ) : (
-          <button onClick={() => setIsLogin(true)} type="button">
-            already have an account? log in
-          </button>
-        )}
-      </form>
-    </GoogleOAuthProvider>
+          <div className={styles.google}>
+            <GoogleLogin
+              onSuccess={credentialResponse => {
+                const credentials = jwt_decode(credentialResponse.credential);
+                userData.email = credentials.email;
+                userData.password = credentials.sub;
+                if (!isLogin) {
+                  userData.firstName = credentials.given_name;
+                  userData.lastName = credentials.family_name;
+                }
+                handleSubmitForm();
+              }}
+              onError={() => {
+                console.log('Error');
+              }}
+              type="icon"
+              theme="filled_blue"
+              shape="circle"
+            />
+            <p>{`${isLogin ? 'log in' : 'register'}`} with Google</p>
+          </div>
+          {isLogin ? (
+            <button
+              className={styles.toggle}
+              onClick={() => setIsLogin(false)}
+              type="button"
+            >
+              don&apos;t have an account? <span>register</span>
+            </button>
+          ) : (
+            <button
+              className={styles.toggle}
+              onClick={() => setIsLogin(true)}
+              type="button"
+            >
+              already have an account? <span>log in</span>
+            </button>
+          )}
+        </form>
+      </GoogleOAuthProvider>
+    </div>
   );
 };
 

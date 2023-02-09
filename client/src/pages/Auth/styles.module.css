@@ -1,0 +1,89 @@
+.auth {
+  max-width: 30rem;
+  margin-top: 3.2rem;
+  margin-inline: auto;
+}
+
+.auth > h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.form input {
+  height: 4.4rem;
+  width: 100%;
+  border-radius: var(--radius);
+  background-color: hsl(var(--color-bg-light));
+  box-shadow: var(--shadow-6px);
+  border: var(--border-regular);
+  color: hsl(var(--color-text));
+  font-size: 1.2rem;
+  padding-inline: 2rem;
+}
+
+.form input::placeholder {
+  color: hsl(var(--color-text));
+}
+
+.submitBtn {
+  height: 4.4rem;
+  border-radius: var(--radius);
+  background-color: hsl(var(--color-bg-light));
+  box-shadow: var(--shadow-6px);
+  border: var(--border-regular);
+  color: hsl(var(--color-text));
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.passwordContainer {
+  position: relative;
+}
+.showPassword {
+  position: absolute;
+  right: 2rem;
+  top: 1.4rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.showPassword > svg {
+  color: hsl(var(--color-text));
+}
+
+.google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-block: 1rem;
+}
+
+.google > p {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.toggle {
+  background: none;
+  border: none;
+  color: hsl(var(--color-text));
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.toggle > span {
+  font-weight: 800;
+}
