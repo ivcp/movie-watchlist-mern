@@ -29,6 +29,12 @@
   width: 50%;
   left: 0;
   z-index: 100;
+  background-color: hsl(var(--color-bg-dark));
+  color: hsl(var(--color-text));
+  padding-inline: 2rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 .select.visible {
