@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 vi.mock('./hooks/useMovieDetails');
 vi.mock('../../hooks/useAddMovie');
 vi.mock('../../hooks/useMovieList');
+vi.mock('../../hooks/useMediaQuery');
 
 describe('MovieDetails component', () => {
   const setupRender = () => {
