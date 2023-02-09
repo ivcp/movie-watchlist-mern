@@ -1,0 +1,8 @@
+.error {
+  max-width: 30rem;
+  margin-top: 5rem;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
