@@ -8,9 +8,11 @@ import DeleteMovieBtn from '../DeleteMovieBtn';
 import styles from './styles.module.css';
 import utils from '../../../../styles/utils.module.css';
 import { TbChevronDown } from 'react-icons/tb';
+import useMediaQuery from '../../../../hooks/useMediaQuery';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const isDesktop = useMediaQuery('(min-width: 37.5em)');
 
   const expandDetails = () => {
     setShowDetails(prev => !prev);
@@ -34,8 +36,8 @@ const MovieOnList = ({ movie }) => {
         </button>
       </div>
       {showDetails && (
-        <div>
-          <div>
+        <div className={styles.details}>
+          <div className={styles.genres}>
             {movie.genre_ids.map(genre => {
               const genreName = genres.reduce(
                 (acc, cur) => (cur.id === genre ? acc + cur.name : acc),
@@ -44,12 +46,16 @@ const MovieOnList = ({ movie }) => {
               return <p key={genre}>{genreName}</p>;
             })}
           </div>
-          <div>{movie.overview}</div>
+          <div className={styles.overview}>{movie.overview}</div>
           <img
-            src={`https://image.tmdb.org/t/p/w92${movie.poster}`}
+            className={styles.poster}
+            loading={'lazy'}
+            src={`https://image.tmdb.org/t/p/${isDesktop ? 'w154' : 'w92'}${
+              movie.poster
+            }`}
             alt={movie.title}
           />
-          <div>
+          <div className={styles.options}>
             <Link to={`/movie/${movie.tmdbId}`}>more details</Link>
             <DeleteMovieBtn movie={movie} />
           </div>
