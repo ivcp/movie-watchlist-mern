@@ -13,6 +13,14 @@
   height: 7rem;
 }
 
+@media (min-width: 37.5em) {
+  .titleContainer {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
 .titleContainer > h1 {
   font-size: 1.6rem;
   max-width: 28rem;
@@ -24,6 +32,19 @@
   justify-self: center;
   align-self: end;
   margin-bottom: 0.4rem;
+}
+
+@media (min-width: 37.5em) {
+  .titleContainer > h1 {
+    margin-right: auto;
+    margin-left: 2.4rem;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    max-width: 44rem;
+    align-self: center;
+    line-height: 1;
+  }
 }
 
 .ratingAndWatchedContainer {
@@ -39,6 +60,14 @@
   position: relative;
 }
 
+@media (min-width: 37.5em) {
+  .ratingAndWatchedContainer {
+    margin-bottom: 0;
+    align-self: center;
+    margin-right: 2.4rem;
+  }
+}
+
 .expandButton {
   border: none;
   background: none;
@@ -49,4 +78,27 @@
   align-self: center;
   margin-right: 1rem;
   margin-top: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.expandButton > svg {
+  transition: transform 0.2s;
+}
+
+.expandButton.rotate > svg {
+  transform: rotate(180deg);
+}
+
+@media (min-width: 37.5em) {
+  .expandButton {
+    margin-right: 2.3rem;
+    margin-top: 0;
+    align-self: center;
+    display: flex;
+    cursor: pointer;
+  }
+  .expandButton > svg {
+    height: 2rem;
+    width: 2rem;
+  }
 }

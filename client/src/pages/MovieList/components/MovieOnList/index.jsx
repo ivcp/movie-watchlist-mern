@@ -23,7 +23,12 @@ const MovieOnList = ({ movie }) => {
           {movie.watched && <Rating movie={movie} />}
           <Watched movie={movie} />
         </div>
-        <button onClick={expandDetails} className={styles.expandButton}>
+        <button
+          onClick={expandDetails}
+          className={`${styles.expandButton} ${
+            showDetails ? styles.rotate : ''
+          }`}
+        >
           <TbChevronDown size={16} strokeWidth={2.5} />
           <span className={utils.srOnly}>expand</span>
         </button>

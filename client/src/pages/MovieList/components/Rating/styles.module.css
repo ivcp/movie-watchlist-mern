@@ -5,9 +5,22 @@
   align-items: center;
   font-size: 0.8rem;
 }
+@media (min-width: 37.5em) {
+  .label {
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
 
 .label > svg {
   margin-block: 0.22rem;
+}
+
+@media (min-width: 37.5em) {
+  .label > svg {
+    height: 1.8rem;
+    width: 1.8rem;
+  }
 }
 
 .select {
@@ -29,4 +42,13 @@
   margin-top: 0.4rem;
   -webkit-text-stroke: 0.6px hsl(var(--color-primary));
   color: transparent;
+}
+
+@media (min-width: 37.5em) {
+  .userRating {
+    font-size: 1.7rem;
+    margin-top: 0.5rem;
+    -webkit-text-stroke: 0.5px hsl(var(--color-primary));
+    color: hsl(var(--color-bg-dark));
+  }
 }
