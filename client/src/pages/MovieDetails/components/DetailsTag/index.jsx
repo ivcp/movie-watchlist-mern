@@ -1,18 +1,20 @@
 import React from 'react';
 import { TbChecks } from 'react-icons/tb';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 const DetailsTag = ({ detail, text }) => {
   return (
-    <div>
+    <div className={styles.detail}>
       {detail.includes('icon') ? (
         <TbChecks
-          style={{
-            color: `${detail === 'icon-watched' ? 'orangered' : 'black'}`,
-          }}
+          size={21}
+          className={`${styles.icon} ${
+            detail === 'icon-watched' ? styles.watched : ''
+          }`}
         />
       ) : (
-        <strong>{detail}</strong>
+        <div>{detail}</div>
       )}
       <p>{text}</p>
     </div>

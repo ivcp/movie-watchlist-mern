@@ -9,6 +9,7 @@ import styles from './styles.module.css';
 import utils from '../../../../styles/utils.module.css';
 import { TbChevronDown } from 'react-icons/tb';
 import useMediaQuery from '../../../../hooks/useMediaQuery';
+import GenreTag from '../../../../components/GenreTag';
 
 const MovieOnList = ({ movie }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -43,7 +44,7 @@ const MovieOnList = ({ movie }) => {
                 (acc, cur) => (cur.id === genre ? acc + cur.name : acc),
                 ''
               );
-              return <p key={genre}>{genreName}</p>;
+              return <GenreTag key={genre}>{genreName}</GenreTag>;
             })}
           </div>
           <div className={styles.overview}>{movie.overview}</div>

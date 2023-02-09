@@ -3,9 +3,14 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import useMovieDetails from './hooks/useMovieDetails';
 import useAddMovie from '../../hooks/useAddMovie';
 import useMovieList from '../../hooks/useMovieList';
-import GenreTag from '../UI/GenreTag';
+import GenreTag from '../../components/GenreTag';
 import DetailsTag from './components/DetailsTag';
 import DeleteMovieBtn from '../../components/DeleteMovieBtn';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import styles from './styles.module.css';
+import noImage from '../../assets/no-img.svg';
+import { TbArrowLeft } from 'react-icons/tb';
+import utils from '../../styles/utils.module.css';
 
 const MovieDetails = () => {
   const { movie, credits, imdbData, imdbError, imdbLoading, imdbSuccess } =
@@ -13,6 +18,7 @@ const MovieDetails = () => {
   const addMovie = useAddMovie();
   const navigate = useNavigate();
   const { movieList, error, isError: movieListError } = useMovieList();
+  const isDesktop = useMediaQuery('(min-width: 37.5em)');
 
   const imdbRating = imdbData?.short?.aggregateRating?.ratingValue;
   const runtime = `${Math.floor(movie.runtime / 60)}h${movie.runtime % 60}m`;
@@ -29,42 +35,58 @@ const MovieDetails = () => {
   };
 
   if (movieListError && error.message.includes('Token expired')) {
-    return <Navigate to="/" replace />; //test this
+    return <Navigate to="/" replace />;
   }
 
-  //TODO: lazy load img
   return (
     <div>
-      {/* TODO: back btn only on mobile */}
-      <button onClick={() => navigate(-1)}>back</button>
-      <article>
-        {movie.backdrop_path ? (
-          <img
-            src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
-            alt={movie.title}
-            loading="lazy" //??
-          />
-        ) : (
-          <p>no image available</p>
-        )}
+      {!isDesktop && (
+        <button className={styles.backButton} onClick={() => navigate(-1)}>
+          <TbArrowLeft size={30} strokeWidth={2.5} />
+          <span className={utils.srOnly}>back</span>
+        </button>
+      )}
+      <article className={styles.movieDetails}>
+        <img
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}`
+              : noImage
+          }
+          alt={movie.title}
+        />
         <h1>{movie.title}</h1>
-        <div>
+        <div className={styles.genres}>
           {movie.genres.map(genre => (
-            <GenreTag key={genre.id}>{genre.name}</GenreTag>
+            <GenreTag key={genre.id} details>
+              {genre.name}
+            </GenreTag>
           ))}
         </div>
-        <div>
-          {directors.length > 0 && (
-            <h5>{directors.length > 1 ? 'directors' : 'director'}</h5>
-          )}
-          {directors.length > 0 &&
-            directors.map(d => <p key={d.id}>{d.name}</p>)}
-          <h5>starring</h5>
-          {starring.map(actor => (
-            <p key={actor.id}>{actor.name}</p>
-          ))}
+        <div className={styles.castAndCrew}>
+          <div>
+            {directors.length > 0 && (
+              <h5>{directors.length > 1 ? 'directors:' : 'director:'}</h5>
+            )}
+            {directors.length > 0 &&
+              directors.map((d, i) => (
+                <p key={d.id}>
+                  {d.name}
+                  {i === directors.length - 1 ? '' : ','}
+                </p>
+              ))}
+          </div>
+          <div>
+            <h5>starring:</h5>
+            {starring.map((actor, i) => (
+              <p key={actor.id}>
+                {actor.name}
+                {i === starring.length - 1 ? '' : ','}
+              </p>
+            ))}
+          </div>
         </div>
-        <div>
+        <div className={styles.detailsContainer}>
           <a
             href={`https://www.imdb.com/title/${movie.imdb_id}`}
             rel="noreferrer"
@@ -90,13 +112,15 @@ const MovieDetails = () => {
           {!movieOnList && (
             <button onClick={handleAddMovie}>
               <div>+</div>
-              add to list
+              <span> add to list</span>
             </button>
           )}
         </div>
-        <p>{movie.overview}</p>
+        <p className={styles.overview}>{movie.overview}</p>
         {movieOnList && (
-          <DeleteMovieBtn movie={movieOnList} text="remove from your list" />
+          <div className={styles.deleteBtn}>
+            <DeleteMovieBtn movie={movieOnList} text="remove from your list" />
+          </div>
         )}
       </article>
     </div>

@@ -1,0 +1,45 @@
+.detail {
+  border: var(--border-thin);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-4px);
+  height: 4rem;
+  padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 37.5em) {
+  .detail {
+    height: 5rem;
+  }
+}
+
+.detail > div {
+  font-size: 1.6rem;
+}
+@media (min-width: 37.5em) {
+  .detail > div {
+    font-size: 2rem;
+  }
+}
+
+.detail > p {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+@media (min-width: 37.5em) {
+  .detail > p {
+    font-size: 1rem;
+  }
+}
+
+.icon {
+  color: hsl(var(--color-text));
+}
+
+.icon.watched {
+  color: hsl(var(--color-primary));
+}

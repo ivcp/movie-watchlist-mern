@@ -133,25 +133,6 @@
   }
 }
 
-.genres p {
-  border: var(--border-thin);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-3px);
-  font-size: 1.2rem;
-  height: 1.8rem;
-  padding-inline: 0.8rem;
-  text-transform: lowercase;
-  display: flex;
-  align-items: center;
-}
-
-@media (min-width: 37.5em) {
-  .genres p {
-    height: 2.3rem;
-    padding-inline: 1rem;
-  }
-}
-
 .overview {
   grid-row: 2 / 4;
   grid-column: 1/-1;
