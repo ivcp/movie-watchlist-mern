@@ -1,22 +1,11 @@
 import 'react-toastify/dist/ReactToastify.css';
-import {
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { UserContextProvider } from './context/user-context';
 import { ModalContextProvider } from './context/modal-context';
 import { ToastContainer } from 'react-toastify';
-import Home from './pages/Home';
-import Layout from './layout/Layout';
-import Auth from './pages/Auth';
-import MovieList from './pages/MovieList';
-import MovieDetails from './pages/MovieDetails';
-import tmdbService from './services/tmdb';
-import MovieError from './pages/MovieDetails/components/MovieError';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,29 +14,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="/login" element={<Auth />} />
-      <Route path="/mymovies" element={<MovieList />} />
-      <Route
-        path="/movie/:movieId"
-        loader={async ({ params }) => {
-          const response = await Promise.all([
-            tmdbService.getMovieDetails(params.movieId),
-            tmdbService.getMovieCredits(params.movieId),
-          ]);
-          return response;
-        }}
-        element={<MovieDetails />}
-        errorElement={<MovieError />}
-      />
-      <Route path="*" element={<p>PAGE NOT FOUND</p>} />
-    </Route>
-  )
-);
 
 function App() {
   return (
