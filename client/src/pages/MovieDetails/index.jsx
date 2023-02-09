@@ -5,7 +5,7 @@ import useAddMovie from '../../hooks/useAddMovie';
 import useMovieList from '../../hooks/useMovieList';
 import GenreTag from '../UI/GenreTag';
 import DetailsTag from './components/DetailsTag';
-import DeleteMovieBtn from '../MovieList/components/DeleteMovieBtn';
+import DeleteMovieBtn from '../../components/DeleteMovieBtn';
 
 const MovieDetails = () => {
   const { movie, credits, imdbData, imdbError, imdbLoading, imdbSuccess } =

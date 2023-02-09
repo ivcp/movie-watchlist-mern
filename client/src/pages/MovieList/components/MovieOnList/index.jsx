@@ -4,7 +4,7 @@ import genres from '../../../../helpers/genres';
 import Rating from '../Rating';
 import Watched from '../Watched/index.jsx';
 import PropTypes from 'prop-types';
-import DeleteMovieBtn from '../DeleteMovieBtn';
+import DeleteMovieBtn from '../../../../components/DeleteMovieBtn';
 import styles from './styles.module.css';
 import utils from '../../../../styles/utils.module.css';
 import { TbChevronDown } from 'react-icons/tb';

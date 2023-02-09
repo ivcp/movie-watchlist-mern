@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ModalContext from '../../../../context/modal-context';
+import ModalContext from '../../context/modal-context';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 import { IoMdTrash } from 'react-icons/io';
