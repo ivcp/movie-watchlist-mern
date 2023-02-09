@@ -1,0 +1,27 @@
+.genre {
+  border: var(--border-thin);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-3px);
+  font-size: 1.2rem;
+  font-weight: 400;
+  height: 1.8rem;
+  padding-inline: 0.8rem;
+  text-transform: lowercase;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 37.5em) {
+  .genre {
+    height: 2.3rem;
+    padding-inline: 1rem;
+  }
+}
+
+.genre.details {
+  height: 3.2rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-4px);
+}
