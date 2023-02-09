@@ -34,7 +34,7 @@ const Movies = () => {
           ))}
         </div>
       )}
-      {isError && <p>{error.message}</p>}
+      {isError && <p className={styles.message}>{error.message}</p>}
       <div className={styles.movies}>
         {isSuccess &&
           movies.results.length > 0 &&

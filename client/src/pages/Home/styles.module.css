@@ -84,3 +84,16 @@
     font-size: 3.2rem;
   }
 }
+
+.message {
+  font-size: 1.6rem;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 37.5em) {
+  .message {
+    max-width: 87rem;
+    text-align: center;
+  }
+}
