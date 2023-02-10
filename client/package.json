@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "eslint": "eslint .",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@fontsource/nunito": "^4.5.12",

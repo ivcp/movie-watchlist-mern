@@ -89,7 +89,11 @@ const AuthForm = () => {
               <span className={utils.srOnly}>show password</span>
             </button>
           </div>
-          <button className={styles.submitBtn} type="sumbit">
+          <button
+            className={styles.submitBtn}
+            type="sumbit"
+            id="submit-credentials"
+          >
             {isLogin ? 'log in' : 'register and log in'}
           </button>
           <div className={styles.google}>
