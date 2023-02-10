@@ -21,7 +21,12 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ModalContextProvider>
           <RouterProvider router={router} />
-          <ToastContainer theme="dark" position="top-center" />
+          <ToastContainer
+            autoClose={2500}
+            hideProgressBar
+            theme="dark"
+            position="top-center"
+          />
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </ModalContextProvider>
       </QueryClientProvider>

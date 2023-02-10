@@ -1,10 +1,12 @@
 :root {
+  /* colors */
   --color-primary: 35 83% 54%;
   --color-text: 207 10% 82%;
   --color-bg: 206 11% 12%;
   --color-bg-dark: 200 12% 10%;
   --color-bg-light: 210 11% 15%;
 
+  /* borders & shadows */
   --border-thin: 1px solid hsl(var(--color-bg-dark));
   --border-regular: 1.5px solid hsl(var(--color-bg-dark));
   --border-bold: 2px solid hsl(var(--color-bg-dark));
@@ -15,6 +17,25 @@
   --shadow-6px: 6px 6px 0 0 hsl(var(--color-bg-dark));
   --shadow-8px: 8px 8px 0 0 hsl(var(--color-bg-dark));
   --radius: 2rem;
+
+  /* toastify */
+  --toastify-color-dark: hsl(var(--color-bg-light));
+  --toastify-color-info: hsl(var(--color-primary));
+  --toastify-font-family: 'Nunito', sans-serif;
+}
+.Toastify__toast {
+  border: var(--border-regular);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-4px);
+}
+@media (min-width: 50em) {
+  .Toastify__toast {
+    box-shadow: var(--shadow-6px);
+  }
+}
+.Toastify__toast-body {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 *,
