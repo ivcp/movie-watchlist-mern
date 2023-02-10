@@ -47,6 +47,16 @@ body {
   line-height: 1.5;
 }
 
+@media (min-width: 50em) {
+  body {
+    background: url('../assets/blob-right.svg'), url('../assets/blob-left.svg');
+    background-color: hsl(var(--color-bg));
+    background-repeat: no-repeat;
+    background-position: top left, bottom right;
+    background-size: 32%;
+  }
+}
+
 img,
 picture {
   max-width: 100%;
