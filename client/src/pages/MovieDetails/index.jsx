@@ -36,7 +36,7 @@ const MovieDetails = () => {
 
   let watchedStatus;
 
-  if (movieOnList.watched) {
+  if (movieOnList?.watched) {
     watchedStatus = movieOnList.rating
       ? `rated ${movieOnList.rating}/10`
       : 'watched';
