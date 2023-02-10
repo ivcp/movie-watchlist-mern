@@ -34,6 +34,16 @@ const MovieDetails = () => {
     addMovie(movie);
   };
 
+  let watchedStatus;
+
+  if (movieOnList.watched) {
+    watchedStatus = movieOnList.rating
+      ? `rated ${movieOnList.rating}/10`
+      : 'watched';
+  } else {
+    watchedStatus = 'in your list';
+  }
+
   if (movieListError && error.message.includes('Token expired')) {
     return <Navigate to="/" replace />;
   }
@@ -105,7 +115,7 @@ const MovieDetails = () => {
           {movieOnList && (
             <DetailsTag
               detail={movieOnList.watched ? 'icon-watched' : 'icon'}
-              text={movieOnList.watched ? 'watched' : 'in your list'}
+              text={watchedStatus}
             />
           )}
 
