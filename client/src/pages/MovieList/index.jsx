@@ -1,15 +1,15 @@
 import React from 'react';
 import useMovieList from '../../hooks/useMovieList';
-import SortBtn from './components/SortBtn';
+import FilterBtn from './components/FilterBtn';
 import styles from './styles.module.css';
 
 const MovieList = () => {
   const {
     user,
     movieList,
-    sortedMovies,
-    sort,
-    setSort,
+    filteredMovies,
+    filter,
+    setFilter,
     isLoading,
     isError,
     isSuccess,
@@ -31,17 +31,22 @@ const MovieList = () => {
   return (
     <div className={styles.container}>
       <div className={styles.sortButtons}>
-        <SortBtn sort={sort} count={allCount} setSort={setSort} text="all" />
-        <SortBtn
-          sort={sort}
+        <FilterBtn
+          filter={filter}
+          count={allCount}
+          setFilter={setFilter}
+          text="all"
+        />
+        <FilterBtn
+          filter={filter}
           count={watchedCount}
-          setSort={setSort}
+          setFilter={setFilter}
           text="watched"
         />
-        <SortBtn
-          sort={sort}
+        <FilterBtn
+          filter={filter}
           count={unwatchedCount}
-          setSort={setSort}
+          setFilter={setFilter}
           text="unwatched"
         />
       </div>
@@ -53,7 +58,7 @@ const MovieList = () => {
             user.name.split(' ')[0]
           }!`}</p>
         )}
-        {isSuccess && movieList.length > 0 && sortedMovies()}
+        {isSuccess && movieList.length > 0 && filteredMovies()}
       </div>
     </div>
   );

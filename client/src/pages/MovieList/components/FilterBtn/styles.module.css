@@ -21,10 +21,10 @@
     box-shadow: var(--shadow-6px);
     gap: 1.6rem;
     cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: border 0.2s, box-shadow 0.2s;
   }
   .sortButton:hover {
-    background-color: hsl(var(--color-bg));
+    border: 1.5px solid hsl(var(--color-text));
   }
   .sortButton:active {
     box-shadow: var(--shadow-4px);

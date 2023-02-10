@@ -6,7 +6,7 @@ import MovieOnList from '../pages/MovieList/components/MovieOnList';
 
 const useMovieList = () => {
   const { user, setUser } = useContext(UserContext);
-  const [sort, setSort] = useState('all');
+  const [filter, setFilter] = useState('all');
   const {
     data: movieList,
     isLoading,
@@ -24,14 +24,14 @@ const useMovieList = () => {
 
   const movieOnList = movie => <MovieOnList key={movie.id} movie={movie} />;
 
-  const sortedMovies = () => {
-    if (sort === 'all') {
+  const filteredMovies = () => {
+    if (filter === 'all') {
       return movieList.map(movieOnList);
     }
-    if (sort === 'watched') {
+    if (filter === 'watched') {
       return movieList.filter(movie => movie.watched).map(movieOnList);
     }
-    if (sort === 'unwatched') {
+    if (filter === 'unwatched') {
       return movieList.filter(movie => !movie.watched).map(movieOnList);
     }
   };
@@ -39,9 +39,9 @@ const useMovieList = () => {
   return {
     user,
     setUser,
-    sort,
-    setSort,
-    sortedMovies,
+    filter,
+    setFilter,
+    filteredMovies,
     movieList,
     isLoading,
     isError,

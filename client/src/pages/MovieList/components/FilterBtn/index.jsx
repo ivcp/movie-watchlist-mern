@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-const SortBtn = ({ text, sort, count, setSort }) => {
+const FilterBtn = ({ text, filter, count, setFilter }) => {
   return (
     <button
       className={`${styles.sortButton} ${
-        sort === text ? styles.activeSort : ''
+        filter === text ? styles.activeSort : ''
       }`}
-      onClick={() => setSort(text)}
+      onClick={() => setFilter(text)}
     >
       {text}
       <span>{count}</span>
@@ -15,4 +15,4 @@ const SortBtn = ({ text, sort, count, setSort }) => {
   );
 };
 
-export default SortBtn;
+export default FilterBtn;
