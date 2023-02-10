@@ -105,7 +105,7 @@ const AuthForm = () => {
                 handleSubmitForm();
               }}
               onError={() => {
-                console.log('Error');
+                toast.info('Something went wrong');
               }}
               type="icon"
               theme="filled_blue"
