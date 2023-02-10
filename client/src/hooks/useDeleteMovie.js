@@ -10,7 +10,7 @@ const useDeleteMovie = movieId => {
   const { mutate: deleteMovie } = useMutation(
     () => movieServices.deleteMovie(movieId),
     {
-      onError: error => console.log(error.message),
+      onError: error => toast.info(error.message),
       onSuccess: () => {
         const data = queryClient.getQueryData(['movieList', user.id]);
         queryClient.setQueryData(

@@ -26,7 +26,6 @@ const useAddMovie = () => {
       onSuccess: movie => {
         const data = queryClient.getQueryData(['movieList', user.id]);
         queryClient.setQueryData(['movieList', user.id], [...data, movie]);
-        console.log(`${movie.title} added to list`);
         toast.success(`${movie.title} added to list`);
       },
     }
