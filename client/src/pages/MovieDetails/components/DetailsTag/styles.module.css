@@ -38,6 +38,14 @@
 
 .icon {
   color: hsl(var(--color-text));
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+@media (min-width: 37.5em) {
+  .icon {
+    margin-top: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .icon.watched {
