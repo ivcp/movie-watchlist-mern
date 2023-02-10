@@ -38,11 +38,11 @@ describe('MovieList component', () => {
     const watchedBtn = screen.getByRole('button', { name: 'watched 1' });
     const unwatchedBtn = screen.getByRole('button', { name: /unwatched/i });
     await user.click(watchedBtn);
-    expect(returnValue.setSort).toBeCalledWith('watched');
+    expect(returnValue.setFilter).toBeCalledWith('watched');
     await user.click(unwatchedBtn);
-    expect(returnValue.setSort).toBeCalledWith('unwatched');
+    expect(returnValue.setFilter).toBeCalledWith('unwatched');
     await user.click(allBtn);
-    expect(returnValue.setSort).toBeCalledWith('all');
+    expect(returnValue.setFilter).toBeCalledWith('all');
   });
   it('displays message if no saved movies', async () => {
     returnValue.movieList = [];
@@ -88,9 +88,9 @@ const data = [
 const returnValue = {
   user: { name: 'Test user' },
   movieList: data,
-  sortedMovies: vi.fn(),
-  sort: 'all',
-  setSort: vi.fn(),
+  filteredMovies: vi.fn(),
+  filter: 'all',
+  setFilter: vi.fn(),
   isLoading: true,
   isError: false,
   isSuccess: false,
