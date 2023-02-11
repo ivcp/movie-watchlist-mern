@@ -14,7 +14,7 @@ describe('Watchlist app', function () {
     cy.contains('home');
     cy.contains('log in');
   });
-  describe('auth', function () {
+  describe('Auth', function () {
     beforeEach(function () {
       cy.contains('log in').click();
       //prettier-ignore
@@ -76,6 +76,53 @@ describe('Watchlist app', function () {
       cy.get('@password').clear().type('1234567');
       cy.get('#submit-credentials').click();
       cy.contains('invalid password');
+    });
+  });
+  describe('Home page', function () {
+    it('search for movies', function () {
+      cy.get('input[placeholder="search"]').type('event horizon');
+      cy.contains('li', 'Event Horizon').click();
+      cy.contains('h1', 'Event Horizon');
+    });
+    it('show message if no matches', function () {
+      cy.get('input[placeholder="search"]').type('123qwe123');
+      cy.contains('No matches found :(');
+    });
+    it('filters movies by genre', function () {
+      cy.intercept('GET', '/api/tmdb/genre?genreId=35&page=1').as('genre');
+      cy.get('span').contains('Comedy').click();
+      cy.wait('@genre').then(interception =>
+        expect(interception.response.statusCode).to.be.oneOf([200, 304])
+      );
+    });
+    it('can use pagination', function () {
+      cy.intercept('GET', '/api/tmdb/popular?page=2').as('pagination');
+      cy.get('[data-test="next-page"').click();
+      cy.get('span').contains('Comedy').click();
+      cy.wait('@pagination').then(interception =>
+        expect(interception.response.statusCode).to.be.oneOf([200, 304])
+      );
+    });
+
+    it('addition of movies', function () {
+      //if user not logged in
+      cy.intercept('POST', '/api/movies').as('add-movie');
+      cy.get('button').contains('+').click();
+      cy.wait('@add-movie').then(interception =>
+        expect(interception.response.statusCode).to.equal(401)
+      );
+      cy.contains('Log in to add a movie');
+      // after log in
+      cy.contains('log in').click();
+      cy.get('input[placeholder="email*"]').type('user@email.com');
+      cy.get('input[placeholder="password*"]').type('123456');
+      cy.get('#submit-credentials').click();
+      cy.get('button').contains('+').click();
+      cy.wait('@add-movie').then(interception =>
+        expect(interception.response.statusCode).to.equal(201)
+      );
+      cy.contains(/added to list/i);
+      cy.contains(/my movies 1/i);
     });
   });
 });

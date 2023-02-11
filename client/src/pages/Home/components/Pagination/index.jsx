@@ -32,7 +32,7 @@ const Pagination = ({ page, moviesPage, totalPages, setPage }) => {
         </button>
       )}
       {isDesktop ? (
-        <NavButton isDesktop={isDesktop} turnPage={() => turnPage(true)} />
+        <NavButton isDesktop={isDesktop} next turnPage={() => turnPage(true)} />
       ) : (
         <button
           className={styles.mobileButton}

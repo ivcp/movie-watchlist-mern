@@ -40,6 +40,7 @@ const GenreFilter = ({ setGenre, setPage }) => {
                 onChange={handleSelect}
                 defaultChecked={genre.id === selected}
                 className={utils.srOnly}
+                data-test={genre.name}
               />
               <label htmlFor={genre.id}>
                 <div

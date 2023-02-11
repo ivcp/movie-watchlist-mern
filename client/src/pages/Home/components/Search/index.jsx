@@ -80,7 +80,7 @@ const Search = () => {
           </div>
         )}
         {isSuccess && data.results.length > 0 && (
-          <div className={styles.results}>
+          <div className={styles.results} data-test="search-results">
             <p>matches:</p>
             <ul role="tablist">
               {data.results.map(match => (
