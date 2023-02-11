@@ -8,6 +8,7 @@ const FilterBtn = ({ text, filter, count, setFilter }) => {
         filter === text ? styles.activeSort : ''
       }`}
       onClick={() => setFilter(text)}
+      data-test="filter-btn"
     >
       {text}
       <span>{count}</span>

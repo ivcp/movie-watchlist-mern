@@ -57,12 +57,14 @@ describe('Watchlist app', function () {
       cy.contains('name cannot be more than 12 characters long');
     });
 
-    it('can log in user', function () {
+    it('can log in user/ log out', function () {
       cy.contains('already have an account? log in').click();
       cy.get('@email').type('user@email.com');
       cy.get('@password').type('123456');
       cy.get('#submit-credentials').click();
       cy.contains('user existing logged in successfully');
+      cy.contains('log out').click();
+      cy.contains('user existing logged out');
     });
     it('fails to log in if wrong credentials', function () {
       cy.contains('already have an account? log in').click();
@@ -103,7 +105,6 @@ describe('Watchlist app', function () {
         expect(interception.response.statusCode).to.be.oneOf([200, 304])
       );
     });
-
     it('addition of movies', function () {
       //if user not logged in
       cy.intercept('POST', '/api/movies').as('add-movie');
@@ -123,6 +124,73 @@ describe('Watchlist app', function () {
       );
       cy.contains(/added to list/i);
       cy.contains(/my movies 1/i);
+    });
+  });
+
+  describe('Movie list', function () {
+    beforeEach(function () {
+      cy.contains('log in').click();
+      cy.get('input[placeholder="email*"]').type('user@email.com');
+      cy.get('input[placeholder="password*"]').type('123456');
+      cy.get('#submit-credentials').click();
+      cy.get('article')
+        .find('button')
+        .each(function ($button, i) {
+          if (i < 3) {
+            cy.wrap($button).click();
+            // eslint-disable-next-line
+            cy.wait(2000);
+          }
+        });
+
+      cy.contains(/my movies 3/i).click();
+    });
+    it('can mark movie as watched, and rate it', function () {
+      cy.get('[data-test="rating"]').should('not.exist');
+      cy.get('[data-test="watched"]').first().click();
+      cy.get('[data-test="watched"]')
+        .first()
+        .find('svg')
+        .should('have.css', 'color', 'rgb(235, 154, 40)');
+      cy.get('[data-test="watched"]')
+        .first()
+        .find('span')
+        .contains('mark as unwatched');
+      cy.get('[data-test="rating"]').click();
+      cy.get('select').first().select('5');
+      cy.get('[data-test="rating"]')
+        .first()
+        .find('p')
+        .should('have.css', '-webkit-text-stroke', '0.5px rgb(235, 154, 40)');
+    });
+    it('can filter movies by watched status', function () {
+      cy.get('article').then(function (articles) {
+        expect(articles).to.have.length(3);
+      });
+      cy.get('[data-test="watched"]').first().click();
+      cy.get('[data-test="filter-btn"]').contains('watched').click();
+      cy.get('article').then(function (articles) {
+        expect(articles).to.have.length(1);
+      });
+      cy.get('[data-test="filter-btn"]').contains('unwatched').click();
+      cy.get('article').then(function (articles) {
+        expect(articles).to.have.length(2);
+      });
+    });
+    it('can expand movie details, delete movie', function () {
+      cy.get('[data-test="details-list"]').should('not.exist');
+      cy.get('[data-test="expand"]').first().click();
+      cy.get('[data-test="details-list"]');
+      cy.get('#modal').should('not.be.visible');
+      cy.get('button')
+        .contains(/delete movie/i)
+        .click();
+      cy.get('#modal').find('button').contains('yes').click();
+      // eslint-disable-next-line
+      cy.wait(500);
+      cy.get('article').then(function (articles) {
+        expect(articles).to.have.length(2);
+      });
     });
   });
 });

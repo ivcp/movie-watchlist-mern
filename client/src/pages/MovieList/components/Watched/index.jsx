@@ -13,7 +13,7 @@ const Watched = ({ movie }) => {
   };
   return (
     <div>
-      <label htmlFor={movie.id} className={styles.label}>
+      <label htmlFor={movie.id} className={styles.label} data-test="watched">
         <TbChecks
           size={22}
           className={`${styles.checks} ${movie.watched ? styles.watched : ''}`}

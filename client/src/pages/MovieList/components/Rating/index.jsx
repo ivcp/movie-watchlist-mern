@@ -23,6 +23,7 @@ const Rating = ({ movie }) => {
         htmlFor={movie.title}
         className={styles.label}
         onClick={openRating}
+        data-test="rating"
       >
         {movie.rating === null && <FaStar size={16} />}
         {Number.isFinite(movie.rating) && (

@@ -31,13 +31,14 @@ const MovieOnList = ({ movie }) => {
           className={`${styles.expandButton} ${
             showDetails ? styles.rotate : ''
           }`}
+          data-test="expand"
         >
           <TbChevronDown size={16} strokeWidth={2.5} />
           <span className={utils.srOnly}>expand</span>
         </button>
       </div>
       {showDetails && (
-        <div className={styles.details}>
+        <div className={styles.details} data-test="details-list">
           <div className={styles.genres}>
             {movie.genre_ids.map(genre => {
               const genreName = genres.reduce(
