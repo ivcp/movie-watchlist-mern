@@ -2,11 +2,6 @@ const moviesRouter = require('express').Router();
 const Movie = require('../models/movie');
 const { userExtractor } = require('../utils/middleware');
 
-moviesRouter.get('/', async (req, res) => {
-  const movies = await Movie.find({}).populate('user', { email: 1, name: 1 });
-  res.json(movies);
-});
-
 moviesRouter.post('/', userExtractor, async (req, res) => {
   if (!req.token) {
     return res.status(401).json({ error: 'Log in to add a movie' });
