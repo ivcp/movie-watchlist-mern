@@ -215,7 +215,7 @@ describe('Watchlist app', function () {
       cy.get('[data-test="overview"]');
       cy.get('button').contains(/add to list/i);
     });
-    it.only('shows list/watched status, delete btn if user logged in', function () {
+    it('shows list/watched status, delete btn if user logged in', function () {
       // eslint-disable-next-line
       cy.wait(500);
       cy.get('button').contains(/add to list/i);
