@@ -14,8 +14,8 @@ const middleware = require('./utils/middleware');
 mongoose.set('strictQuery', false);
 mongoose
   .connect(MONGODB_URI)
-  .then(() => console.log('connected to DB', MONGODB_URI))
-  .catch(err => console.log(err.MONGODB_URI));
+  .then(() => console.log('connected to DB'))
+  .catch(err => console.log(err));
 app.use(cors());
 
 app.use(express.json());
