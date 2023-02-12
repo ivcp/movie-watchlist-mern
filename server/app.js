@@ -13,7 +13,7 @@ const middleware = require('./utils/middleware');
 
 mongoose.set('strictQuery', false);
 mongoose.connect(MONGODB_URI).then(() => console.log('connected to DB'));
-
+console.log(MONGODB_URI, '<<<<THIS HERE');
 app.use(cors());
 
 app.use(express.json());
