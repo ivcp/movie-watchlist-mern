@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useMovieList from '../../hooks/useMovieList';
 import FilterBtn from './components/FilterBtn';
 import styles from './styles.module.css';
@@ -15,6 +15,10 @@ const MovieList = () => {
     isSuccess,
     error,
   } = useMovieList();
+
+  useEffect(() => {
+    document.title = 'Watchlist';
+  }, []);
 
   const allCount = movieList?.length;
   const watchedCount = movieList?.filter(movie => movie.watched).length;

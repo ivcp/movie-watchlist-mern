@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import GenreFilter from './components/GenreFilter';
 import useFetchMoviesByGenre from './hooks/useFetchMoviesByGenre';
 import Movie from './components/Movie';
@@ -20,6 +20,10 @@ const Movies = () => {
   } = useFetchMoviesByGenre();
 
   const isDesktop = useMediaQuery('(min-width: 56.25em)');
+
+  useEffect(() => {
+    document.title = 'Watchlist';
+  }, []);
 
   return (
     <>

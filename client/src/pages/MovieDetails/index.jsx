@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import useMovieDetails from './hooks/useMovieDetails';
 import useAddMovie from '../../hooks/useAddMovie';
@@ -20,12 +20,15 @@ const MovieDetails = () => {
   const { movieList, error, isError: movieListError } = useMovieList();
   const isDesktop = useMediaQuery('(min-width: 37.5em)');
 
+  useEffect(() => {
+    document.title = movie.title;
+  }, []);
+
   const imdbRating = imdbData?.short?.aggregateRating?.ratingValue;
   const runtime = `${Math.floor(movie.runtime / 60)}h${movie.runtime % 60}m`;
   const year = movie.release_date.slice(0, 4);
   const directors = credits.crew.filter(c => c.job === 'Director');
   const starring = credits.cast.slice(0, 3);
-
   const movieOnList = movieList?.find(
     movieOnList => movieOnList.tmdbId === movie.id
   );

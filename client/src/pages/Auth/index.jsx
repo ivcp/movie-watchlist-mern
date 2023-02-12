@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import useField from './hooks/useField';
 import { useMutation } from 'react-query';
 import auth from '../../services/auth';
@@ -35,6 +35,10 @@ const AuthForm = () => {
       },
     }
   );
+
+  useEffect(() => {
+    document.title = 'Log in/Register';
+  }, []);
 
   const userData = {
     email: email.value.trim(),
