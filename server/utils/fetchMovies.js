@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const fetchMovies = async (url, res, page) => {
   const response = await fetch(url);
   if (!response.ok) {
