@@ -126,7 +126,9 @@ const MovieDetails = () => {
             </button>
           )}
         </div>
-        <p className={styles.overview}>{movie.overview}</p>
+        <p className={styles.overview} data-test="overview">
+          {movie.overview}
+        </p>
         {movieOnList && (
           <div className={styles.deleteBtn}>
             <DeleteMovieBtn movie={movieOnList} text="remove from your list" />

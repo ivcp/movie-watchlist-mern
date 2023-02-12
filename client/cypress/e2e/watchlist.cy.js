@@ -193,4 +193,49 @@ describe('Watchlist app', function () {
       });
     });
   });
+
+  describe('Movie details', function () {
+    let movie;
+    beforeEach(function () {
+      cy.get('article').first().find('a').as('movie');
+      // eslint-disable-next-line
+      cy.wait(500);
+      cy.get('@movie')
+        .find('h1')
+        .then(function (title) {
+          movie = title.prevObject[0].textContent;
+        });
+      cy.get('@movie').click();
+    });
+    it('shows details page', function () {
+      // eslint-disable-next-line
+      cy.wait(500);
+      cy.contains(movie);
+      cy.get('article').find('img').should('have.attr', 'alt', movie);
+      cy.get('[data-test="overview"]');
+      cy.get('button').contains(/add to list/i);
+    });
+    it.only('shows list/watched status, delete btn if user logged in', function () {
+      // eslint-disable-next-line
+      cy.wait(500);
+      cy.get('button').contains(/add to list/i);
+      cy.get('button')
+        .contains(/remove from your list/i)
+        .should('not.exist');
+      cy.contains('log in').click();
+      cy.get('input[placeholder="email*"]').type('user@email.com');
+      cy.get('input[placeholder="password*"]').type('123456');
+      cy.get('#submit-credentials').click();
+      cy.contains(/home/i).click();
+      cy.get('article').first().find('button').contains('+').click();
+      cy.get('article').first().find('a').click();
+      cy.contains(/in your list/i);
+      cy.contains(/my movies 1/i).click();
+      cy.get('[data-test="watched"]').first().click();
+      cy.get('[data-test="expand"]').first().click();
+      cy.get('a').contains('more details').click();
+      cy.contains(/watched/i);
+      cy.get('button').contains(/remove from your list/i);
+    });
+  });
 });
