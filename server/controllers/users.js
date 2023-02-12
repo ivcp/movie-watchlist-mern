@@ -4,17 +4,6 @@ const bcrypt = require('bcrypt');
 const { userExtractor } = require('../utils/middleware');
 const getToken = require('../utils/getToken');
 
-usersRouter.get('/', async (req, res) => {
-  const allUsers = await User.find({}).populate('movies', {
-    tmbdId: 1,
-    title: 1,
-    poster: 1,
-    overview: 1,
-    watched: 1,
-  });
-  res.status(200).json(allUsers);
-});
-
 usersRouter.get('/:userId', userExtractor, async (req, res) => {
   if (!req.token) {
     return res.status(401).json({ error: 'Unauthorized' });
