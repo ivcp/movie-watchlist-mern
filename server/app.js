@@ -11,7 +11,6 @@ const loginRouter = require('./controllers/login');
 const moviesRouter = require('./controllers/movies');
 const middleware = require('./utils/middleware');
 
-console.log(MONGODB_URI, '<<<<THIS HERE');
 mongoose.set('strictQuery', false);
 mongoose.connect(MONGODB_URI).then(() => console.log('connected to DB'));
 app.use(cors());
