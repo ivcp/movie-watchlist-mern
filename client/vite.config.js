@@ -25,6 +25,13 @@ export default defineConfig(({ command, mode }) => {
       },
     };
   } else {
-    return defaultConfig;
+    return {
+      ...defaultConfig,
+      server: {
+        proxy: {
+          '/api': 'https://watchlist-6wzf.onrender.com',
+        },
+      },
+    };
   }
 });
