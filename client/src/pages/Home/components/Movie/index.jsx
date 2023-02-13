@@ -38,7 +38,7 @@ const Movie = ({ movie, imageSize, skeleton }) => {
           <span className={utils.srOnly}>add movie</span>
         </button>
       ) : null}
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={skeleton ? '#' : `/movie/${movie.id}`}>
         {!skeleton ? (
           <img
             src={image}
