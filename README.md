@@ -15,19 +15,20 @@ Users can:
 - Delete movies
 
 <br/>
+
 #### Screenshots
 
 ### Home page
 
-![](screenshots/home.png)
+![](_screenshots/home.png)
 
 ### Movie list
 
-![](screenshots/list.png)
+![](_screenshots/list.png)
 
 ### Log in
 
-![](screenshots/auth.png)
+![](_screenshots/auth.png)
 
 <br/>
 
