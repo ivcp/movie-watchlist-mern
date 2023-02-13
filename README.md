@@ -1,8 +1,8 @@
 # Watchlist
 
-<br/>
+<br>
 
-A web-app made using the MERN stack for practise.
+A web app made using the MERN stack for practise.
 
 Users can:
 
@@ -14,25 +14,29 @@ Users can:
 - Rate movies
 - Delete movies
 
-<br/>
+<br>
 
-#### Screenshots
+## Screenshots
 
-### Home page
+#### Home page
 
 ![](_screenshots/home.png)
 
-### Movie list
+#### Movie list
 
 ![](_screenshots/list.png)
 
-### Log in
+#### Movie details
+
+![](_screenshots/details.png)
+
+#### Log in
 
 ![](_screenshots/auth.png)
 
-<br/>
+<br>
 
-### Tech Stack
+## Tech Stack
 
 #### Frontend
 
@@ -49,9 +53,9 @@ Users can:
 - jsonwebtoken
 - bcrypt
 
-<br/>
+<br>
 
 APIs used
 
 - for movies:[TMDB](https://developers.themoviedb.org/3/getting-started/introduction)
-- for ImDb scores: [IMDbOT](https://github.com/SpEcHiDe/IMDbOT)
+- for IMDb scores: [IMDbOT](https://github.com/SpEcHiDe/IMDbOT)
