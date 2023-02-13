@@ -18,20 +18,17 @@ export default defineConfig(({ command, mode }) => {
       ...defaultConfig,
       server: {
         proxy: {
-          '/api': isDev
-            ? 'http://localhost:3001'
-            : 'https://watchlist-6wzf.onrender.com',
+          '/api': {
+            target: isDev
+              ? 'http://localhost:3001'
+              : 'https://watchlist-6wzf.onrender.com',
+            changeOrigin: true,
+            secure: false,
+          },
         },
       },
     };
   } else {
-    return {
-      ...defaultConfig,
-      server: {
-        proxy: {
-          '/api': 'https://watchlist-6wzf.onrender.com',
-        },
-      },
-    };
+    return defaultConfig;
   }
 });
