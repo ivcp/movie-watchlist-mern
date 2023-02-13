@@ -1,2 +1,5 @@
-/*  /index.html  200 
+/  /index.html  200 
+/login  /index.html  200 
+/mymovies  /index.html  200 
+/movie/*  /index.html  200 
 /api/*  https://watchlist-6wzf.onrender.com/api/:splat  200
