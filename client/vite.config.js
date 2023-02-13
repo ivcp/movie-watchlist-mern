@@ -22,8 +22,6 @@ export default defineConfig(({ command, mode }) => {
             target: isDev
               ? 'http://localhost:3001'
               : 'https://watchlist-6wzf.onrender.com',
-            changeOrigin: true,
-            secure: false,
           },
         },
       },
