@@ -40,6 +40,7 @@ Users can:
 
 #### Frontend
 
+- vite
 - react
 - react query
 - CSS modules
@@ -47,6 +48,7 @@ Users can:
 
 #### Backend
 
+- node
 - express
 - mongoDB
 - mongoose
