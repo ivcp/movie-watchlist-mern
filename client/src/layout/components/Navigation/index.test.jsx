@@ -37,6 +37,5 @@ describe('Navigation component', () => {
     await user.click(logoutBtn);
     //setUser called with correct arg
     expect(returnValue.setUser).toBeCalledWith(null);
-    //TODO: triggers notification
   });
 });

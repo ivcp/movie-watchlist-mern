@@ -6,8 +6,18 @@
   max-width: 30rem;
   margin-top: 2.5rem;
   position: relative;
-  overflow-x: clip;
 }
+
+.header {
+  overflow-x: hidden;
+}
+
+@supports (overflow-x: clip) {
+  .header {
+    overflow-x: clip;
+  }
+}
+
 @media (min-width: 37.5em) {
   .header {
     max-width: 80%;
