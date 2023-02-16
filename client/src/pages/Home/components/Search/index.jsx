@@ -91,7 +91,10 @@ const Search = () => {
                   onKeyDown={e => selectSearchResult(match.id, e)}
                 >
                   <Link to={`/movie/${match.id}`}>
-                    {match.title}
+                    {match.title}{' '}
+                    {match.release_date
+                      ? `(${match.release_date.slice(0, 4)})`
+                      : ''}
                     <span>&gt;</span>
                   </Link>
                 </li>
