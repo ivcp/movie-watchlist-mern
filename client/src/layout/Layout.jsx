@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import { useLocation } from 'react-router-dom';
 import styles from './Layout.module.css';
@@ -32,7 +32,9 @@ const Layout = () => {
     <>
       {location.pathname.includes('/movie/') && !isDesktop ? null : (
         <header className={styles.header}>
-          <img src={isDesktop ? logoDektop : logo} alt="watchlist logo" />
+          <Link to="/">
+            <img src={isDesktop ? logoDektop : logo} alt="watchlist logo" />
+          </Link>
           {!isDesktop && (
             <button className={styles.menu} onClick={handleMenuClick}>
               {showNavigation ? <TbX size={24} /> : <TbMenu2 size={24} />}
