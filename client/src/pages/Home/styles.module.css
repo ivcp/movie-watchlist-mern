@@ -1,19 +1,10 @@
 .searchAndFilterContainer {
   position: relative;
-  /* overflow-x: clip; */
+  overflow-x: clip;
   margin-top: 4.8rem;
   margin-bottom: 3.2rem;
 }
 
-.searchAndFilterContainer {
-  overflow-x: hidden;
-}
-
-@supports (overflow-x: clip) {
-  .searchAndFilterContainer {
-    overflow-x: clip;
-  }
-}
 @media (min-width: 37.5em) {
   .searchAndFilterContainer {
     max-width: 87rem;

@@ -11,6 +11,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  /* fixes disappearing menu on safari mobile */
+  -webkit-transform: translate3d(0, 0, 0);
   animation: slide-in 0.4s ease;
 }
 
