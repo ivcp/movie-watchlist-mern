@@ -2,7 +2,7 @@
 
 <br>
 
-A web app made using the MERN stack for practise.
+A web app made using the MERN stack.
 
 Users can:
 
