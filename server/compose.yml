@@ -2,7 +2,6 @@ services:
   api:
     image: node:20-bullseye
     restart: unless-stopped
-    user: "node"
     working_dir: /app
     volumes:
       - ./:/app
@@ -10,7 +9,7 @@ services:
       - ${PORT}:${PORT}
     environment:
       PORT: ${PORT}
-    command: "npm start"
+    command: bash -c "npm ci && npm start"
   caddy:
     image: caddy:2.7.6-alpine
     restart: unless-stopped
