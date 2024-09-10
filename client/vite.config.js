@@ -19,9 +19,7 @@ export default defineConfig(({ command, mode }) => {
       server: {
         proxy: {
           '/api': {
-            target: isDev
-              ? 'http://localhost:3001'
-              : 'https://watchlist-6wzf.onrender.com',
+            target: isDev ? 'http://localhost:3001' : 'http://144.24.174.71',
           },
         },
       },
