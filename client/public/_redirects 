@@ -2,4 +2,4 @@
 /login  /index.html  200 
 /mymovies  /index.html  200 
 /movie/*  /index.html  200 
-/api/*  https://watchlist-6wzf.onrender.com/api/:splat  200
+/api/*  http://144.24.174.71/api/:splat  200
